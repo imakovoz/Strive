@@ -21,3 +21,9 @@
    font-weight: 700;
    color: #fc4c02;
  }
+
+ h2 {
+   font-size: 38px;
+   font-weight: 300;
+   padding: 30px;
+ }

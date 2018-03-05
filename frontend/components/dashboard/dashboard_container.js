@@ -1,4 +1,3 @@
-import { logout } from '../../actions/session_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 import { selectAllPosts } from '../../reducers/selectors';
@@ -13,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers()),
-  fetchPosts: () => dispatch(fetchPosts())
+  fetchPosts: () => dispatch(fetchPosts()),
 });
 
 

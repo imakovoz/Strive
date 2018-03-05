@@ -9,9 +9,9 @@ class Feed extends React.Component {
   }
 
   render() {
-    debugger
+
     let posts = this.props.posts || [];
-    const allPosts = posts.map((post, i) => <li key={i}>{post.title}</li>);
+    const allPosts = posts.map((post, i) => <li key={i}>{post.title} : {post.body}</li>);
     return (
       <ul>
         {allPosts}
