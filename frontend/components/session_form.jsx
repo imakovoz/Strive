@@ -9,10 +9,13 @@ class SessionForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      firstname: '',
+      lastname: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleUsername = this.handleUsername.bind(this);
     this.handleFirstname = this.handleFirstname.bind(this);
@@ -29,7 +32,11 @@ class SessionForm extends React.Component {
       firstname: '',
       lastname: '',
     });
+  }
 
+  demoLogin(e) {
+    const user = {username: 'user'+ Math.floor(e.timeStamp), password: 'starwars', firstname: 'demo', lastname: 'login'};
+    this.props.processForm({user});
   }
 
   handlePassword(e) {
@@ -68,6 +75,7 @@ class SessionForm extends React.Component {
               <input type='text' value={this.state.username} onChange={this.handleUsername} placeholder="Email" className="SessionFormInputs"></input>
               <input type='password' value={this.state.password} onChange={this.handlePassword} placeholder="Password" className="SessionFormInputs"></input>
               <button className="SessionFormInputs" id="sign-up-submit">Submit</button>
+              <button onClick={this.demoLogin} className="SessionFormInputs" id="demo-login">Demo Login</button>
             </form>
           </div>
       </div>
