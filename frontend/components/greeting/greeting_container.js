@@ -1,4 +1,4 @@
-import { logout } from '../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import Greeting from './greeting';
 import { connect } from 'react-redux';
 

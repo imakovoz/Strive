@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import { login, logout, signup } from './actions/session_actions';
-import { fetchUsers } from './actions/users_actions';
+import { fetchUsers } from './actions/user_actions';
+import { fetchPosts, createPost } from './actions/post_actions';
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.login = login;
   window.logout = logout;
   window.fetchUsers = fetchUsers;
+  window.fetchPosts = fetchPosts;
+  window.createPost = createPost;
   // TESTING END
 
   const root = document.getElementById('root');

@@ -82,24 +82,30 @@
    margin-top: 50px;
    padding: 15px;
    color: white;
+   font-size: 16px;
  }
 
  #log-in-link {
    text-decoration: none;
-   padding: 6px;
+   padding: 7px 8px;
    box-sizing: border-box;
    border: 1px solid #ccc;
    margin-left: 10px;
    color: #aaa;
    font-size: 14px;
+   font-weight: 500;
  }
 
  #sign-up-link {
    text-decoration: none;
-   padding: 7px;
+   padding: 8px 9px;
    margin-left: 10px;
    background-color: #fc4c02;
    color: white;
    font-size: 14px;
-
+   font-weight: 500;
  }
+
+#demo-login {
+  background-color: #3b5998;
+}

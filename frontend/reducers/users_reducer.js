@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_USERS } from "../actions/users_actions";
+import { RECEIVE_USERS } from "../actions/user_actions";
 
 
 const usersReducer = (state = [], action) => {
