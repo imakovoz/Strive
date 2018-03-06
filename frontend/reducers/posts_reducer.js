@@ -9,7 +9,7 @@ const usersReducer = (state = [], action) => {
     case RECEIVE_POSTS:
       return merge({}, state, action.posts);
     case RECEIVE_POST:
-      return merge({}, state, action.post);
+      return merge({}, state, {[action.post.id]: action.post});
     default:
       return state;
   }

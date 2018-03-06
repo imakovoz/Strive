@@ -1,0 +1,69 @@
+#CreatePostFormDiv {
+  margin-top: 100px;
+
+}
+
+#post-form-prof {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.post-form-inputs{
+  border-radius: 5px;
+}
+
+#post-form-prof-left {
+  display: flex;
+  flex-direction: row;
+}
+
+#post-form-user-name {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#posting-as {
+  color:
+}
+
+#post-form-prof-pic > img {
+  border-radius: 50%;
+}
+
+#post-form-prof-left > span {
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#post-form-prof-right {
+  display: flex;
+  flex-direction: row;
+}
+
+#CreatePostForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#post-form-input-title {
+  font-size: 30px;
+  padding: 11px 10px 11px 14px;
+  width: 800px;
+  margin-bottom: 16px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+#post-form-input-body {
+  font-size: 16px;
+  padding: 11px 10px 10px 14px;
+  width: 800px;
+  height: 114px;
+  vertical-align: bottom;
+  box-sizing: border-box;
+}

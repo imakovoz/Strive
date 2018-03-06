@@ -24,7 +24,7 @@
 
 .dropbtn {
     border-radius: 50%;
-    padding: 8px 9px 8px 9px;
+    padding: 8px 9px 9px 9px;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -47,6 +47,7 @@
     background-color: white;
     min-width: 160px;
     border: 1px solid gray;
+    border-top: transparent;
     z-index: 1;
     right: -1px;
 
@@ -72,4 +73,12 @@
   border-bottom: 1px solid white;
   border-right: 1px solid gray;
   border-left: 1px solid gray;
+}
+
+.dropdown-icons:hover {
+  border-bottom: 1px solid white;
+}
+
+.dropdown-content:hover {
+  down: 1px;
 }
