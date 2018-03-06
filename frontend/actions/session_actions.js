@@ -17,7 +17,7 @@ export const login = (user) => (dispatch) =>  (
 );
 
 export const logout = () => (dispatch) => (
-  APIUtil.logout().then((currentUser) => (dispatch(receiveCurrentUser(null))), (errors) => dispatch(receiveErrors(errors))) // currentUser should be nooobooody
+  APIUtil.logout().then((currentUser) => (dispatch(receiveCurrentUser(null))), (errors) => dispatch(receiveErrors(errors))) 
 );
 
 export const signup = (user) => (dispatch) => (

@@ -3,12 +3,8 @@ import SessionForm from './session_form';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  const errs = [];
-  Object.keys(state.errors).map( err => {
-    errs.push(err);
-  });
   return ({
-    errors: errs,
+    errors: state.errors.session,
     formType: 'login'
   });
 };

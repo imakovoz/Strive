@@ -7,7 +7,7 @@ const sessionErrorsReducer = (state = [], action) => {
   // debugger
   switch (action.type) {
     case RECEIVE_ERRORS:
-      return merge({}, state, action.errors.responseJSON.errors);
+      return merge({}, action.errors.responseJSON.errors);
     case RECEIVE_CURRENT_USER:
       return {};
     default:

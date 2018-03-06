@@ -19,7 +19,7 @@
  }
 
  #SessionPageForm {
-   background-image: url('login_runner_1.jpeg');
+   background-image: image_url('login_runner_1.jpeg');
    /* background-size: 100% 100%; */
    height: 100vh;
    display: flex;
@@ -108,4 +108,10 @@
 
 #demo-login {
   background-color: #3b5998;
+}
+
+.session-errs {
+  padding: 2px;
+  color: red;
+  margin: 0 auto;
 }
