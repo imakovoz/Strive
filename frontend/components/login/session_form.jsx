@@ -26,12 +26,6 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm({user});
-    this.setState({
-      email: '',
-      password: '',
-      firstname: '',
-      lastname: '',
-    });
   }
 
   demoLogin(e) {
@@ -54,10 +48,6 @@ class SessionForm extends React.Component {
 
 
   render() {
-    const errs = this.props.errors.map((err, i) => {
-      return <li key={i}>{err}</li>;
-    });
-
     if (this.props.formType === 'signup') {
       return (
         <div >
@@ -73,14 +63,15 @@ class SessionForm extends React.Component {
             <section id="SessionPageHeader">
               Join Strive today, it's Free.
             </section>
-            <ul>
-              { errs }
-            </ul>
             <form onSubmit={ this.handleSubmit } id="SessionForm">
               <input type='text' value={this.state.firstname} onChange={this.handleFirstname} placeholder="First Name" className="SessionFormInputs"></input>
+              <span className="session-errs">{this.props.errors.firstname}</span>
               <input type='text' value={this.state.lastname} onChange={this.handleLastname} placeholder="Last Name" className="SessionFormInputs"></input>
+              <span className="session-errs">{this.props.errors.lastname}</span>
               <input type='text' value={this.state.email} onChange={this.handleemail} placeholder="Email" className="SessionFormInputs"></input>
+              <span className="session-errs">{this.props.errors.email}</span>
               <input type='password' value={this.state.password} onChange={this.handlePassword} placeholder="Password" className="SessionFormInputs"></input>
+              <span className="session-errs">{this.props.errors.password}</span>
               <button className="SessionFormInputs" id="sign-up-submit">Submit</button>
               <button onClick={this.demoLogin} className="SessionFormInputs" id="demo-login">Demo Login</button>
             </form>

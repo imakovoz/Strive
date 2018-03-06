@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render json: {id: @user.id, email: @user.email, firstname: @user.firstname, lastname: @user.lastname, }
     else
-      render json: {errors: @user.errors.full_messages}, status: 422
+      render json: {errors: @user.errors}, status: 422
     end
   end
 
