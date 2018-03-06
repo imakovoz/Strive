@@ -3,26 +3,34 @@ import { Link } from 'react-router-dom';
 
 
 const Header = (props) => {
+  // TODO make img locally hosted
 
   return (
     <header id="main-header">
       <div className="header-div" id="left-header-div">
-        <h3>STRIVE</h3>
+        <h1>STRIVE</h1>
         <h3>Search</h3>
         <h3>Dashboard Dropdown</h3>
       </div>
       <div className="header-div" id="right-header-div">
-        <div class="dropdown">
-          <img src="https://tinyurl.com/y8cc7jwt" height="35" width="35" class="dropbtn" />
-          <div class="dropdown-content">
-            <a href="#">My Profile</a>
-            <button onClick={props.logout} >Logout</button>
-            
+        <div className="dropdown">
+          <div className="dropdown-icons">
+            <img src="https://tinyurl.com/y8cc7jwt" height="35" width="35" className="dropbtn" />
+          </div>
+          <div className="dropdown-content">
+            <Link to={`/users/${props.current_user.id}`}>My Profile</Link>
+            <a onClick={props.logout} >Logout</a>
           </div>
         </div>
-
-        <h3>Add</h3>
-
+        <div>
+          <div className="dropdown">
+            <img src="https://tinyurl.com/y8pwomlj" height="35" width="35" className="dropbtn" />
+            <div className="dropdown-content">
+              <Link to={`/posts/new`}>Create Post</Link>
+              <Link to={`/workouts/new`}>Create Workout</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );
