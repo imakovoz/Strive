@@ -6,7 +6,7 @@ const Greeting = (props) => {
 
   return (
     <div>
-      <h3>Welcome: { props.current_user.username }</h3>
+      <h3>Welcome: { props.current_user.email }</h3>
 
       <button onClick={props.logout} >Logout</button>
     </div>

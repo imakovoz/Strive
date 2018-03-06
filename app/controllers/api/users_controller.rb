@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      render json: {id: @user.id, username: @user.username, firstname: @user.firstname, lastname: @user.lastname, }
+      render json: {id: @user.id, email: @user.email, firstname: @user.firstname, lastname: @user.lastname, }
     else
       render json: {errors: @user.errors.full_messages}, status: 422
     end
@@ -67,6 +67,6 @@ class Api::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password_digest, :session_token, :password, :firstname, :lastname)
+      params.require(:user).permit(:email, :password_digest, :session_token, :password, :firstname, :lastname)
     end
 end

@@ -8,7 +8,7 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
       firstname: '',
       lastname: '',
@@ -17,7 +17,7 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
-    this.handleUsername = this.handleUsername.bind(this);
+    this.handleemail = this.handleemail.bind(this);
     this.handleFirstname = this.handleFirstname.bind(this);
     this.handleLastname = this.handleLastname.bind(this);
   }
@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.processForm({user});
     this.setState({
-      username: '',
+      email: '',
       password: '',
       firstname: '',
       lastname: '',
@@ -35,7 +35,7 @@ class SessionForm extends React.Component {
   }
 
   demoLogin(e) {
-    const user = {username: 'user'+ Math.floor(e.timeStamp), password: 'starwars', firstname: 'demo', lastname: 'login'};
+    const user = {email: 'user'+ Math.floor(e.timeStamp), password: 'starwars', firstname: 'demo', lastname: 'login'};
     this.props.processForm({user});
   }
 
@@ -48,12 +48,16 @@ class SessionForm extends React.Component {
   handleLastname(e) {
     this.setState({lastname: e.target.value});
   }
-  handleUsername(e) {
-    this.setState({username: e.target.value});
+  handleemail(e) {
+    this.setState({email: e.target.value});
   }
 
 
   render() {
+    const errs = this.props.errors.map((err, i) => {
+      return <li key={i}>{err}</li>;
+    });
+
     if (this.props.formType === 'signup') {
       return (
         <div >
@@ -69,10 +73,13 @@ class SessionForm extends React.Component {
             <section id="SessionPageHeader">
               Join Strive today, it's Free.
             </section>
+            <ul>
+              { errs }
+            </ul>
             <form onSubmit={ this.handleSubmit } id="SessionForm">
               <input type='text' value={this.state.firstname} onChange={this.handleFirstname} placeholder="First Name" className="SessionFormInputs"></input>
               <input type='text' value={this.state.lastname} onChange={this.handleLastname} placeholder="Last Name" className="SessionFormInputs"></input>
-              <input type='text' value={this.state.username} onChange={this.handleUsername} placeholder="Email" className="SessionFormInputs"></input>
+              <input type='text' value={this.state.email} onChange={this.handleemail} placeholder="Email" className="SessionFormInputs"></input>
               <input type='password' value={this.state.password} onChange={this.handlePassword} placeholder="Password" className="SessionFormInputs"></input>
               <button className="SessionFormInputs" id="sign-up-submit">Submit</button>
               <button onClick={this.demoLogin} className="SessionFormInputs" id="demo-login">Demo Login</button>
@@ -95,7 +102,7 @@ class SessionForm extends React.Component {
               Log In
             </section>
             <form onSubmit={ this.handleSubmit } id="SessionForm">
-              <input type='text' value={this.state.username} onChange={this.handleUsername} placeholder="Email" className="SessionFormInputs"></input>
+              <input type='text' value={this.state.email} onChange={this.handleemail} placeholder="Email" className="SessionFormInputs"></input>
               <input type='password' value={this.state.password} onChange={this.handlePassword} placeholder="Password" className="SessionFormInputs"></input>
             <button className="SessionFormInputs" id="sign-up-submit">Log In</button>
             </form>
