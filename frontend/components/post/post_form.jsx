@@ -10,7 +10,6 @@ class PostForm extends React.Component {
     this.state = {
       body: '',
       title: '',
-      redirect: false,
     };
 
     this.handleTitle = this.handleTitle.bind(this);
@@ -29,12 +28,19 @@ class PostForm extends React.Component {
     this.props.createPost({title: this.state.title, body: this.state.body, author_id: this.props.current_user.id}).then(() => this.props.history.push('/'));
   }
 
-
   render() {
 
     return (
       <div >
         <Header />
+
+        <div className="app-history">
+          <Link to='/users'>Athletes</Link>
+          <span>/</span>
+          <Link to='/users'>{this.props.current_user.firstname} {this.props.current_user.lastname}</Link>
+          <span>/</span>
+          <span>New Post</span>
+        </div>
 
         <div id="CreatePostFormDiv">
 
@@ -51,8 +57,8 @@ class PostForm extends React.Component {
             </span>
 
             <span id="post-form-prof-right">
-              <button onClick={this.handlePublish.bind(this)} className="post-form-inputs" id="create-post-submit">Publish</button>
-              <Link to={`/profile/${this.props.current_user.id}`} className="post-form-inputs" id="discard-post-submit">Discard</Link>
+              <Link to={`/profile/${this.props.current_user.id}`} className="post-form-inputs-btn" id="discard-post-submit">Discard</Link>
+              <a onClick={this.handlePublish.bind(this)} className="post-form-inputs-btn" id="create-post-submit" disabled={true}>Publish</a>
             </span>
 
           </div>
