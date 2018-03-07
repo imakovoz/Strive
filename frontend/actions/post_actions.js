@@ -16,10 +16,10 @@ export const fetchPosts = () => (dispatch) => (
   APIUtil.fetchPosts().then((posts) => (dispatch(receivePosts(posts))))
 );
 
-export const fetchPost = () => (dispatch) => (
-  APIUtil.fetchPost().then((post) => (dispatch(receivePost(post))))
+export const fetchPost = (userId, id) => (dispatch) => (
+  APIUtil.fetchPost(userId, id).then((post) => (dispatch(receivePost(post))))
 );
 
-export const createPost = (post1) => (dispatch) => (
-  APIUtil.createPost(post1).then((post) => (dispatch(receivePost(post))))
+export const createPost = (userId, post1) => (dispatch) => (
+  APIUtil.createPost(userId, post1).then((post) => (dispatch(receivePost(post))))
 );
