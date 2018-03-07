@@ -37,7 +37,7 @@ class PostForm extends React.Component {
   render() {
 
     let publishBtn = null;
-    if (Boolean(this.state.body)) {
+    if (this.state.body) {
       publishBtn = <a onClick={this.handlePublish.bind(this)}
         className="post-form-inputs-btn" id="create-post-submit">Publish</a>;
     } else {
@@ -52,12 +52,12 @@ class PostForm extends React.Component {
         <div className="app-history">
           <Link to='/users'>Athletes</Link>
           <span>/</span>
-          <Link to='/users'>
+            <Link to={`/users${this.props.current_user.id}`}>
             {this.props.current_user.firstname}
             {this.props.current_user.lastname}
           </Link>
           <span>/</span>
-          <span>New Post</span>
+          <a>New Post</a>
         </div>
 
         <div id="CreatePostFormDiv">
@@ -66,13 +66,14 @@ class PostForm extends React.Component {
 
             <span id="post-form-prof-left">
               <div id="post-form-prof-pic">
-                <img src="https://tinyurl.com/y8cc7jwt" height="75" width="75" />
+                <img src="https://tinyurl.com/y8cc7jwt"
+                height="75" width="75" />
               </div>
               <span>
                 <span id="posting-as">Posting as</span>
                 <h4 id="post-form-user-name">
-                  {this.props.current_user.firstname}
-                  {this.props.current_user.lastname}
+                  {this.props.current_user.firstname + " "
+                    + this.props.current_user.lastname}
                 </h4>
               </span>
             </span>

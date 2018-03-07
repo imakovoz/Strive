@@ -4,7 +4,12 @@
   align-items: center;
   box-sizing: border-box;
   height: 55px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #ccccd1;
+  box-shadow:
+}
+
+#logo-link {
+  text-decoration: none;
 }
 
 .header-div {
