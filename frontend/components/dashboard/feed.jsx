@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { PostItem } from './post_item';
+import PostItem from './post_item';
 
 class Feed extends React.Component {
 
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchUsers();
   }
 
   render() {
@@ -16,7 +17,8 @@ class Feed extends React.Component {
     if (posts.length >0) {
       return (
         <ul>
-          {this.props.posts.map((post) => <PostItem post={post} user={this.props.users[post.id]}/>)}
+          {this.props.posts.map((post, i) => <PostItem post={post}
+            user={this.props.users[post.id]} key={i}/>)}
         </ul>
       );
     } else {
