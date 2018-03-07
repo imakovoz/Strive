@@ -103,9 +103,14 @@ class SessionForm extends React.Component {
             </section>
             {errs}
             <form onSubmit={ this.handleSubmit } id="SessionForm">
-              <input type='text' value={this.state.email} onChange={this.handleemail} placeholder="Email" className="SessionFormInputs"></input>
-              <input type='password' value={this.state.password} onChange={this.handlePassword} placeholder="Password" className="SessionFormInputs"></input>
-            <button className="SessionFormInputs" id="sign-up-submit">Log In</button>
+              <input type='text' value={this.state.email}
+                onChange={this.handleEmail} placeholder="Email" 
+                className="SessionFormInputs"></input>
+              <input type='password' value={this.state.password}
+                onChange={this.handlePassword} placeholder="Password"
+                className="SessionFormInputs"></input>
+            <button className="SessionFormInputs"
+              id="sign-up-submit">Log In</button>
             </form>
           </div>
       </div>
