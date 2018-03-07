@@ -11,10 +11,12 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(fetchUsers()),
-  fetchPosts: () => dispatch(fetchPosts()),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchPosts: () => dispatch(fetchPosts()),
+  };
+};
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

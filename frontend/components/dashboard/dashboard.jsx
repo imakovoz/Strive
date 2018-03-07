@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Feed from './feed.jsx';
+import Feed from './feed';
 import Header from '../header/header_container.js';
 
 
 class Dashboard extends React.Component {
 
   componentDidMount() {
-    this.props.fetchUsers();
+    // debugger
+
   }
   render() {
-    debugger
+    // debugger
     return (
       <div>
         <Header />
