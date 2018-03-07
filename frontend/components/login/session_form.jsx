@@ -50,7 +50,7 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
     this.props.processForm({user});
   }
-
+  //TODO refactor using formType
   render() {
     if (this.props.formType === 'signup') {
       return (

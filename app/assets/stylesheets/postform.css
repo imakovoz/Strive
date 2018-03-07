@@ -13,6 +13,11 @@
 
 .post-form-inputs{
   border-radius: 5px;
+  border: 1px solid #ccccd1;
+}
+
+.post-form-inputs::placeholder {
+  color: #ccccd1;
 }
 
 #post-form-prof-left {
@@ -69,7 +74,7 @@
   width: 50px;
   height: 20px;
   border-radius: 3px;
-  border: solid gray 1px;
+  border: solid #ccccd1 1px;
   text-decoration: none;
   padding: 10px 30px;
   margin-left: 5px;
@@ -79,14 +84,22 @@
   background-color: #fc4c02;
   color: white;
   border: solid #fc4c02 1px;
+  cursor: pointer;
 }
 
 #create-post-submit-disabled {
   background-color: #ff8a59;
   color: #F5F5F5;
   border: solid #ff8a59 1px;
+  cursor: not-allowed;
 }
 
 #discard-post-submit {
   color: black;
+  border: solid 1px #ccccd1;
+}
+
+#posting-as {
+  font-size: 12px;
+  color: #ccccd1;
 }
