@@ -6,12 +6,17 @@ import Header from '../header/header_container.js';
 
 class Dashboard extends React.Component {
 
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
   render() {
+    debugger
     return (
       <div>
         <Header />
         <h2>Activity Feed</h2>
-        <Feed fetchPosts={this.props.fetchPosts} posts={this.props.posts}/>
+      <Feed fetchPosts={this.props.fetchPosts} posts={this.props.posts}
+        fetchUsers={this.props.fetchUsers} users={this.props.users}/>
       </div>
     );
   }
