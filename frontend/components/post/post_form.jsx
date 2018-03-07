@@ -26,6 +26,7 @@ class PostForm extends React.Component {
 
   handlePublish(post) {
     this.props.createPost(
+      this.props.current_user.id,
       {
         title: this.state.title,
         body: this.state.body,
