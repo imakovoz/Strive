@@ -1,12 +1,13 @@
 import { fetchUsers } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
-import { selectAllPosts } from '../../reducers/selectors';
+import { selectAllPosts, selectAllUsers } from '../../reducers/selectors';
 import Dashboard from './dashboard';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
     posts: selectAllPosts(state),
+    users: state.entities.users,
   });
 };
 

@@ -1,22 +1,27 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { PostItem } from './post_item';
 
 class Feed extends React.Component {
 
   componentDidMount() {
-
     this.props.fetchPosts();
   }
 
   render() {
 
-    let posts = this.props.posts || [];
-    const allPosts = posts.map((post, i) => <li key={i}>{post.title} : {post.body}</li>);
-    return (
-      <ul>
-        {allPosts}
-      </ul>
-    );
+    let posts = this.props.posts;
+    let users = this.props.users;
+    // debugger
+    if (posts.length >0) {
+      return (
+        <ul>
+          {this.props.posts.map((post) => <PostItem post={post} user={this.props.users[post.id]}/>)}
+        </ul>
+      );
+    } else {
+      return <div></div>;
+    }
   }
 }
 
