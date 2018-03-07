@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :workouts
   namespace :api, defaults: { format: :json } do
     resources :posts, only: [:index]
     resources :workouts, only: [:index]
