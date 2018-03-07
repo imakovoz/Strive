@@ -52,7 +52,7 @@ class PostForm extends React.Component {
         <div className="app-history">
           <Link to='/users'>Athletes</Link>
           <span>/</span>
-            <Link to={`/users${this.props.current_user.id}`}>
+          <Link to={`/users/${this.props.current_user.id}`}>
             {this.props.current_user.firstname}
             {this.props.current_user.lastname}
           </Link>
