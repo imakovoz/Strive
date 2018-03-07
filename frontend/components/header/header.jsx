@@ -27,7 +27,7 @@ const Header = (props) => {
         <div className="dropdown">
           <Link to={`/users/${props.current_user.id}`}
           className="dropdown-icons" className="dropdown-header-div">
-            <img src="https://tinyurl.com/y8cc7jwt" height="35"
+            <img src={`${window.profPic}`} id="profPic" height="35"
             width="35" className="dropbtn" />
           </Link>
           <div className="dropdown-content">
@@ -38,7 +38,7 @@ const Header = (props) => {
         <div>
           <div className="dropdown">
             <div className="dropdown-header-div">
-              <img src="https://tinyurl.com/y8pwomlj" height="35"
+              <img src={`${window.plusSign}`} height="35"
               width="35" className="dropbtn" />
             </div>
             <div className="dropdown-content">
