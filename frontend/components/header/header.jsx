@@ -38,8 +38,8 @@ const Header = (props) => {
         <div>
           <div className="dropdown">
             <div className="dropdown-header-div">
-              <img src={`${window.plusSign}`} height="35"
-              width="35" className="dropbtn" />
+              <img src={`${window.plusSign}`} height="20"
+              width="20" className="dropbtn" id="header-plus-sign"/>
             </div>
             <div className="dropdown-content">
               <Link to={`/posts/new`}>Create Post</Link>
