@@ -7,11 +7,9 @@ import Header from '../header/header_container.js';
 class Dashboard extends React.Component {
 
   componentDidMount() {
-    // debugger
 
   }
   render() {
-    // debugger
     return (
       <div>
         <Header />

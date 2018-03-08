@@ -39,7 +39,6 @@ class WorkoutForm extends React.Component {
       {
         title: this.state.title,
         body: this.state.body,
-        user_id: this.props.current_user.id,
         distance: this.state.distance,
         distance_uom: this.state.distance_uom,
         duration: (this.state.hours * 360 +

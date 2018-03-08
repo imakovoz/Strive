@@ -15,7 +15,7 @@ export const fetchWorkout = (userId, id) => {
 export const createWorkout = (userId, workout) => {
   return $.ajax({
     method: 'POST',
-    url: '/api/users/${userId}/workouts',
+    url: '/api/workouts',
     data: {workout}
   });
 };

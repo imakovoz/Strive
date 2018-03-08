@@ -3,7 +3,7 @@ import PostForm from './post_form';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
+
   return ({
     current_user: state.session.currentUser,
     post: state.entities.posts[ownProps.match.params.post_id] || {},

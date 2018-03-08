@@ -9,7 +9,6 @@ import { fetchWorkouts } from './actions/workout_actions';
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // debugger
 
 
   let store;

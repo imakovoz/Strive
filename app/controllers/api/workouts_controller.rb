@@ -25,16 +25,9 @@ class Api::WorkoutsController < ApplicationController
   # POST /workouts.json
   def create
     @workout = Workout.new(workout_params)
-
-    respond_to do |format|
-      if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
-      else
-        format.html { render :new }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
-    end
+    @workout.user_id = current_user.id
+    @workout.save!
+    render :show
   end
 
   # PATCH/PUT /workouts/1
