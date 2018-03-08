@@ -7,6 +7,7 @@ import PostFormContainer from './post/post_form_container';
 import EditPostFormContainer from './post/edit_post_form_container';
 import PostShowContainer from './post/post_show_container';
 import WorkoutFormContainer from './workout/workout_form_container';
+import WorkoutShowContainer from './workout/workout_show_container';
 import ProfilePageContainer from './user/profile_page_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -19,6 +20,7 @@ const App = () => (
       <ProtectedRoute path="/posts/new" component={PostFormContainer} />
       <ProtectedRoute path="/users/:user_id/posts/:post_id/edit" component={EditPostFormContainer} />
       <ProtectedRoute path="/users/:user_id/posts/:post_id" component={PostShowContainer} />
+      <ProtectedRoute path="/users/:user_id/workouts/:workout_id" component={WorkoutShowContainer} />
       <ProtectedRoute path="/workouts/new" component={WorkoutFormContainer} />
       <ProtectedRoute path="/users/:id" component={ProfilePageContainer} />
       <ProtectedRoute path="/" component={DashboardContainer} />
