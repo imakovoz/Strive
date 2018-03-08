@@ -17,7 +17,8 @@ class Dashboard extends React.Component {
         <Header />
         <h2>Activity Feed</h2>
       <Feed fetchPosts={this.props.fetchPosts} posts={this.props.posts}
-        fetchUsers={this.props.fetchUsers} users={this.props.users}/>
+        fetchUsers={this.props.fetchUsers} users={this.props.users}
+        fetchWorkouts={this.props.fetchWorkouts}/>
       </div>
     );
   }

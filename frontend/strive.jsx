@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchUsers } from './actions/user_actions';
+import { createWorkout } from './actions/workout_actions';
 import { fetchPosts, createPost } from './actions/post_actions';
+import { fetchWorkouts } from './actions/workout_actions';
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchUsers = fetchUsers;
   window.fetchPosts = fetchPosts;
   window.createPost = createPost;
+  window.createWorkout = createWorkout;
+  window.fetchWorkouts = fetchWorkouts;
   // TESTING END
 
   const root = document.getElementById('root');
