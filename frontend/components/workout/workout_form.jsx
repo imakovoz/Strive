@@ -16,7 +16,7 @@ class WorkoutForm extends React.Component {
     this.setState({date: [this.state.date.getYear() + 1900,
       ('0' + (this.state.date.getMonth() + 1)).slice(-2),
       ('0' + (this.state.date.getDate())).slice(-2)].join("-")});
-    if (this.state.time.getHours() > 12) {
+    if (this.state.time.getHours() < 13) {
       this.setState({time: (this.state.time.getHours() + ":" +
         this.state.time.getMinutes() + " " + "AM")});
     } else {
@@ -34,7 +34,6 @@ class WorkoutForm extends React.Component {
 
   handlePost() {
     const date = [this.state.date, this.state.time].join(' ');
-    debugger
     this.props.action(
       this.props.current_user.id,
       {
@@ -43,7 +42,8 @@ class WorkoutForm extends React.Component {
         user_id: this.props.current_user.id,
         distance: this.state.distance,
         distance_uom: this.state.distance_uom,
-        duration: this.state.duration,
+        duration: (this.state.hours * 360 +
+          this.state.minutes * 60 + this.state.seconds),
         elevation: this.state.elevation,
         elevation_uom: this.state.elevation_uom,
         date: this.state.date,
@@ -109,76 +109,99 @@ class WorkoutForm extends React.Component {
     return (
       <div >
         <Header />
+      <div id="workoutform-container">
+          <div id="workoutform-sidebar">
 
-      <div id="CreateWorkoutFormDiv">
-        <h3>Manual Entry</h3>
-        <form id="CreateWorkoutForm">
+          </div>
+          <div id="CreateWorkoutFormDiv">
+            <h3 id="manual-entry-header">Manual Entry</h3>
 
-          <input className="workout-form-inputs"
-            type='text' value={this.state.distance}
-            onChange={this.handleInput}
-            id="workout-form-input-distance"></input>
-          { distUomDrop }
+          <form id="CreateWorkoutForm">
 
-          <input className="workout-form-inputs"
-            type='text' value={this.state.hours}
-            onChange={this.handleInput}
-            placeholder="1"
-            id="workout-form-input-hours"></input>
-          <input className="workout-form-inputs"
-            type='text' value={this.state.minutes}
-            onChange={this.handleInput}
-            placeholder="00"
-            id="workout-form-input-minutes"></input>
-          <input className="workout-form-inputs"
-            type='text' value={this.state.seconds}
-            onChange={this.handleInput}
-            placeholder="00"
-            id="workout-form-input-seconds"></input>
+            <div className="workout-form-divs" id="workout-form-first-div">
+              <div>
+                <input className="workout-form-inputs"
+                  type='text' value={this.state.distance}
+                  onChange={this.handleInput}
+                  id="workout-form-input-distance"></input>
+                { distUomDrop }
+              </div>
 
-          <input className="workout-form-inputs"
-            type='text' value={this.state.elevation}
-            onChange={this.handleInput}
-            id="workout-form-input-elevation"></input>
-          { elevationUomDrop }
+              <div>
+                <input className="workout-form-inputs"
+                  type='text' value={this.state.hours}
+                  onChange={this.handleInput}
+                  placeholder="1"
+                  id="workout-form-input-hours"></input>
+                <input className="workout-form-inputs"
+                  type='text' value={this.state.minutes}
+                  onChange={this.handleInput}
+                  placeholder="00"
+                  id="workout-form-input-minutes"></input>
+                <input className="workout-form-inputs"
+                  type='text' value={this.state.seconds}
+                  onChange={this.handleInput}
+                  placeholder="00"
+                  id="workout-form-input-seconds"></input>
+              </div>
 
-          { activityDrop }
+              <div>
+                <input className="workout-form-inputs"
+                  type='text' value={this.state.elevation}
+                  onChange={this.handleInput}
+                  id="workout-form-input-elevation"></input>
+                { elevationUomDrop }
+              </div>
+            </div>
 
-          <input type="date" defaultValue={this.state.date} onChange={this.handleInput}
-            id="workout-form-input-date"></input>
+            <hr></hr>
 
-          <input type="text" list="times" onChange={this.handleInput}
-            id="workout-form-input-time" defaultValue={this.state.time}></input>
-          <datalist id="times" size="5" >
-            {times.map((el) => el)}
-          </datalist>
+            <div className="workout-form-divs" id="workout-form-second-div">
+              { activityDrop }
 
-          <input className="workout-form-inputs"
-            type='text' value={this.state.title}
-            onChange={this.handleInput}
-            placeholder={`Casual ${this.state.activity}`}
-            id="workout-form-input-title"></input>
+              <input type="date" defaultValue={this.state.date}
+                onChange={this.handleInput} id="workout-form-input-date">
+              </input>
 
-          <textarea className="workout-form-inputs"
-            type='text'
-            value={this.state.body}
-            onChange={this.handleInput}
-            placeholder="How did it go? Were you tired or rested? How was the weather?"
-            id="workout-form-input-body"></textarea>
-        </form>
+              <input type="text" list="times" onChange={this.handleInput}
+                id="workout-form-input-time" defaultValue={this.state.time}>
+              </input>
+              <datalist id="times" size="5" >
+                {times.map((el) => el)}
+              </datalist>
 
-        <a onClick={this.handlePost.bind(this)}
-          className="workout-form-inputs-btn"
-          id="create-workout-submit">Publish
-        </a>
+              <input className="workout-form-inputs"
+                type='text'
+                onChange={this.handleInput}
+                defaultValue={`Casual ${this.state.activity}`}
+                id="workout-form-input-title"></input>
+            </div>
 
-        <span>
-          <Link
-            to={`/profile/${this.props.current_user.id}`}
+            <hr></hr>
+
+            <div className="workout-form-divs" id="workout-form-third-div">
+              <textarea className="workout-form-inputs"
+                type='text'
+                value={this.state.body}
+                onChange={this.handleInput}
+                placeholder="How did it go? Were you tired or rested? How was the weather?"
+                id="workout-form-input-body"></textarea>
+            </div>
+          </form>
+
+          <a onClick={this.handlePost.bind(this)}
             className="workout-form-inputs-btn"
-            id="discard-workout-submit">Cancel
-          </Link>
-        </span>
+            id="create-workout-submit">Publish
+          </a>
+
+          <span>
+            <Link
+              to={`/profile/${this.props.current_user.id}`}
+              className="workout-form-inputs-btn"
+              id="discard-workout-submit">Cancel
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
     );
