@@ -7,13 +7,16 @@ class PostForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      body: '',
-      title: '',
-    };
+    this.state = this.props.post;
 
     this.handleTitle = this.handleTitle.bind(this);
     this.handleBody = this.handleBody.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.type === "update") {
+      this.props.fetchPost(this.props.current_user.id, this.props.postId).then(() => this.setState(this.props.post));
+    }
   }
 
 
@@ -25,7 +28,7 @@ class PostForm extends React.Component {
   }
 
   handlePublish() {
-    this.props.createPost(
+    this.props.action(
       this.props.current_user.id,
       {
         title: this.state.title,
@@ -38,12 +41,22 @@ class PostForm extends React.Component {
   render() {
 
     let publishBtn = null;
-    if (this.state.body) {
-      publishBtn = <a onClick={this.handlePublish.bind(this)}
-        className="post-form-inputs-btn" id="create-post-submit">Publish</a>;
+    if (this.state.type === "create") {
+      if (this.state.body) {
+        publishBtn = <a onClick={this.handlePublish.bind(this)}
+          className="post-form-inputs-btn" id="create-post-submit">Publish</a>;
+        } else {
+          publishBtn = <a className="post-form-inputs-btn"
+            id="create-post-submit-disabled">Publish</a>;
+          }
     } else {
-      publishBtn = <a className="post-form-inputs-btn"
-        id="create-post-submit-disabled">Publish</a>;
+      if (this.state.body) {
+        publishBtn = <a onClick={this.handlePublish.bind(this)}
+          className="post-form-inputs-btn" id="create-post-submit">Save</a>;
+        } else {
+          publishBtn = <a className="post-form-inputs-btn"
+            id="create-post-submit-disabled">Save</a>;
+          }
     }
 
     return (
@@ -54,8 +67,7 @@ class PostForm extends React.Component {
           <Link to='/users'>Athletes</Link>
           <span>/</span>
           <Link to={`/users/${this.props.current_user.id}`}>
-            {this.props.current_user.firstname}
-            {this.props.current_user.lastname}
+            {this.props.current_user.firstname + " " + this.props.current_user.lastname}
           </Link>
           <span>/</span>
           <a>New Post</a>
@@ -73,8 +85,7 @@ class PostForm extends React.Component {
               <span>
                 <span id="posting-as">Posting as</span>
                 <h4 id="post-form-user-name">
-                  {this.props.current_user.firstname + " "
-                    + this.props.current_user.lastname}
+                  {this.props.current_user.firstname + " " + this.props.current_user.lastname}
                 </h4>
               </span>
             </span>

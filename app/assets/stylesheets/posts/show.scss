@@ -29,12 +29,22 @@
   padding-left: 20px;
 }
 
-#show-prof-pic > * {
+#show-user-info > a {
+  text-decoration: none;
+  color: black;
+}
+
+#show-user-info > a:hover {
+  text-decoration: none;
+  color: #007FB6;
+}
+
+#show-prof-pic > * > * {
   border-radius: 50%;
 }
 
 #show-edit:hover {
-  background-color: gray;
+  background-color: #adadad;
   border-radius: 5px;
 }
 
