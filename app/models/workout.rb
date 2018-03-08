@@ -20,7 +20,7 @@
 
 class Workout < ApplicationRecord
 
-  validates :user, :title, :distance, :distance_uom, :duration, :elevation, :elevation_uom, :date, :activity, presence: true
+  validates :user, :title, :date, presence: true
 
   belongs_to :user
 
