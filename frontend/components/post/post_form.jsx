@@ -28,35 +28,29 @@ class PostForm extends React.Component {
   }
 
   handlePublish() {
-    this.props.action(
-      this.props.current_user.id,
-      {
-        title: this.state.title,
-        body: this.state.body,
-        author_id: this.props.current_user.id
-      })
+    debugger
+    this.props.action(this.props.current_user.id, this.state)
     .then(() => this.props.history.push('/'));
   }
 
   render() {
-
     let publishBtn = null;
-    if (this.state.type === "create") {
+    if (this.props.type === "create") {
       if (this.state.body) {
         publishBtn = <a onClick={this.handlePublish.bind(this)}
           className="post-form-inputs-btn" id="create-post-submit">Publish</a>;
-        } else {
-          publishBtn = <a className="post-form-inputs-btn"
-            id="create-post-submit-disabled">Publish</a>;
-          }
+      } else {
+        publishBtn = <a className="post-form-inputs-btn"
+          id="create-post-submit-disabled">Publish</a>;
+      }
     } else {
       if (this.state.body) {
         publishBtn = <a onClick={this.handlePublish.bind(this)}
           className="post-form-inputs-btn" id="create-post-submit">Save</a>;
-        } else {
-          publishBtn = <a className="post-form-inputs-btn"
-            id="create-post-submit-disabled">Save</a>;
-          }
+      } else {
+        publishBtn = <a className="post-form-inputs-btn"
+          id="create-post-submit-disabled">Save</a>;
+      }
     }
 
     return (
