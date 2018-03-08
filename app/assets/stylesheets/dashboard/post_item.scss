@@ -36,8 +36,8 @@
   text-decoration: none;
 }
 
-.feed-item-content-details > *{
-  padding-left: 5px;
+.feed-item-details:not(:empty) {
+  padding-right: 5px;
 }
 
 .feed-item-post-div > a:hover {

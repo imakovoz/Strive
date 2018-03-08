@@ -45,10 +45,10 @@ class PostItem extends React.Component {
       }
       details = (
         <div className="feed-item-content-details">
-          <a>{this.props.post.body}</a>
-          <a>{Math.floor(this.props.post.duration/360)}h {(this.props.post.duration % 360)/60}m</a>
-          <a>{this.props.post.distance} {this.props.post.distance_uom.slice(0, -1)}</a>
-          <a>{pace}/{dist_uom_conv[this.props.post.distance_uom]}</a>
+          <a className="feed-item-details">{this.props.post.body}</a>
+          <a className="feed-item-details">{Math.floor(this.props.post.duration/360)}h {(this.props.post.duration % 360)/60}m</a>
+          <a className="feed-item-details">{this.props.post.distance} {this.props.post.distance_uom.slice(0, -1)}</a>
+          <a className="feed-item-details">{pace}/{dist_uom_conv[this.props.post.distance_uom]}</a>
         </div>
     );
     } else {
