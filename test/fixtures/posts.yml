@@ -3,7 +3,7 @@
 # Table name: posts
 #
 #  id         :integer          not null, primary key
-#  author_id  :integer          not null
+#  user_id  :integer          not null
 #  title      :string
 #  body       :text             not null
 #  privacy    :string
@@ -14,13 +14,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  author_id: 1
+  user_id: 1
   title: MyString
   body: MyText
   privacy: MyString
 
 two:
-  author_id: 1
+  user_id: 1
   title: MyString
   body: MyText
   privacy: MyString

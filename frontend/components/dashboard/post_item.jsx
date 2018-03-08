@@ -25,6 +25,12 @@ const formatDate = (d, t) => {
 class PostItem extends React.Component {
 
   render() {
+    let type = null;
+    if (this.props.post.distance) {
+      type = "workouts";
+    } else {
+      type = "posts";
+    }
     if (this.props.user) {
       return (
         <div className="feed-item-container-div">

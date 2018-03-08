@@ -172,7 +172,7 @@ class WorkoutForm extends React.Component {
               <input className="workout-form-inputs"
                 type='text'
                 onChange={this.handleInput}
-                defaultValue={`Casual ${this.state.activity}`}
+                value={this.state.activity}
                 id="workout-form-input-title"></input>
             </div>
 

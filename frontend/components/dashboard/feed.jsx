@@ -17,8 +17,10 @@ class Feed extends React.Component {
     if (posts.length >0) {
       return (
         <ul>
-          {this.props.posts.map((post, i) => <PostItem post={post}
-            user={this.props.users[post.author_id]} key={i}/>)}
+          {this.props.posts.map((post, i) => {
+            <PostItem post={post} user={this.props.users[post.user_id]} key={i}/>;
+            })
+          }
         </ul>
       );
     } else {
