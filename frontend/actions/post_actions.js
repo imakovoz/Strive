@@ -23,3 +23,7 @@ export const fetchPost = (userId, id) => (dispatch) => (
 export const createPost = (userId, post1) => (dispatch) => (
   APIUtil.createPost(userId, post1).then((post) => (dispatch(receivePost(post))))
 );
+
+export const updatePost = (userId, post1) => (dispatch) => (
+  APIUtil.updatePost(userId, post1).then((post) => (dispatch(receivePost(post))))
+);
