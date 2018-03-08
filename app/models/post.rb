@@ -3,7 +3,7 @@
 # Table name: posts
 #
 #  id         :integer          not null, primary key
-#  author_id  :integer          not null
+#  user_id  :integer          not null
 #  title      :string
 #  body       :text             not null
 #  privacy    :string
@@ -16,6 +16,6 @@ class Post < ApplicationRecord
 
   belongs_to :author,
     class_name: :User,
-    foreign_key: :author_id
+    foreign_key: :user_id
 
 end

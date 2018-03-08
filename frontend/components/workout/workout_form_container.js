@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     current_user: state.session.currentUser,
     workout: {
-      title: '',
+      title: 'Casual Run',
       body: '',
       distance: '',
       distance_uom: 'miles',

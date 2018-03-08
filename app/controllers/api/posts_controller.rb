@@ -25,7 +25,7 @@ class Api::PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    @post.author_id = current_user.id
+    @post.user_id = current_user.id
     @post.save!
     render :show
   end
