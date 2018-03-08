@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   resources :workouts
   namespace :api, defaults: { format: :json } do
-    resources :posts, only: [:index]
-    resources :workouts, only: [:index]
-    resources :users, only: [:create, :index, :show] do
-      resources :posts, only: [:create, :show, :destroy, :update]
-      resources :workouts, only: [:create, :show, :destroy, :update]
+    resources :posts, only: [:index, :create]
+    resources :workouts, only: [:index, :create]
+    resources :users, only: [:index, :show, :create] do
+      resources :posts, only: [:show, :destroy, :update]
+      resources :workouts, only: [:show, :destroy, :update]
     end
     resource :session, only: [:create, :destroy]
   end

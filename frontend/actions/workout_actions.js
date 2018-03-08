@@ -7,10 +7,12 @@ export const receiveWorkouts = (workouts) => ({
   workouts
 });
 
-export const receiveWorkout = (workout) => ({
-  type: RECEIVE_WORKOUT,
-  workout
-});
+export const receiveWorkout = (workout) => {
+  return {
+    type: RECEIVE_WORKOUT,
+    workout
+  };
+};
 
 export const fetchWorkouts = () => (dispatch) => (
   APIUtil.fetchWorkouts().then((workouts) => (dispatch(receiveWorkouts(workouts))))

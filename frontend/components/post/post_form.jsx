@@ -28,7 +28,6 @@ class PostForm extends React.Component {
   }
 
   handlePublish() {
-    debugger
     this.props.action(this.props.current_user.id, this.state)
     .then(() => this.props.history.push('/'));
   }

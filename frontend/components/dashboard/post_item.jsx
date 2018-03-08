@@ -25,7 +25,6 @@ const formatDate = (d, t) => {
 class PostItem extends React.Component {
 
   render() {
-    // debugger
     if (this.props.user) {
       return (
         <div className="feed-item-container-div">

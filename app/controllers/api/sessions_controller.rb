@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
 
 
   def destroy
-    # debugger
+
     unless current_user
       render json: {errors: ["No current user to log out"]}, status: 404
       return

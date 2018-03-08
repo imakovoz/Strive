@@ -6,6 +6,7 @@ import Dashboard from './dashboard';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
+  
   return ({
     posts: selectAllFeedItems(state),
     users: state.entities.users,
@@ -13,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  debugger
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     fetchPosts: () => dispatch(fetchPosts()),
