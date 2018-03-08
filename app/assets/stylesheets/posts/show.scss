@@ -1,0 +1,47 @@
+.app-history {
+  margin-left: 10%;
+}
+
+#CreatePostShowDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+#create-post-prof-div {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30%
+}
+
+#show-prof-left {
+  display: flex;
+  flex-direction: row;
+}
+
+#show-prof-right {
+  margin-left: 40%;
+}
+
+#show-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+#show-prof-pic > * {
+  border-radius: 50%;
+}
+
+#show-edit:hover {
+  background-color: gray;
+  border-radius: 5px;
+}
+
+#post-show-content {
+  margin-left: 30%
+}
+
+#post-show-title {
+  padding: 35px 0px;
+}

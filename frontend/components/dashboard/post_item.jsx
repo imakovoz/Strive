@@ -9,6 +9,10 @@ const formatDate = (d, t) => {
   const date = new Date(d);
   let hours = date.getHours();
   let minutes = Math.round(date.getMinutes()/10) * 10;
+  if (minutes === 60) {
+    hours++;
+    minutes = 0;
+  }
   let ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12;
