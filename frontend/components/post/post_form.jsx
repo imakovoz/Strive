@@ -24,7 +24,7 @@ class PostForm extends React.Component {
     this.setState({body: e.target.value});
   }
 
-  handlePublish(post) {
+  handlePublish() {
     this.props.createPost(
       this.props.current_user.id,
       {
