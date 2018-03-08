@@ -41,8 +41,8 @@ class WorkoutForm extends React.Component {
         body: this.state.body,
         distance: this.state.distance,
         distance_uom: this.state.distance_uom,
-        duration: (this.state.hours * 360 +
-          this.state.minutes * 60 + this.state.seconds),
+        duration: (parseInt(this.state.hours * 360) +
+          parseInt(this.state.minutes * 60) + parseInt(this.state.seconds)),
         elevation: this.state.elevation,
         elevation_uom: this.state.elevation_uom,
         date: this.state.date,
@@ -93,17 +93,16 @@ class WorkoutForm extends React.Component {
     const hrs = ["12", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11"];
     const times = [];
     const dayTimes = (
-      <datalist id="times">
-        {ampm.forEach((m, x) => {
-          for (var i = 0; i < 12; i++) {
-            for (var j = 0; j < 60; j+= 15) {
-              let time = (hrs[i]) + ':' + (('0' + j).slice(-2)) + ' ' + m;
-              times.push(<option value={time}>{time}</option>);
-            }
+      ampm.forEach((m, x) => {
+        for (var i = 0; i < 12; i++) {
+          for (var j = 0; j < 60; j+= 15) {
+            let time = (hrs[i]) + ':' + (('0' + j).slice(-2)) + ' ' + m;
+            times.push(<option value={time}>{time}</option>);
           }
-        })}
-      </datalist>
+        }
+      })
     );
+
 
     return (
       <div >
@@ -165,14 +164,14 @@ class WorkoutForm extends React.Component {
               <input type="text" list="times" onChange={this.handleInput}
                 id="workout-form-input-time" defaultValue={this.state.time}>
               </input>
-              <datalist id="times" size="5" >
-                {times.map((el) => el)}
+              <datalist id="times">
+                { times.map((el) => el) }
               </datalist>
 
               <input className="workout-form-inputs"
                 type='text'
                 onChange={this.handleInput}
-                value={this.state.activity}
+                value={this.state.title}
                 id="workout-form-input-title"></input>
             </div>
 
