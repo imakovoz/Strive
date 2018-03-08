@@ -103,3 +103,15 @@
   font-size: 12px;
   color: #ccccd1;
 }
+
+.app-history > * {
+  text-decoration: none;
+}
+
+.app-history > a {
+  color: #007FB6;
+}
+
+.app-history > a:last-child {
+  color: black;
+}

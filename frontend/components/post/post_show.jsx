@@ -34,6 +34,21 @@ class PostShow extends React.Component {
   }
 
   render() {
+    let editbtn = null;
+    if (this.props.current_user.id == this.props.userId) {
+      editbtn = (
+        <span id="show-prof-right">
+          <Link
+            to={`/users/${this.props.userId}/posts/${this.props.postId}/edit`}
+            id="post-show-edit-btn">
+            <img src={`${window.edit}`} id="show-edit" height="35"
+              width="35" />
+          </Link>
+        </span>);
+      } else {
+        editbtn = <div></div>;
+      }
+
       return (
         <div >
           <Header />
@@ -55,26 +70,21 @@ class PostShow extends React.Component {
 
               <span id="show-prof-left">
                 <div id="show-prof-pic">
-                  <img src="https://tinyurl.com/y8cc7jwt"
-                    height="75" width="75" />
+                  <Link to={`/users/${this.props.current_user.id}`}>
+                    <img src="https://tinyurl.com/y8cc7jwt"
+                      height="75" width="75" />
+                  </Link>
                 </div>
                 <span id="show-user-info">
-                  <h4 id="post-form-user-name">
-                    {this.props.current_user.firstname + " " + this.props.current_user.lastname}
-                  </h4>
+                  <Link to={`/users/${this.props.current_user.id}`}>
+                    <h4 id="post-form-user-name">
+                      {this.props.current_user.firstname + " " + this.props.current_user.lastname}
+                    </h4>
+                  </Link>
                   <span id="posting-as">{formatDate(this.props.post.created_at)}</span>
                 </span>
               </span>
-
-              <span id="show-prof-right">
-                <Link
-                  to={`/users/${this.props.userId}/posts/${this.props.postId}/edit`}
-                  id="post-show-edit-btn">
-                  <img src={`${window.edit}`} id="show-edit" height="35"
-                  width="35" />
-                </Link>
-              </span>
-
+              {editbtn}
             </div>
 
 
