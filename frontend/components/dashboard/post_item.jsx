@@ -24,12 +24,37 @@ const formatDate = (d, t) => {
 
 class PostItem extends React.Component {
 
+
   render() {
-    let type = null;
+    let linker = null;
+    let details = null;
+    const dist_uom_conv = {miles: "mi", kilometers: "km", meters: "m", yards: "yd"};
     if (this.props.post.distance) {
-      type = "workouts";
+      linker = "workouts";
+      let pace = null;
+      let base  = this.props.post.duration / this.props.post.distance;
+      if (base >= 360) {
+        let hr = base/360;
+        let min = ("0" + (base % 360) /60).slice(-2);
+        let sec = ("0" + base % 60).slice(-2);
+        pace = hr + ":" + min + ":" + sec;
+      } else {
+        let min = base/60;
+        let sec = ("0" + base % 60).slice(-2);
+        pace = min + ":" + sec;
+      }
+      details = (
+        <div className="feed-item-content-details">
+          <a>{this.props.post.body}</a>
+          <a>{Math.floor(this.props.post.duration/360)}h {(this.props.post.duration % 360)/60}m</a>
+          <a>{this.props.post.distance} {this.props.post.distance_uom.slice(0, -1)}</a>
+          <a>{pace}/{dist_uom_conv[this.props.post.distance_uom]}</a>
+        </div>
+    );
     } else {
-      type = "posts";
+      linker = "posts";
+      details = <Link to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
+        className="feed-item-body">{this.props.post.body}</Link>;
     }
     if (this.props.user) {
       return (
@@ -48,11 +73,13 @@ class PostItem extends React.Component {
               {formatDate(this.props.post.created_at)}
             </span>
             </div>
+
             <div className="feed-item-post-div">
-  <Link to={`/users/${this.props.user.id}/posts/${this.props.post.id}`}
+  <Link to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
   className="feed-item-title">{this.props.post.title}</Link>
-  <Link to={`/users/${this.props.user.id}/posts/${this.props.post.id}`}
-  className="feed-item-body">{this.props.post.body}</Link>
+
+            { details }
+
             </div>
           </div>
         </div>

@@ -14,11 +14,12 @@ class Feed extends React.Component {
 
     let posts = this.props.posts;
     let users = this.props.users;
+    
     if (posts.length >0) {
       return (
         <ul>
           {this.props.posts.map((post, i) => {
-            <PostItem post={post} user={this.props.users[post.user_id]} key={i}/>;
+            return <PostItem post={post} user={this.props.users[post.user_id]} key={i}/>;
             })
           }
         </ul>
