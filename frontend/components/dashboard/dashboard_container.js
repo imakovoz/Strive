@@ -1,20 +1,23 @@
 import { fetchUsers } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
-import { selectAllPosts, selectAllUsers } from '../../reducers/selectors';
+import { fetchWorkouts } from '../../actions/workout_actions';
+import { selectAllPosts, selectAllUsers, selectAllFeedItems } from '../../reducers/selectors';
 import Dashboard from './dashboard';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    posts: selectAllPosts(state),
+    posts: selectAllFeedItems(state),
     users: state.entities.users,
   });
 };
 
 const mapDispatchToProps = (dispatch) => {
+  debugger
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     fetchPosts: () => dispatch(fetchPosts()),
+    fetchWorkouts: () => dispatch(fetchWorkouts()),
   };
 };
 
