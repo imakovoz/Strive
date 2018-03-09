@@ -28,8 +28,13 @@ class SessionForm extends React.Component {
   // }
 
   demoLogin(e) {
-    const user = {email: 'user'+ Math.floor(e.timeStamp), password: 'starwars', firstname: 'demo', lastname: 'login'};
-    this.props.processForm({user});
+    if (e.currentTarget.baseURI.split('/')[4] === "signup"){
+      const user = {email: 'user'+ Math.floor(e.timeStamp), password: 'starwars', firstname: 'Demo', lastname: 'Login'};
+      this.props.processForm({user});
+    } else {
+      const user = {email: 'imakovoz93@gmail.com', password: 'starwars'};
+      this.props.processForm({user});
+    }
   }
 
   handlePassword(e) {

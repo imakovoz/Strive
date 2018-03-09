@@ -23,8 +23,6 @@ const formatDate = (d, t) => {
 };
 
 class PostItem extends React.Component {
-
-
   render() {
     let linker = null;
     let details = null;
@@ -46,7 +44,8 @@ class PostItem extends React.Component {
       details = (
         <div className="feed-item-content-details">
           <a className="feed-item-details">{this.props.post.body}</a>
-          <a className="feed-item-details">{Math.floor(this.props.post.duration/360)}h {(this.props.post.duration % 360)/60}m</a>
+        {/* cannot use mapsfloor on minutes */}
+          <a className="feed-item-details">{Math.floor(this.props.post.duration/360)}h {Math.floor((this.props.post.duration % 360)/60)}m</a>
           <a className="feed-item-details">{this.props.post.distance} {this.props.post.distance_uom.slice(0, -1)}</a>
           <a className="feed-item-details">{pace}/{dist_uom_conv[this.props.post.distance_uom]}</a>
         </div>
@@ -56,38 +55,34 @@ class PostItem extends React.Component {
       details = <Link to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
         className="feed-item-body">{this.props.post.body}</Link>;
     }
-    if (this.props.user) {
-      return (
-        <div className="feed-item-container-div">
-          <div className="feed-item-prof-pic-div">
-            <Link to={`/users/${this.props.user.id}`}>
-              <img src="https://tinyurl.com/y8cc7jwt" height="50"
-              width="50" className="dropbtn" />
-            </Link>
-          </div>
-          <div className="feed-item-content-div">
-            <div className="feed-item-meta-div">
+    return (
+      <div className="feed-item-container-div">
+        <div className="feed-item-prof-pic-div">
+          <Link to={`/users/${this.props.user.id}`}>
+            <img src={`${window.profPic}`} height="50"
+            width="50" className="dropbtn" />
+          </Link>
+        </div>
+        <div className="feed-item-content-div">
+          <div className="feed-item-meta-div">
 <Link to={`/users/${this.props.user.id}`} className="feed-item-post-user">
 {this.props.user.firstname} {this.props.user.lastname}</Link>
-            <span className="feed-item-date-span">
-              {formatDate(this.props.post.created_at)}
-            </span>
-            </div>
+          <span className="feed-item-date-span">
+            {formatDate(this.props.post.created_at)}
+          </span>
+          </div>
 
-            <div className="feed-item-post-div">
-  <Link to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
-  className="feed-item-title">{this.props.post.title}</Link>
+          <div className="feed-item-post-div">
+<Link to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
+className="feed-item-title">{this.props.post.title}</Link>
 
-            { details }
+          { details }
 
-            </div>
           </div>
         </div>
-      );
-    } else {
-      return <div></div>;
-      }
-    }
-}
+      </div>
+    );
 
+}
+}
 export default PostItem;

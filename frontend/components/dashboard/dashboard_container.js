@@ -6,9 +6,8 @@ import Dashboard from './dashboard';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   return ({
-    posts: selectAllFeedItems(state),
+    posts: selectAllFeedItems(state) || {},
     users: state.entities.users,
   });
 };

@@ -71,7 +71,7 @@ class PostShow extends React.Component {
               <span id="show-prof-left">
                 <div id="show-prof-pic">
                   <Link to={`/users/${this.props.current_user.id}`}>
-                    <img src="https://tinyurl.com/y8cc7jwt"
+                    <img src={`${window.profPic}`}
                       height="75" width="75" />
                   </Link>
                 </div>
