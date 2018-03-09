@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import { RECEIVE_USERS, RECEIVE_USER } from "../actions/user_actions";
 
 
-const usersReducer = (state = [], action) => {
+const usersReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {

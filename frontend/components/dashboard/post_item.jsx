@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
-//TODO add in type posts dont get time but workouts do
 const formatDate = (d, t) => {
   const date = new Date(d);
   let hours = date.getHours();
@@ -23,6 +22,7 @@ const formatDate = (d, t) => {
 };
 
 class PostItem extends React.Component {
+
   render() {
     let linker = null;
     let details = null;
@@ -32,22 +32,25 @@ class PostItem extends React.Component {
       let pace = null;
       let base  = this.props.post.duration / this.props.post.distance;
       if (base >= 360) {
-        let hr = base/360;
+        let hr = Math.floor(base/360);
         let min = ("0" + (base % 360) /60).slice(-2);
         let sec = ("0" + base % 60).slice(-2);
         pace = hr + ":" + min + ":" + sec;
-      } else {
-        let min = base/60;
+      } else if (base >= 60){
+        let min = Math.floor(base/60);
         let sec = ("0" + base % 60).slice(-2);
         pace = min + ":" + sec;
+      } else if (base >= 1){
+        pace = base + "s";
+      } else {
+        pace = "1s";
       }
       details = (
         <div className="feed-item-content-details">
           <a className="feed-item-details">{this.props.post.body}</a>
-        {/* cannot use mapsfloor on minutes */}
           <a className="feed-item-details">{Math.floor(this.props.post.duration/360)}h {Math.floor((this.props.post.duration % 360)/60)}m</a>
           <a className="feed-item-details">{this.props.post.distance} {this.props.post.distance_uom.slice(0, -1)}</a>
-          <a className="feed-item-details">{pace}/{dist_uom_conv[this.props.post.distance_uom]}</a>
+          <a className="feed-item-details">{(pace)}/{dist_uom_conv[this.props.post.distance_uom]}</a>
         </div>
     );
     } else {
