@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_WORKOUTS, RECEIVE_WORKOUT } from "../actions/workout_actions";
+import { RECEIVE_WORKOUTS, RECEIVE_WORKOUT } from "../../actions/workout_actions";
 
 
 const usersReducer = (state = [], action) => {
