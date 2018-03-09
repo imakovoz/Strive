@@ -20,14 +20,6 @@ export const createWorkout = (userId, workout) => {
   });
 };
 
-// export const updateWorkout = (userId, workout) => {
-//   return $.ajax({
-//     method: 'POST',
-//     url: '/api/users/${userId}/workouts',
-//     data: {workout}
-//   });
-// };
-
 export const deleteWorkout = (userId, id) => {
   return $.ajax({
     method: 'DELETE',

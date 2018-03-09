@@ -6,11 +6,11 @@
 #  user_id       :integer          not null
 #  title         :string           not null
 #  body          :text
-#  distance      :integer          not null
-#  distance_uom  :string           not null
-#  duration      :integer          not null
-#  elevation     :integer          not null
-#  elevation_uom :string           not null
+#  distance      :integer
+#  distance_uom  :string
+#  duration      :integer
+#  elevation     :integer
+#  elevation_uom :string
 #  date          :datetime         not null
 #  activity      :string           not null
 #  subactivity   :string

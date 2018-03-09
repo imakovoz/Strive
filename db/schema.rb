@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308224205) do
+ActiveRecord::Schema.define(version: 20180309165903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20180308224205) do
     t.string "title"
     t.text "body", null: false
     t.string "privacy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.integer "workout_id", null: false
+    t.string "title", null: false
+    t.string "description"
+    t.integer "estimated_duration"
+    t.integer "distance"
+    t.integer "elevation_gain"
+    t.string "polyline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
