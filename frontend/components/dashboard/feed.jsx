@@ -5,9 +5,7 @@ import PostItem from './post_item';
 class Feed extends React.Component {
 
   componentDidMount() {
-    this.props.fetchUsers();
-    this.props.fetchPosts();
-    this.props.fetchWorkouts();
+    this.props.fetchUsers().then(() => this.props.fetchPosts()).then(() => this.props.fetchWorkouts());
   }
 
   render() {
@@ -15,8 +13,8 @@ class Feed extends React.Component {
     let posts = this.props.posts;
     let users = this.props.users;
 
+    console.log(users);
 
-    if ((posts.length > 0)) {
       return (
         <ul>
           {this.props.posts.map((post, i) => {
@@ -26,10 +24,7 @@ class Feed extends React.Component {
           }
         </ul>
       );
-    } else {
-      return <div></div>;
     }
   }
-}
 
 export default withRouter(Feed);

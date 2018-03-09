@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    posts: selectAllFeedItems(state) || {},
-    users: state.entities.users,
+    posts: selectAllFeedItems(state) || [],
+    users: state.entities.users || {},
   });
 };
 
