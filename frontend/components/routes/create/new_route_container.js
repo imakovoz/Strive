@@ -1,21 +1,18 @@
-import { createPost } from '../../actions/post_actions';
-import PostForm from './post_form';
+import NewRoute from './new_route';
 import { connect } from 'react-redux';
+import { createRoute } from '../../../actions/route_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    current_user: state.session.currentUser,
-    post: {title: '', body: ''},
-    type: "create"
+    users: state.entities.users,
   });
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return ({
-    action: (userId, post) => dispatch(createPost(userId, post)),
-
-  });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createRoute: (route) => dispatch(createRoute(route))
+  };
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewRoute);

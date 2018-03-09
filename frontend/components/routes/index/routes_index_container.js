@@ -1,5 +1,6 @@
 import RouteIndex from './routes_index';
 import { connect } from 'react-redux';
+import { createRoute } from '../../../actions/route_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
@@ -9,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    createRoute: (route) => dispatch(createRoute(route))
   };
 };
 
