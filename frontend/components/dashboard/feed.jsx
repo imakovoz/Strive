@@ -5,8 +5,8 @@ import PostItem from './post_item';
 class Feed extends React.Component {
 
   componentDidMount() {
-    this.props.fetchPosts();
     this.props.fetchUsers();
+    this.props.fetchPosts();
     this.props.fetchWorkouts();
   }
 
@@ -14,11 +14,13 @@ class Feed extends React.Component {
 
     let posts = this.props.posts;
     let users = this.props.users;
-    
-    if (posts.length >0) {
+
+
+    if ((posts.length > 0)) {
       return (
         <ul>
           {this.props.posts.map((post, i) => {
+
             return <PostItem post={post} user={this.props.users[post.user_id]} key={i}/>;
             })
           }
