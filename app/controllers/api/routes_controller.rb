@@ -13,7 +13,6 @@ class Api::RoutesController < ApplicationController
 
   def create
     @route = Route.new(route_params)
-    @route.user_id = current_user.id
     @route.save!
     render :show
   end

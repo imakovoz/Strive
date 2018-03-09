@@ -1,116 +1,109 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Header from '../header/header_container';
+import Header from '../../header/header_container';
+import MarkerManager from '../../../util/marker_manager';
 
+export default class RouteMap extends React.Component {
 
-class PostForm extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = this.props.post;
-
-    this.handleTitle = this.handleTitle.bind(this);
-    this.handleBody = this.handleBody.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.props.type === "update") {
-      this.props.fetchPost(this.props.current_user.id, this.props.postId).then(() => this.setState(this.props.post));
+  constructor(props){
+    super(props)
+    this.state = {
+      waypts: [],
+      travelMode: 'WALKING',
+      polyline: null,
     }
+
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsDisplay = new google.maps.DirectionsRenderer({
+      draggable: true,
+    });
+
+    this.placeMarkerAndPanTo = this.placeMarkerAndPanTo.bind(this);
+    this.calcRoute = this.calcRoute.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
-  handleTitle(e) {
-    this.setState({title: e.target.value});
-  }
-  handleBody(e) {
-    this.setState({body: e.target.value});
+  componentDidMount(){
+    this.initMap();
   }
 
-  handlePublish() {
-    this.props.action(this.props.current_user.id, this.state)
-    .then(() => this.props.history.push('/'));
+  handleSubmit() {
+    debugger
+    this.props.createRoute({
+      workout_id: 1,
+      title: "test",
+      polyline: this.state.polyline,
+    })
+  }
+
+  placeMarkerAndPanTo(latLng, map) {
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+    map.panTo(latLng);
+  }
+
+  calcRoute(waypts) {
+    let points = waypts.map(el => el.position)
+    let saved_route = new google.maps.Polyline({
+      path: points,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+    })
+    let start = points.splice(0, 1);
+    let end = points.splice(points.length - 1, points.length);
+    points = points.map(el => ({location: el, stopover: false}));
+
+    let request = {
+      origin: start[0],
+      destination: end[0],
+      waypoints: points,
+      travelMode: this.state.travelMode,
+    };
+    this.directionsService.route(request, (result, status) => {
+      if (status == 'OK') {
+        this.directionsDisplay.setDirections(result);
+        waypts.slice(0, waypts.length).forEach(e => e.setMap(null));
+        this.state.polyline = result.routes[0].overview_path;
+      } else {
+        alert("you done goofed: " + {status});
+      }
+    });
+  }
+
+  initMap() {
+
+    const mapOptions = {
+      center: { lat: 40.751282, lng: -73.983990 },
+      zoom: 13,
+      disableDefaultUI: true,
+      zoomControl: true
+    }
+
+    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    this.directionsDisplay.setMap(this.map);
+
+    this.map.addListener('click', (e) => {
+      this.state.waypts.push(new google.maps.Marker({
+        position: e.latLng,
+        map: this.map
+      }))
+
+
+      this.calcRoute(this.state.waypts);
+    });
   }
 
   render() {
-    let publishBtn = null;
-    if (this.props.type === "create") {
-      if (this.state.body) {
-        publishBtn = <a onClick={this.handlePublish.bind(this)}
-          className="post-form-inputs-btn" id="create-post-submit">Publish</a>;
-      } else {
-        publishBtn = <a className="post-form-inputs-btn"
-          id="create-post-submit-disabled">Publish</a>;
-      }
-    } else {
-      if (this.state.body) {
-        publishBtn = <a onClick={this.handlePublish.bind(this)}
-          className="post-form-inputs-btn" id="create-post-submit">Save</a>;
-      } else {
-        publishBtn = <a className="post-form-inputs-btn"
-          id="create-post-submit-disabled">Save</a>;
-      }
-    }
-
     return (
-      <div >
+      <div>
         <Header />
-
-        <div className="app-history">
-          <Link to='/users'>Athletes</Link>
-          <span>/</span>
-          <Link to={`/users/${this.props.current_user.id}`}>
-            {this.props.current_user.firstname + " " + this.props.current_user.lastname}
-          </Link>
-          <span>/</span>
-          <a>New Post</a>
-        </div>
-
-        <div id="CreatePostFormDiv">
-
-          <div id="post-form-prof">
-
-            <span id="post-form-prof-left">
-              <div id="post-form-prof-pic">
-                <img src={`${window.profPic}`}
-                height="75" width="75" />
-              </div>
-              <span>
-                <span id="posting-as">Posting as</span>
-                <h4 id="post-form-user-name">
-                  {this.props.current_user.firstname + " " + this.props.current_user.lastname}
-                </h4>
-              </span>
-            </span>
-
-            <span id="post-form-prof-right">
-              <Link
-                to={`/profile/${this.props.current_user.id}`}
-                className="post-form-inputs-btn"
-                id="discard-post-submit">Discard</Link>
-              { publishBtn }
-            </span>
-
-          </div>
-
-
-          <form id="CreatePostForm">
-            <input className="post-form-inputs"
-              type='text' value={this.state.title}
-              onChange={this.handleTitle}
-              placeholder="Add a title (optional)"
-              id="post-form-input-title"></input>
-            <textarea className="post-form-inputs"
-              type='text'
-              value={this.state.body}
-              onChange={this.handleBody}
-              placeholder="What's going on?"
-              id="post-form-input-body"></textarea>
-          </form>
-        </div>
-    </div>
-    );
+        <div id='map-container' ref={map => this.mapNode = map}></div>
+        <div onClick={this.handleSubmit}>Save route</div>
+      </div>
+    )
   }
 }
-
-export default withRouter(PostForm);
