@@ -1,0 +1,35 @@
+#create-routes-footer {
+  position: absolute;
+  top: 90%;
+  width: 95%;
+}
+
+#create-routes-footer > div{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: #EBEFF1;
+  margin-left: 2%
+}
+
+#create-routes-footer > div > * {
+  font-size: 20px;
+  padding: 10px
+}
+
+.footer-detail-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-detail-div > div{
+  font-size: 12px;
+  color: #666;
+  font-weight: 200;
+}
+
+.footer-detail-div > span{
+  font-size: 22px;
+  color: #666;
+  font-weight: 200;
+}

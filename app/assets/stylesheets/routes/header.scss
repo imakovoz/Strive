@@ -1,0 +1,71 @@
+#create-routes-header{
+  display: flex;
+  flex-direction: column;
+}
+
+#exit-builder {
+  color: #999;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+#create-routes-top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
+
+#create-routes-top-header > *:first-child {
+  display: flex;
+  flex-direction: row;
+}
+
+#create-routes-top-header > div {
+  align-items: center;
+}
+
+#create-routes-top-header > div > h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#create-routes-top-header > div > h3 {
+  margin-left: 25px;
+}
+
+#create-routes-bottom-header{
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background-color: #F1F1F1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#create-routes-bottom-header > * {
+  display: flex;
+  flex-direction: row;
+}
+#create-routes-bottom-header div:last-child {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#save-route {
+  height: 44px;
+  justify-content: center;
+  align-content: center;
+  background-color: red;
+  padding: 0px 20px;
+  color: white;
+}
+
+#create-route-top-menu {
+  width: 670px;
+  display: flex;
+  justify-content: space-around;
+}

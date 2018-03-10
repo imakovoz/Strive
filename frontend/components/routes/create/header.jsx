@@ -7,15 +7,22 @@ export default class RouteHeader extends React.Component {
   render() {
     return (
       <div id="create-routes-header">
-        <div>
-          <span>STRIVE</span>
-          <Link to="/routes">Exit Builder</Link>
+        <div id="create-routes-top-header">
+          <div>
+            <h1>STRIVE</h1>
+            <h3>Route Builder</h3>
+          </div>
+          <Link to="/routes" id="exit-builder">Exit Builder</Link>
         </div>
-        <div>
-          <div>Search Bar Placeholder</div>
-          <div>Undo Btn</div>
-          <div>Redo Btn</div>
-          <div onClick={this.props.handleSubmit}>Save route</div>
+        <div id="create-routes-bottom-header">
+          <div id="create-route-top-menu">
+            <div>Search Bar Placeholder</div>
+            <div>Undo Btn</div>
+            <div>Redo Btn</div>
+          </div>
+          <div>
+            <div onClick={this.props.handleSubmit} id="save-route">Save</div>
+          </div>
         </div>
       </div>
     )
