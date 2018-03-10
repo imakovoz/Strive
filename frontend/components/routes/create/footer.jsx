@@ -9,9 +9,9 @@ export default class RouteFooter extends React.Component {
       <div id="create-routes-footer">
         <div>Route Type</div>
         <div>Distance: {this.props.distance}</div>
-        <div>elevation_gain</div>
-        <div>Est Moving Time</div>
+        <div>elevation_gain: {this.props.elevation}</div>
+        <div>Est Moving Time: {this.props.duration}</div>
       </div>
-    )
+    );
   }
 }

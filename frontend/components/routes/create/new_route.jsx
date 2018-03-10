@@ -6,20 +6,21 @@ import Footer from './footer';
 export default class RouteMap extends React.Component {
 
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       waypts: [],
       travelMode: 'WALKING',
       polyline: null,
       result: null,
-    }
+      duration: 0,
+      path: null,
+    };
 
     this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer({
       draggable: true,
     });
 
-    this.placeMarkerAndPanTo = this.placeMarkerAndPanTo.bind(this);
     this.calcRoute = this.calcRoute.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.computeTotalDistance = this.computeTotalDistance.bind(this);
@@ -36,87 +37,83 @@ export default class RouteMap extends React.Component {
       workout_id: 1,
       title: "test",
       polyline: this.state.polyline,
-    })
-  }
-
-  placeMarkerAndPanTo(latLng, map) {
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map
     });
-    map.panTo(latLng);
   }
 
-  calcRoute(waypts) {
-    let points = waypts.map(el => el.position)
-    let saved_route = new google.maps.Polyline({
-      path: points,
-      geodesic: true,
-      strokeColor: '#FF0000',
-      strokeOpacity: 1.0,
-      strokeWeight: 2,
-    })
-    let start = points.splice(0, 1);
-    let end = points.splice(points.length - 1, points.length);
-    points = points.map(el => ({location: el, stopover: false}));
-
-    let request = {
+  calcRoute() {
+    let points = this.state.waypts.map(el => el.position);
+    let start = points.slice(0, 1);
+    let end = points.slice(points.length - 1, points.length);
+    points = points.map(el => ({location: new google.maps.LatLng(el.lat(), el.lng()), stopover: false}));
+    const routeRequest = {
       origin: start[0],
       destination: end[0],
-      waypoints: points,
+      waypoints: points.slice(1, -1),
       travelMode: this.state.travelMode,
     };
-    debugger
-    this.directionsService.route(request, (result, status) => {
-      if (status == 'OK') {
-        debugger
-        this.directionsDisplay.setDirections(result);
-        waypts.slice(0, waypts.length).forEach(e => e.setMap(null));
-        this.setState({polyline: result.routes[0].overview_path});
-        this.setState({result: result})
-      } else {
-        alert("you done goofed: " + {status});
-      }
-    });
+
+    if (points.length > 1) {
+
+      this.directionsService.route(routeRequest, (result, status) => {
+
+        if (status == 'OK') {
+          this.computeTotalDistance(result);
+          this.computeTotalDuration(result);
+          this.computeElevationGain();
+          this.directionsDisplay.setMap(this.map);
+          this.directionsDisplay.setDirections(result);
+          this.state.waypts.slice(0, this.state.waypts.length).forEach(e => e.setMap(null));
+
+
+        } else {
+          alert("you done goofed: " + {status});
+        }
+      });
+    }
   }
+
 
   computeTotalDistance(result) {
-    if (result && (result.routes[0].legs.length > 1)) {
-      var total = 0;
-      var myroute = result.routes[0];
-      for (var i = 0; i < myroute.legs.length; i++) {
-        total += myroute.legs[i].distance.value;
-      }
-      total = total / 1000;
-      return total + ' km';
-    } else {
-      return 0;
+    var total = 0;
+    var myroute = result.routes[0];
+    for (var i = 0; i < myroute.legs.length; i++) {
+      total += myroute.legs[i].distance.value;
     }
-}
+    total = total / 1000;
+    this.setState({distance: total});
+    return total + ' km';
+  }
 
   computeTotalDuration(result) {
-    if (result) {
-      var total = 0;
-      var myroute = result.routes[0];
-      for (var i = 0; i < myroute.legs.length; i++) {
-        total += myroute.legs[i].duration.value;
-      }
-      return total;
-    } else {
-      return 0;
+    var total = 0;
+    var myroute = result.routes[0];
+    for (var i = 0; i < myroute.legs.length; i++) {
+      total += myroute.legs[i].duration.value;
     }
+    this.setState({duration: total});
+    return total;
   }
 
-  computeElevationGain(waypoints) {
-    if (waypoints.length > 1) {
-      return this.elevator.getElevationAlongPath({
-        'path': waypoints,
-        'samples': 256
-      })
-    } else {
-      return 0;
-    }
+  computeElevationGain() {
+    let total = 0;
+    var elevation = this.elevator.getElevationAlongPath({
+      'path': this.state.waypts.map(pt => pt.position),
+      'samples': 256
+    }, (result, status) => {
+      if (status == 'OK'){
+        for (var i = 0; i < result.length - 1; i++) {
+          if (result[i].elevation < result[i + 1].elevation) {
+            total += result[i + 1].elevation - result[i].elevation;
+          }
+        }
+      }
+      this.setState({elevation: total});
+      return total;
+    });
+
+
   }
+
 
   initMap() {
 
@@ -138,8 +135,7 @@ export default class RouteMap extends React.Component {
       });
 
       this.setState({ waypts: [...this.state.waypts, newMarker] });
-      debugger
-      this.calcRoute(this.state.waypts);
+      this.calcRoute();
 
     });
   }
@@ -151,9 +147,9 @@ export default class RouteMap extends React.Component {
 
         <div id='map-container' ref={map => this.mapNode = map}></div>
 
-        <Footer distance={this.computeTotalDistance(this.state.result)}
-                duration={this.computeTotalDistance(this.state.result)}
-                elevation={this.computeElevationGain(this.state.waypts)}/>
+      <Footer distance={this.state.distance}
+              duration={this.state.duration}
+              elevation={this.state.elevation}/>
       </div>
     )
   }
