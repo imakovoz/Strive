@@ -12,8 +12,12 @@ export default class RouteMap extends React.Component {
       travelMode: 'WALKING',
       polyline: null,
       result: null,
-      duration: 0,
+      duration: "--:--",
+      distance: "",
+      elevation: 0,
       path: null,
+      undo: [],
+      redo: [],
     };
 
     this.directionsService = new google.maps.DirectionsService();
@@ -32,6 +36,36 @@ export default class RouteMap extends React.Component {
     this.initMap();
   }
 
+  initMap() {
+
+    const mapOptions = {
+      center: { lat: 40.751282, lng: -73.983990 },
+      zoom: 13,
+      disableDefaultUI: true,
+      zoomControl: true
+    };
+
+    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    this.directionsDisplay.setMap(this.map);
+    this.elevator = new google.maps.ElevationService;
+
+    this.directionsDisplay.addListener('directions_changed', () => {
+      console.log(this.directionsDisplay);
+      const request = this.directionsDisplay.directions.request;
+
+      this.updateState(this.directionsDisplay.getDirections());
+    });
+
+    this.map.addListener('click', (e) => {
+      const newMarker = new google.maps.Marker({
+        position: e.latLng,
+        map: this.map
+      });
+      this.calcRoute([...this.state.waypts, newMarker]);
+
+    });
+  }
+
   handleSubmit() {
     this.props.createRoute({
       workout_id: 1,
@@ -40,36 +74,42 @@ export default class RouteMap extends React.Component {
     });
   }
 
-  calcRoute() {
-    let points = this.state.waypts.map(el => el.position);
+  calcRoute(waypoints) {
+    this.setState({waypts: waypoints});
+    let points = waypoints.map(el => el.position);
     let start = points.slice(0, 1);
     let end = points.slice(points.length - 1, points.length);
     points = points.map(el => ({location: new google.maps.LatLng(el.lat(), el.lng()), stopover: false}));
     const routeRequest = {
       origin: start[0],
       destination: end[0],
-      waypoints: points.slice(1, -1),
+      waypoints: points.slice(0, points.length - 1),
       travelMode: this.state.travelMode,
     };
-
     if (points.length > 1) {
 
       this.directionsService.route(routeRequest, (result, status) => {
 
         if (status == 'OK') {
-          this.computeTotalDistance(result);
-          this.computeTotalDuration(result);
-          this.computeElevationGain();
+          console.log(result);
+          this.updateState(result);
           this.directionsDisplay.setMap(this.map);
           this.directionsDisplay.setDirections(result);
-          this.state.waypts.slice(0, this.state.waypts.length).forEach(e => e.setMap(null));
-
 
         } else {
           alert("you done goofed: " + {status});
         }
       });
     }
+  }
+
+  updateState(result) {
+    this.setState({polyline: result.routes[0].overview_polyline,
+                   path: result.routes[0].overview_path});
+    this.computeTotalDistance(result);
+    this.computeTotalDuration(result);
+    this.computeElevationGain();
+    this.state.waypts.slice(0, this.state.waypts.length).forEach(e => e.setMap(null));
   }
 
 
@@ -97,7 +137,7 @@ export default class RouteMap extends React.Component {
   computeElevationGain() {
     let total = 0;
     var elevation = this.elevator.getElevationAlongPath({
-      'path': this.state.waypts.map(pt => pt.position),
+      'path': this.state.path.map(pt => pt.position),
       'samples': 256
     }, (result, status) => {
       if (status == 'OK'){
@@ -115,41 +155,18 @@ export default class RouteMap extends React.Component {
   }
 
 
-  initMap() {
-
-    const mapOptions = {
-      center: { lat: 40.751282, lng: -73.983990 },
-      zoom: 13,
-      disableDefaultUI: true,
-      zoomControl: true
-    }
-
-    this.map = new google.maps.Map(this.mapNode, mapOptions);
-    this.directionsDisplay.setMap(this.map);
-    this.elevator = new google.maps.ElevationService;
-
-    this.map.addListener('click', (e) => {
-      const newMarker = new google.maps.Marker({
-        position: e.latLng,
-        map: this.map
-      });
-
-      this.setState({ waypts: [...this.state.waypts, newMarker] });
-      this.calcRoute();
-
-    });
-  }
 
   render() {
     return (
-      <div>
+      <div id="map-builder-wrapper">
         <Header handleSubmit={this.handleSubmit} />
 
         <div id='map-container' ref={map => this.mapNode = map}></div>
 
-      <Footer distance={this.state.distance}
-              duration={this.state.duration}
-              elevation={this.state.elevation}/>
+        <Footer distance={this.state.distance}
+                duration={this.state.duration}
+                elevation={this.state.elevation}
+                type="Run"/>
       </div>
     )
   }
