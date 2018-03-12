@@ -2,6 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
+import SaveRouteModal from "./save_route_modal";
 
 export default class RouteMap extends React.Component {
   constructor(props) {
@@ -17,7 +18,8 @@ export default class RouteMap extends React.Component {
       path: null,
       markers: [],
       undo: [],
-      redo: []
+      redo: [],
+      openModal: false
     };
 
     this.directionsService = new google.maps.DirectionsService();
@@ -30,6 +32,7 @@ export default class RouteMap extends React.Component {
     this.computeTotalDistance = this.computeTotalDistance.bind(this);
     this.computeTotalDistance = this.computeTotalDistance.bind(this);
     this.computeElevationGain = this.computeElevationGain.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -68,11 +71,22 @@ export default class RouteMap extends React.Component {
   }
 
   handleSubmit() {
-    this.props.createRoute({
-      workout_id: 1,
-      title: "test",
-      polyline: this.state.polyline
-    });
+    this.props
+      .createRoute({
+        workout_id: 1,
+        title: "test",
+        polyline: this.state.polyline,
+        distance: this.state.distance,
+        elevation_gain: this.state.elevation,
+        estimated_duration: this.state.duration
+      })
+      .then(() => this.props.history.push("/routes"));
+  }
+
+  toggleModal() {
+    let open = !this.state.openModal;
+    console.log(open);
+    this.setState({ openModal: open });
   }
 
   calcRoute(waypoints) {
@@ -173,7 +187,14 @@ export default class RouteMap extends React.Component {
   render() {
     return (
       <div id="map-builder-wrapper">
-        <Header handleSubmit={this.handleSubmit} />
+        <SaveRouteModal
+          isOpen={this.state.openModal}
+          onClose={this.toggleModal}
+          route={this.state}
+          createRoute={this.props.createRoute}
+        />
+
+        <Header openModal={this.toggleModal} />
 
         <div id="map-container" ref={map => (this.mapNode = map)} />
 

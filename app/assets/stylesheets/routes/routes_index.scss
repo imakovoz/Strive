@@ -1,0 +1,44 @@
+#route-index-page-div {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#route-index-page-div > div:first-child {
+  height: 165px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: 1px solid gray;
+}
+
+#route-index-page-div > div:first-child > *:first-child {
+  font-size: 30px;
+  font-weight: 300;
+  margin: 20px;
+}
+
+#route-index-page-div > div:first-child > *:last-child {
+  font-size: 14px;
+  color: white;
+  background-color: #fc4c02;
+  padding: 10px 16px;
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  margin: 20px;
+  margin-top: 5px;
+}
+
+#route-index-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#map-index-item {
+  width: 290px;
+  height: 180px;
+  margin: 40px 5px;
+}

@@ -3,7 +3,7 @@
 # Table name: routes
 #
 #  id                 :integer          not null, primary key
-#  workout_id         :integer          not null
+#  workout_id         :integer
 #  title              :string           not null
 #  description        :string
 #  estimated_duration :integer
@@ -15,8 +15,8 @@
 #
 
 class Route < ApplicationRecord
-  validates :workout, :title, presence: true
+  validates :title, presence: true
 
-  belongs_to :workout
+  belongs_to :workout, optional: true
 
 end
