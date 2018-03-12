@@ -1,0 +1,28 @@
+#dashboard-container-div {
+  display: flex;
+  flex-direction: row;
+  background-color: #f5f5fa;
+  justify-content: center;
+  position: relative;
+}
+
+#feed-container-div {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-top: 50px;
+}
+
+#current-user-dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background-color: white;
+  margin: 64px 32px 12px 32px;
+}
+
+#extra-dashboard-content {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}

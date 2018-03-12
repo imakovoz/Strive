@@ -1,0 +1,20 @@
+#current-user-dashboard {
+  display: flex;
+  align-items: center;
+  height: 350px;
+  position: sticky;
+}
+
+#current-prof-pic-div {
+  display: flex;
+  justify-content: center;
+}
+
+#current-prof-pic-dashboard {
+  border-radius: 50%;
+  margin-top: -35px;
+}
+
+#current-user-dashboard > h3 {
+  padding: 15px;
+}
