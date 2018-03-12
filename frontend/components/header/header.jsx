@@ -44,7 +44,7 @@ const Header = props => {
           </div>
         </div>
         <div>
-          <div className="dropdown">
+          <div className="dropdown" id="header-plus-container">
             <div className="dropdown-header-div" id="header-plus-div">
               <a id="header-plus-sign">+</a>
             </div>

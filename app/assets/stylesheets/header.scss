@@ -61,9 +61,11 @@
   background-color: #fc4c02;
 }
 
-#header-plus-div:hover + #header-plus-sign {
-  color: white;
-  background-color: #fc4c02;
+#header-plus-container:hover {
+  #header-plus-sign {
+    color: white;
+    background-color: #fc4c02;
+  }
 }
 
 #header-plus-div {
