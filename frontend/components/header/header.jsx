@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-
-const Header = (props) => {
+const Header = props => {
   // TODO make img locally hosted
 
   return (
@@ -11,11 +10,13 @@ const Header = (props) => {
         <Link to="/" id="logo-link">
           <h1>STRIVE</h1>
         </Link>
-        <img src={`${window.searchSprite}`} id="search-sprite"></img>
+        <img src={`${window.searchSprite}`} id="search-sprite" />
         <div className="dropdown">
-          <Link to={`/users/${props.current_user.id}`}
-          className="dropdown-icons" className="dropdown-header-div">
-            <h3 id="dashboard-header">Dashboard</h3>
+          <Link
+            to={`/users/${props.current_user.id}`}
+            id="dashboard-dropdown-btn"
+          >
+            <h3>Dashboard</h3>
           </Link>
           <div className="dropdown-content">
             <Link to="/">My Activites</Link>
@@ -25,21 +26,27 @@ const Header = (props) => {
       </div>
       <div className="header-div" id="right-header-div">
         <div className="dropdown">
-          <Link to={`/users/${props.current_user.id}`}
-          className="dropdown-icons" className="dropdown-header-div">
-            <img src={`${window.profPic}`} id="profPic" height="35"
-            width="35" className="dropbtn" />
+          <Link
+            to={`/users/${props.current_user.id}`}
+            className="dropdown-header-div"
+          >
+            <img
+              src={`${window.profPic}`}
+              id="profPic"
+              height="35"
+              width="35"
+              className="dropbtn"
+            />
           </Link>
           <div className="dropdown-content">
             <Link to={`/users/${props.current_user.id}`}>My Profile</Link>
-            <a onClick={props.logout} >Logout</a>
+            <a onClick={props.logout}>Logout</a>
           </div>
         </div>
         <div>
           <div className="dropdown">
-            <div className="dropdown-header-div">
-              <img src={`${window.plusSign}`} height="20"
-              width="20" className="dropbtn" id="header-plus-sign"/>
+            <div className="dropdown-header-div" id="header-plus-div">
+              <a id="header-plus-sign">+</a>
             </div>
             <div className="dropdown-content">
               <Link to={`/posts/new`}>Create Post</Link>
@@ -50,7 +57,6 @@ const Header = (props) => {
       </div>
     </header>
   );
-
 };
 
 export default Header;
