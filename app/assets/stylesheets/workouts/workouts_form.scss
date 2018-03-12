@@ -1,0 +1,139 @@
+// Place all the styles related to the workouts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#workoutform-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
+  width: 100vw;
+}
+
+#workoutform-sidebar {
+  padding: 90px;
+}
+
+#CreateWorkoutFormDiv {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+#manual-entry-header {
+  font-size: 24px;
+  font-weight: 200;
+}
+
+.workout-form-divs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px;
+  margin: 40px 0px;
+}
+
+.page-divider {
+  border-bottom: 1px solid gray;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 800px;
+  height: 1px;
+}
+
+#workout-form-first-div > * > * {
+  text-align: center;
+}
+
+#workout-form-input-body {
+  width: 75%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.workout-form-input-label-divs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px 15px;
+}
+
+.workout-form-input-label-divs > label {
+  font-size: 12px;
+  padding: 5px 0px;
+}
+
+.workout-form-input-label-divs > div {
+  display: flex;
+  flex-direction: row;
+}
+
+#workout-form-second-div {
+  display: flex;
+  flex-direction: column;
+}
+
+#workout-form-second-div > div:first-child {
+  display: flex;
+  flex-direction: row;
+}
+
+#date-time-workout {
+  display: flex;
+  flex-direction: row;
+}
+
+#workoutform-container input {
+  padding: 1px 10px;
+  line-height: 30px;
+}
+
+#workoutform-container select {
+  padding: 5px 8px;
+  width: 130%;
+  border: 1px solid #bcbcbc;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+#workoutform-container select:focus {
+  outline: none;
+}
+
+#workout-form-input-activity {
+  height: 38px;
+}
+
+#workout-form-second-div > div:first-child {
+  margin-bottom: 55px;
+}
+
+#create-workout-submit {
+  width: 60px;
+  padding: 6px 10px;
+  color: white;
+  background-color: #fc4c02;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+#create-workout-submit:hover {
+  background-color: #db4000;
+}
+
+#workout-submission {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#discard-workout-submit {
+  color: #007fb6;
+  text-decoration: none;
+  font-size: 12px;
+}

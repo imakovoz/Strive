@@ -17,7 +17,7 @@
 }
 
 #search-sprite {
-  background-image: image_url('searchsprite.svg');
+  background-image: image_url("searchsprite.svg");
   height: 25px;
   width: 25px;
 }
@@ -25,6 +25,7 @@
 .header-div {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 #dashboard-header {
@@ -40,26 +41,48 @@
   padding: 15px;
 }
 
-#dashboard-dropdown {
-  border-bottom: 2px solid #fc4c02;
-}
-
 #right-header-div {
   display: flex;
   align-items: center;
   margin-right: 45px;
 }
 
+#header-plus-sign {
+  color: #fc4c02;
+  border: 2px solid #fc4c02;
+  background-color: white;
+  border-radius: 50%;
+  padding: 2px 3px;
+}
+
+#header-plus-sign:hover {
+  color: white;
+  border: 2px solid #fc4c02;
+  background-color: #fc4c02;
+}
+
+#header-plus-div:hover + #header-plus-sign {
+  color: white;
+  background-color: #fc4c02;
+}
+
+#header-plus-div {
+  padding: 19px 12px;
+}
+
 .dropbtn {
-    border-radius: 50%;
-    padding: 8px 9px;
+  border-radius: 50%;
+  padding: 8px 9px;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 5
+  position: relative;
+  display: inline-block;
+  z-index: 5;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  height: 100%;
 }
 
 .dropdown:hover {
@@ -73,32 +96,30 @@
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 160px;
-    border: 1px solid gray;
-    z-index: 1;
-    right: -1px;
-    z-index: 2;
-
-
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  border: 1px solid gray;
+  right: -1px;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .dropdown:hover {
@@ -109,6 +130,20 @@
 
 .dropdown-icons:hover {
   border-bottom: 1px solid white;
+}
+
+.dropbtn {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+#dashboard-dropdown-btn {
+  text-decoration: none;
+  height: 100%;
+}
+
+#dashboard-dropdown-btn > h3 {
+  color: black;
 }
 
 .dropdown-header-div:hover {
