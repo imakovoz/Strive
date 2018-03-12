@@ -131,6 +131,14 @@ class PostItem extends React.Component {
         </Link>
       );
     }
+    let activityImg = null;
+    if (this.props.post.activity) {
+      activityImg = (
+        <img src={`${window.runningShoe}`} height="24" width="24" />
+      );
+    } else {
+      activityImg = <div className="no-activity-image" />;
+    }
     return (
       <div className="post-item-container">
         <div className="entry-header">
@@ -150,7 +158,7 @@ class PostItem extends React.Component {
           </div>
         </div>
         <div className="entry-body">
-          <img src={`${window.runningShoe}`} height="24" width="24" />
+          {activityImg}
           <div>
             <Link
               to={`/users/${this.props.user.id}/${linker}/${
