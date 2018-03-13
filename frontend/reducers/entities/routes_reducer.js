@@ -8,7 +8,8 @@ const usersReducer = (state = [], action) => {
     case RECEIVE_ROUTES:
       return merge({}, state, action.routes);
     case RECEIVE_ROUTE:
-      return merge({}, state, { [action.route.id]: action.route });
+      const payload = merge({}, state, { [action.route.id]: action.route });
+      return payload;
     default:
       return state;
   }

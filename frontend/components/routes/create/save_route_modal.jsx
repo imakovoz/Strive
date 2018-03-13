@@ -20,7 +20,8 @@ class Modal extends React.Component {
         polyline: this.props.route.polyline,
         distance: this.props.route.distance,
         elevation_gain: this.props.route.elevation,
-        estimated_duration: this.props.route.duration
+        estimated_duration: this.props.route.duration,
+        activity: this.props.route.travelMode,
       })
       .then(() => this.props.history.push("/routes"));
   }

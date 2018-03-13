@@ -14,6 +14,7 @@ class Api::RoutesController < ApplicationController
 
   def create
     @route = Route.new(route_params)
+    @route.user_id = current_user.id
     @route.save!
     render :show
   end
@@ -42,6 +43,6 @@ class Api::RoutesController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def route_params
-    params.require(:route).permit(:title, :workout_id, :description, :estimated_duration, :distance, :elevation_gain, :polyline)
+    params.require(:route).permit(:title, :workout_id, :description, :estimated_duration, :distance, :elevation_gain, :polyline, :activity)
   end
 end
