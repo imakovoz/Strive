@@ -3,6 +3,16 @@ import { Link, withRouter } from "react-router-dom";
 
 export default class RouteHeader extends React.Component {
   render() {
+    let savebtn = null;
+    if (this.props.savebtn) {
+      savebtn = (
+        <div onClick={this.props.openModal} id="save-route">
+          Save
+        </div>
+      );
+    } else {
+      savebtn = <div id="disabled-save-route">Save</div>;
+    }
     return (
       <div id="create-routes-header">
         <div id="create-routes-top-header">
@@ -23,7 +33,7 @@ export default class RouteHeader extends React.Component {
             <div>Redo Btn</div>
           </div>
           <div>
-            {this.props.savebtn}
+            {savebtn}
           </div>
         </div>
       </div>
