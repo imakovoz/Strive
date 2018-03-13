@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 import SaveRouteModal from "./save_route_modal";
+import styles from '../google_map_styling';
 
 export default class RouteMap extends React.Component {
   constructor(props) {
@@ -44,7 +45,11 @@ export default class RouteMap extends React.Component {
       center: { lat: 40.751282, lng: -73.98399 },
       zoom: 13,
       disableDefaultUI: true,
-      zoomControl: true
+      zoomControl: true,
+      styles: styles.strive,
+      zoomControlOptions: {
+          position: google.maps.ControlPosition.LEFT_TOP
+        },
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);

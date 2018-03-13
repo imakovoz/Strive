@@ -27,7 +27,6 @@ class Modal extends React.Component {
 
   handleInput(e) {
     const obj = {};
-    debugger;
     obj[e.currentTarget.id.split("-").slice(-1)[0]] = e.target.value;
     this.setState(obj);
   }
