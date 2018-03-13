@@ -7,6 +7,7 @@ const p2 = "&style=feature:road%7Celement:labels.icon%7Cvisibility:off&style=fea
 const p3 = "&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x92998d&size=480x360";
 
 export const rectangle = "https://maps.googleapis.com/maps/api/staticmap?size=290x180";
+export const show = "https://maps.googleapis.com/maps/api/staticmap?size=860x360";
 
 export const style =  p1 + p2 +p3;
 

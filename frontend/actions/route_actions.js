@@ -7,18 +7,24 @@ export const receiveRoutes = (routes) => ({
   routes
 });
 
-export const receiveRoute = (route) => ({
+export const receiveRoute = (route) => {
+return {
   type: RECEIVE_ROUTE,
   route
-});
+};
+};
 
 export const fetchRoutes = () => (dispatch) => (
   APIUtil.fetchRoutes().then((routes) => (dispatch(receiveRoutes(routes))))
 );
 
-export const fetchRoute = (id) => (dispatch) => (
-  APIUtil.fetchRoute(id).then((route) => (dispatch(receiveRoute(route))))
-);
+export const fetchRoute = (id) => (dispatch) => {
+  return APIUtil.fetchRoute(id).then(
+    (route) => {
+      return dispatch(receiveRoute(route));
+    }
+  );
+};
 
 export const createRoute = (route1) => (dispatch) => (
   APIUtil.createRoute(route1).then((route) => (dispatch(receiveRoute(route))))
