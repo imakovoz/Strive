@@ -5,10 +5,10 @@ export const fetchRoutes = () => {
   });
 };
 
-export const fetchRoute = (userId, id) => {
+export const fetchRoute = (id) => {
   return $.ajax({
     method: 'GET',
-    url: `/api/users/${userId}/routes/${id}`,
+    url: `/api/routes/${id}`,
   });
 };
 

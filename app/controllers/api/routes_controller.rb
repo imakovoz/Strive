@@ -1,4 +1,5 @@
 class Api::RoutesController < ApplicationController
+  before_action :set_route, only: [:show, :edit, :update, :destroy]
 
   def index
     @routes = Route.all
@@ -36,9 +37,11 @@ class Api::RoutesController < ApplicationController
   end
 
   private
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def route_params
-      params.require(:route).permit(:title, :workout_id, :description, :estimated_duration, :distance, :elevation_gain, :polyline)
-    end
+  def set_route
+    @route = Route.find(params[:id])
+  end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def route_params
+    params.require(:route).permit(:title, :workout_id, :description, :estimated_duration, :distance, :elevation_gain, :polyline)
+  end
 end
