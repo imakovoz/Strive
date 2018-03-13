@@ -1,20 +1,15 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { style, key, rectangle } from '../google_static_map_styling';
 
 export default class RouteItem extends React.Component {
-  componentDidMount() {
-    this.initMap();
+  constructor(props) {
+    super(props);
+    this.url = rectangle + style + "&path=color:0xff0000ff|weight:2%7Cenc:" + props.route.polyline + key;
   }
 
-  initMap() {
-    const mapOptions = {
-      center: { lat: 40.751282, lng: -73.98399 },
-      zoom: 13,
-      disableDefaultUI: true,
-      zoomControl: true
-    };
-    this.map = new google.maps.Map(this.mapNode, mapOptions);
-  }
+
+
   render() {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let year = null;
@@ -43,11 +38,12 @@ export default class RouteItem extends React.Component {
 
     return (
       <div id="map-index-wrapper">
-        <div id="map-index-item" ref={map => (this.mapNode = map)} />
+        <img src={ this.url } className="map-index-item" />
         <div id="route-index-detail-wrapper">
           <div id="route-index-item-title-div">
-            <Link to={`/routes/${this.props.route.id}`} id="route-index-item-title">
-              {this.props.route.title}
+            <Link to={`/routes/${this.props.route.id}`}
+                  id="route-index-item-title">
+                  {this.props.route.title}
             </Link>
           </div>
           <div id="route-index-item-details">
