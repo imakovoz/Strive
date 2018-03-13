@@ -13,6 +13,56 @@ export default class RouteHeader extends React.Component {
     } else {
       savebtn = <div id="disabled-save-route">Save</div>;
     }
+    let undoBtn = null;
+    if (this.props.waypts.length > 1) {
+      undoBtn =  (
+        <div onClick={ this.props.undo } id="rte-undo-endabled" className="action-btn-header-rte">
+          <img
+            src={`${window.undo}`}
+            height="20"
+            width="20"
+          />
+          <span>Undo</span>
+        </div>
+      );
+    } else {
+      undoBtn =  (
+        <div id="rte-undo-disabled" className="action-btn-header-rte">
+          <img
+            src={`${window.undo}`}
+            height="20"
+            width="20"
+          />
+          <span>Undo</span>
+        </div>
+      );
+    }
+
+    let redo = null;
+    if (this.props.undoArr.length > 0) {
+      redo =  (
+        <div onClick={ this.props.undo } id="rte-redo-endabled" className="action-btn-header-rte">
+          <img
+            src={`${window.redo}`}
+            height="20"
+            width="20"
+          />
+          <span>Redo</span>
+        </div>
+      );
+    } else {
+      redo =  (
+        <div id="rte-redo-disabled" className="action-btn-header-rte">
+          <img
+            src={`${window.redo}`}
+            height="20"
+            width="20"
+          />
+          <span>Redo</span>
+        </div>
+      );
+    }
+
     return (
       <div id="create-routes-header">
         <div id="create-routes-top-header">
@@ -29,8 +79,8 @@ export default class RouteHeader extends React.Component {
         <div id="create-routes-bottom-header">
           <div id="create-route-top-menu">
             <div>Search Bar Placeholder</div>
-            <div>Undo Btn</div>
-            <div>Redo Btn</div>
+            { undoBtn }
+            { redo }
           </div>
           <div>
             {savebtn}

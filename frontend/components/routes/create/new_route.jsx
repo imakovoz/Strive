@@ -57,7 +57,6 @@ export default class RouteMap extends React.Component {
     this.elevator = new google.maps.ElevationService();
 
     this.directionsDisplay.addListener("directions_changed", () => {
-      console.log(this.directionsDisplay);
       const request = this.directionsDisplay.directions.request;
 
       this.updateState(this.directionsDisplay.getDirections());
@@ -69,7 +68,10 @@ export default class RouteMap extends React.Component {
         map: this.map
       });
       this.state.markers.push(newMarker);
-      this.setState({ markers: this.state.markers });
+      this.setState({
+        markers: this.state.markers,
+        undo: [],
+       });
       newMarker = newMarker.position;
       this.calcRoute([...this.state.waypts, newMarker]);
     });
@@ -138,7 +140,7 @@ export default class RouteMap extends React.Component {
     this.setState({
       polyline: result.routes[0].overview_polyline,
       path: result.routes[0].overview_path,
-      waypts
+      waypts,
     });
 
     this.computeTotalDistance(result);
@@ -189,6 +191,28 @@ export default class RouteMap extends React.Component {
     );
   }
 
+  undo() {
+    const lastwypt = this.state.waypts.pop();
+    this.state.undo.push(lastwypt);
+    this.setState({
+      waypts: this.state.waypts,
+      undo: this.state.undo,
+    });
+    if (this.state.waypts.length > 1) {
+      this.calcRoute(this.state.waypts);
+    }
+  }
+
+  redo() {
+    const lastwypt = this.state.undo.pop();
+    this.state.waypts.push(lastwypt);
+    this.setState({
+      waypts: this.state.waypts,
+      undo: this.state.undo,
+    });
+    this.calcRoute(this.state.waypts);
+  }
+
   render() {
     let savebtn = (this.state.waypts.length > 1);
     return (
@@ -200,7 +224,7 @@ export default class RouteMap extends React.Component {
           createRoute={this.props.createRoute}
         />
 
-        <Header openModal={this.toggleModal} savebtn={savebtn}/>
+        <Header openModal={this.toggleModal} savebtn={savebtn} undo={this.undo.bind(this)} redo={this.redo.bind(this)} waypts={this.state.waypts} undoArr={this.state.undo}/>
 
         <div id="map-container" ref={map => (this.mapNode = map)} />
 
