@@ -52,7 +52,7 @@
   border: 2px solid #fc4c02;
   background-color: white;
   border-radius: 50%;
-  padding: 2px 3px;
+  padding: 0px 2px;
 }
 
 #header-plus-sign:hover {
@@ -104,6 +104,7 @@
   min-width: 160px;
   border: 1px solid gray;
   right: -1px;
+  margin-top: -1;
 }
 
 /* Links inside the dropdown */
@@ -139,13 +140,36 @@
   border-right: 1px solid white;
 }
 
+#dashboard-dropdown-div {
+  height: 55px;
+}
+
 #dashboard-dropdown-btn {
   text-decoration: none;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 #dashboard-dropdown-btn > h3 {
   color: black;
+}
+
+#dashboard-dropdown-content {
+  left: -1px;
+}
+
+#dashboard-dropdown-container {
+  padding: 0px 15px;
+  border-bottom: 2px solid red;
+  box-sizing: border-box;
+  height: 55px;
+}
+
+#dashboard-dropdown-container:hover {
+  border-bottom: 3px solid white;
+  margin-bottom: -1;
+  height: 56px;
 }
 
 .dropdown-header-div:hover {

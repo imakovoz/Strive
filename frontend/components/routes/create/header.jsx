@@ -23,9 +23,7 @@ export default class RouteHeader extends React.Component {
             <div>Redo Btn</div>
           </div>
           <div>
-            <div onClick={this.props.openModal} id="save-route">
-              Save
-            </div>
+            {this.props.savebtn}
           </div>
         </div>
       </div>
