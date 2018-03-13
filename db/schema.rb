@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312212634) do
+ActiveRecord::Schema.define(version: 20180313033736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20180312212634) do
     t.integer "workout_id"
     t.string "title", null: false
     t.string "description"
-    t.integer "estimated_duration"
-    t.integer "distance"
-    t.integer "elevation_gain"
+    t.float "estimated_duration"
+    t.float "distance"
+    t.float "elevation_gain"
     t.string "polyline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
