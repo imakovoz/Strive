@@ -185,6 +185,16 @@ export default class RouteMap extends React.Component {
   }
 
   render() {
+    let savebtn = null;
+    if (this.state.waypts.length > 1) {
+      savebtn = (
+        <div onClick={this.props.openModal} id="save-route">
+          Save
+        </div>
+      );
+    } else {
+      savebtn = <div id="disabled-save-route">Save</div>;
+    }
     return (
       <div id="map-builder-wrapper">
         <SaveRouteModal
@@ -194,7 +204,7 @@ export default class RouteMap extends React.Component {
           createRoute={this.props.createRoute}
         />
 
-        <Header openModal={this.toggleModal} />
+        <Header openModal={this.toggleModal} savebtn={savebtn}/>
 
         <div id="map-container" ref={map => (this.mapNode = map)} />
 

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 const Header = props => {
-  // TODO make img locally hosted
 
   return (
     <header id="main-header">
@@ -11,14 +10,16 @@ const Header = props => {
           <h1>STRIVE</h1>
         </Link>
         <img src={`${window.searchSprite}`} id="search-sprite" />
-        <div className="dropdown">
-          <Link
-            to={`/users/${props.current_user.id}`}
-            id="dashboard-dropdown-btn"
-          >
-            <h3>Dashboard</h3>
-          </Link>
-          <div className="dropdown-content">
+        <div className="dropdown" id="dashboard-dropdown-container">
+          <div id="dashboard-dropdown-div">
+            <Link
+              to={`/users/${props.current_user.id}`}
+              id="dashboard-dropdown-btn"
+              >
+                <h3>Dashboard</h3>
+              </Link>
+          </div>
+          <div className="dropdown-content" id="dashboard-dropdown-content">
             <Link to="/">My Activites</Link>
             <Link to="/routes">My Routes</Link>
           </div>

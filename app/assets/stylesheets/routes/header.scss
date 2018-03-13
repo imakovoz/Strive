@@ -59,9 +59,20 @@
   height: 44px;
   justify-content: center;
   align-content: center;
-  background-color: red;
+  background-color: #fc4c02;
   padding: 0px 20px;
   color: white;
+  cursor: pointer;
+}
+
+#disabled-save-route {
+  height: 44px;
+  justify-content: center;
+  align-content: center;
+  background-color: #FF916D;
+  padding: 0px 20px;
+  color: #FFCCBB;
+  cursor: not-allowed;
 }
 
 #create-route-top-menu {
