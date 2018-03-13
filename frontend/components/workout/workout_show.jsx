@@ -30,7 +30,7 @@ class WorkoutShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchWorkout(this.props.userId, this.props.workoutId);
+    this.props.fetchWorkout(this.props.userId, this.props.workoutId).then(() => this.props.fetchUser(this.props.userId));
   }
 
   render() {
@@ -48,41 +48,55 @@ class WorkoutShow extends React.Component {
       } else {
         editbtn = <div></div>;
       }
-      
+
       return (
         <div >
           <Header />
 
-          <div id="CreateworkoutShowDiv">
-
-            <div id="create-workout-prof-div">
-
-              <span id="show-prof-left">
-                <div id="show-prof-pic">
-                  <Link to={`/users/${this.props.current_user.id}`}>
-                    <img src="https://tinyurl.com/y8cc7jwt"
-                      height="75" width="75" />
+          <div id="createWorkoutShowDiv">
+            <div id="workout-show-action-btns">
+              <div><img src={`${window.edit}`} height="20" width="20" /></div>
+              <div><img src={`${window.wrench}`} height="20" width="20" /></div>
+            </div>
+            <div id="workout-show-wrapper">
+              <div id="workout-show-title">
+                {this.props.user.firstname + " " + this.props.user.lastname + " - " + this.props.workout.activity}
+              </div>
+              <div id="workout-show-details-wrapper">
+                <div className="workout-show-details-container">
+                  <Link to={`/users/${this.props.userId}`}>
+                    <img src={`${window.profPic}`}
+                      height="100" width="100" />
                   </Link>
+                  <div>
+                    <span>{this.props.workout.created_at}</span>
+                    <h3>{this.props.workout.title}</h3>
+                    <p>{this.props.workout.body}</p>
+                  </div>
                 </div>
-                <span id="show-user-info">
-                  <Link to={`/users/${this.props.current_user.id}`}>
-                    <h4 id="workout-form-user-name">
-                      {this.props.current_user.firstname + " " + this.props.current_user.lastname}
-                    </h4>
-                  </Link>
-                  <span id="workouting-as">{formatDate(this.props.workout.created_at)}</span>
-                </span>
-              </span>
-              {editbtn}
+                <div className="workout-show-details-container">
+                  <div id="workout-show-details-div">
+                    <div>
+                      <h5>{this.props.workout.distance + " " + this.props.workout.distance_uom}</h5>
+                      <label>Distance</label>
+                    </div>
+                    <div>
+                      <h5>{this.props.workout.duration}</h5>
+                      <label>Duration</label>
+                    </div>
+                    <div>
+                      <h5>{this.props.workout.distance + "/" + this.props.workout.distance_uom}</h5>
+                      <label>Pace</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-
-            <div id="workout-show-content">
-              <h2 id="workout-show-title">{this.props.workout.title}</h2>
-              <h4>{this.props.workout.body}</h4>
-            </div>
           </div>
+
         </div>
+
       );
 
   }
