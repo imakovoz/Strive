@@ -54,6 +54,12 @@ class Api::WorkoutsController < ApplicationController
     end
   end
 
+  def filter_index
+    @workouts = []
+    params[:user_id].map {|user| @workouts.concat(Workout.where("user_id = #{user}"))}
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workout

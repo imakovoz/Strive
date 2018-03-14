@@ -92,7 +92,6 @@ export default class RouteMap extends React.Component {
 
   toggleModal() {
     let open = !this.state.openModal;
-    console.log(open);
     this.setState({ openModal: open });
   }
 
@@ -122,7 +121,6 @@ export default class RouteMap extends React.Component {
     if (points.length > 1) {
       this.directionsService.route(routeRequest, (result, status) => {
         if (status == "OK") {
-          console.log(result);
           this.updateState(result);
           this.directionsDisplay.setMap(this.map);
           this.directionsDisplay.setDirections(result);
@@ -193,6 +191,7 @@ export default class RouteMap extends React.Component {
 
   undo() {
     const lastwypt = this.state.waypts.pop();
+    console.log(lastwypt);
     this.state.undo.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,
@@ -204,7 +203,9 @@ export default class RouteMap extends React.Component {
   }
 
   redo() {
+    console.log(this.state.undo.length);
     const lastwypt = this.state.undo.pop();
+    console.log(this.state.undo.length);
     this.state.waypts.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,

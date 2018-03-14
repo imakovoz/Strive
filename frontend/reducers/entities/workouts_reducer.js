@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { RECEIVE_WORKOUTS, RECEIVE_WORKOUT } from "../../actions/workout_actions";
+import { RECEIVE_WORKOUTS, RECEIVE_WORKOUT, LIMIT_WORKOUTS } from "../../actions/workout_actions";
 
 
 const usersReducer = (state = [], action) => {
@@ -10,6 +10,8 @@ const usersReducer = (state = [], action) => {
       return merge({}, state, action.workouts);
     case RECEIVE_WORKOUT:
       return merge({}, state, {[action.workout.id]: action.workout});
+    case LIMIT_WORKOUTS:
+      return action.workouts;
     default:
       return state;
   }

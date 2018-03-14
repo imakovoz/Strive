@@ -5,6 +5,14 @@ export const fetchWorkouts = () => {
   });
 };
 
+export const fetchFilteredWorkouts = (user_id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/workouts/filter`,
+    data: {user_id}
+  });
+};
+
 export const fetchWorkout = (userId, id) => {
   return $.ajax({
     method: 'GET',
