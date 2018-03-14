@@ -9,6 +9,8 @@ class ProfilePage extends React.Component {
 
     this.state = {
       toggle: "number",
+      imageUrl: "",
+      imageFile: null,
     };
 
     this.chart = null;
@@ -48,6 +50,31 @@ class ProfilePage extends React.Component {
     }, this.drawChart.bind(this));
   }
 
+  previewFile(e) {
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    reader.onloadend = () =>
+      this.setState({ imageUrl: reader.result, imageFile: file});
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({ imageUrl: "", imageFile: null });
+    }
+  }
+
+  handleSubmit() {
+    const file = this.state.imageFile;
+
+    const formData = new FormData();
+    formData.append("user[firstname]", this.state.current_user.firstname);
+    formData.append("user[lastname]", this.state.current_user.lastname);
+    formData.append("user[email]", this.state.current_user.email);
+    formData.append("user[password_digest]", this.state.current_user.password_digest);
+    if (file) formData.append("user[profile_pic]", file);
+    this.props.updateUser(formData, this.resetForm);
+  }
+
   render() {
     if (this.props.user_profile) {
       return (
@@ -61,6 +88,11 @@ class ProfilePage extends React.Component {
                 width="150"
               />
               <h3>{this.props.current_user.firstname} {this.props.current_user.lastname}</h3>
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                <input type="file" onChange={this.previewFile.bind(this)}></input>
+                <img src={this.state.imageUrl} />
+                <button>Submit</button>
+              </form>
             </div>
             <div>
               <div id="profile-calendar-workouts"></div>
