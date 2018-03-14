@@ -18,12 +18,13 @@ class Feed extends React.Component {
   }
 
   toggle(e) {
-    this.setState({toggle: !(this.state.toggle)});
-    if (this.state.toggle == false) {
-      this.props.fetchFilteredPosts([this.props.currentUser.id]).then(() => this.props.fetchFilteredWorkouts([this.props.currentUser.id]));
-    } else {
-      this.props.fetchPosts().then(() => this.props.fetchWorkouts());
-    }
+    this.setState({toggle: !(this.state.toggle)}, () => {
+      if (this.state.toggle == false) {
+        this.props.fetchFilteredPosts([this.props.currentUser.id]).then(() => this.props.fetchFilteredWorkouts([this.props.currentUser.id]));
+      } else {
+        this.props.fetchPosts().then(() => this.props.fetchWorkouts());
+      }
+    });
   }
 
   render() {
@@ -31,7 +32,7 @@ class Feed extends React.Component {
     let users = this.props.users;
 
     let toggle = null;
-    if (!this.state.toggle) {
+    if (this.state.toggle) {
       toggle = <div id="feed-toggle" onClick={ this.toggle }>Following</div>;
     } else {
       toggle = <div id="feed-toggle" onClick={ this.toggle }>Your Activities</div>;

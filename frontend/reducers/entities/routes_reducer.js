@@ -11,7 +11,7 @@ const routesReducer = (state = [], action) => {
       const payload = merge({}, state, { [action.route.id]: action.route });
       return payload;
     case LIMIT_ROUTES:
-      return action.posts;
+      return action.routes;
     default:
       return state;
   }

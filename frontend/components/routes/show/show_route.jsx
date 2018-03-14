@@ -13,7 +13,6 @@ export default class RouteShow extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    // debugger
     if (!Boolean(this.state.user) || newProps.route.user_id !== this.state.user.id) {
       this.props.fetchUser(newProps.route.user_id).then((user) => {
         this.setState({user});

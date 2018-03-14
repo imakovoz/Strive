@@ -15,10 +15,11 @@ return {
 };
 };
 
-export const limitRoutes = (routes) => ({
+export const limitRoutes = (routes) => {
+  return {
   type: LIMIT_ROUTES,
   routes
-});
+};};
 
 export const fetchRoutes = () => (dispatch) => (
   APIUtil.fetchRoutes().then((routes) => (dispatch(receiveRoutes(routes))))
