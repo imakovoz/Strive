@@ -8,7 +8,7 @@ export const fetchRoutes = () => {
 export const fetchFilteredRoutes = (user_id) => {
   return $.ajax({
     method: 'GET',
-    url: `/api/routes/filter`,
+    url: `/api/filter/routes`,
     data: {user_id}
   });
 };

@@ -52,6 +52,7 @@ const Header = props => {
             <div className="dropdown-content">
               <Link to={`/posts/new`}>Create Post</Link>
               <Link to={`/workouts/new`}>Create Workout</Link>
+              <Link to={`/routes/new`}>Create Route</Link>
             </div>
           </div>
         </div>

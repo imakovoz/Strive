@@ -8,7 +8,7 @@ export const fetchWorkouts = () => {
 export const fetchFilteredWorkouts = (user_id) => {
   return $.ajax({
     method: 'GET',
-    url: `/api/workouts/filter`,
+    url: `/api/filter/workouts`,
     data: {user_id}
   });
 };

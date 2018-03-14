@@ -8,7 +8,7 @@ export const fetchPosts = () => {
 export const fetchFilteredPosts = (user_id) => {
   return $.ajax({
     method: 'GET',
-    url: `/api/posts/filter`,
+    url: `/api/filter/posts`,
     data: {user_id}
   });
 };
