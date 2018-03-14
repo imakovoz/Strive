@@ -6,12 +6,14 @@
 #  workout_id         :integer
 #  title              :string           not null
 #  description        :string
-#  estimated_duration :integer
-#  distance           :integer
-#  elevation_gain     :integer
+#  estimated_duration :float
+#  distance           :float
+#  elevation_gain     :float
 #  polyline           :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  user_id            :integer          not null
+#  activity           :string
 #
 
 class Route < ApplicationRecord
