@@ -39,7 +39,9 @@ export default class RouteItem extends React.Component {
 
     return (
       <div id='map-index-wrapper'>
-        <img src={ this.url } className='map-index-item' />
+        <Link to={`/routes/${this.props.route.id}`}>
+          <img src={ this.url } className='map-index-item' />
+        </Link>
         <div id='route-index-detail-wrapper'>
           <div id='route-index-item-title-div'>
             <Link to={`/routes/${this.props.route.id}`}

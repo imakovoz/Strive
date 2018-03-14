@@ -8,6 +8,7 @@
     "babel-preset-react": "^6.24.1",
     "dateformat": "^3.0.3",
     "prettify": "^0.1.7",
+    "pretty": "^2.0.0",
     "react": "^16.2.0",
     "react-code-prettify": "0.0.1",
     "react-dom": "^16.2.0",

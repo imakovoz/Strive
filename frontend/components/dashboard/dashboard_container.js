@@ -1,6 +1,6 @@
 import { fetchUsers } from "../../actions/user_actions";
-import { fetchPosts } from "../../actions/post_actions";
-import { fetchWorkouts } from "../../actions/workout_actions";
+import { fetchPosts, fetchFilteredPosts } from "../../actions/post_actions";
+import { fetchWorkouts, fetchFilteredWorkouts } from "../../actions/workout_actions";
 import {
   selectAllPosts,
   selectAllUsers,
@@ -21,7 +21,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     fetchPosts: () => dispatch(fetchPosts()),
-    fetchWorkouts: () => dispatch(fetchWorkouts())
+    fetchWorkouts: () => dispatch(fetchWorkouts()),
+    fetchFilteredPosts: (user_id) => dispatch(fetchFilteredPosts(user_id)),
+    fetchFilteredWorkouts: (user_id) => dispatch(fetchFilteredWorkouts(user_id)),
   };
 };
 

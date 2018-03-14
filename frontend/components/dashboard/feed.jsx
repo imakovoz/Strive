@@ -3,6 +3,13 @@ import { Link, withRouter } from "react-router-dom";
 import PostItem from "./post_item";
 
 class Feed extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggle: "true"
+    };
+    this.toggle = this.toggle.bind(this);
+  }
   componentDidMount() {
     this.props
       .fetchUsers()
@@ -10,14 +17,31 @@ class Feed extends React.Component {
       .then(() => this.props.fetchWorkouts());
   }
 
+  toggle(e) {
+    this.setState({toggle: !(this.state.toggle)});
+    if (this.state.toggle == false) {
+      this.props.fetchFilteredPosts([this.props.currentUser.id]).then(() => this.props.fetchFilteredWorkouts([this.props.currentUser.id]));
+    } else {
+      this.props.fetchPosts().then(() => this.props.fetchWorkouts());
+    }
+  }
+
   render() {
     let posts = this.props.posts;
     let users = this.props.users;
 
-    console.log(users);
+    let toggle = null;
+    if (!this.state.toggle) {
+      toggle = <div id="feed-toggle" onClick={ this.toggle }>Following</div>;
+    } else {
+      toggle = <div id="feed-toggle" onClick={ this.toggle }>Your Activities</div>;
+    }
 
     return (
       <div id="feed-container-div">
+        <div>
+          { toggle }
+        </div>
         <ul>
           {this.props.posts.map((post, i) => {
             return (
