@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchUser: (id) => dispatch(fetchUser(id)),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchFilteredWorkouts: (id) => dispatch(fetchFilteredWorkouts(id)),
-    updateUser: (data) => dispatch(updateUser(data)),
+    updateUser: (data, id) => dispatch(updateUser(data, id)),
   });
 };
 

@@ -143,7 +143,7 @@ class PostItem extends React.Component {
       <div className="post-item-container">
         <div className="entry-header">
           <Link to={`/users/${this.props.user.id}`}>
-            <img src={`${window.profPic}`} height="40" width="40" />
+            <img src={`${this.props.user.profile_pic}`} height="40" width="40" />
           </Link>
           <div className="entry-header-details">
             <Link

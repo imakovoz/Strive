@@ -65,7 +65,7 @@ class WorkoutShow extends React.Component {
               <div id="workout-show-details-wrapper">
                 <div className="workout-show-details-container">
                   <Link to={`/users/${this.props.userId}`}>
-                    <img src={`${window.profPic}`}
+                    <img src={`${this.props.user.profile_pic}`}
                       height="100" width="100" />
                   </Link>
                   <div>

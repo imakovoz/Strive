@@ -7,7 +7,7 @@ class CurrentUserProfile extends React.Component {
       <div id="current-user-dashboard">
         <div id="current-prof-pic-div">
           <img
-            src={`${window.profPic}`}
+            src={`${this.props.currentUser.profile_pic}`}
             height="70"
             width="70"
             id="current-prof-pic-dashboard"

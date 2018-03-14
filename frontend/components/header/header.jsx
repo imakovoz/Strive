@@ -32,7 +32,7 @@ const Header = props => {
             className="dropdown-header-div"
           >
             <img
-              src={`${window.profPic}`}
+              src={`${props.current_user.profile_pic}`}
               id="profPic"
               height="35"
               width="35"
