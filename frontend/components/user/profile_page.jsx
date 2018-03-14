@@ -67,12 +67,8 @@ class ProfilePage extends React.Component {
     const file = this.state.imageFile;
 
     const formData = new FormData();
-    formData.append("user[firstname]", this.state.current_user.firstname);
-    formData.append("user[lastname]", this.state.current_user.lastname);
-    formData.append("user[email]", this.state.current_user.email);
-    formData.append("user[password_digest]", this.state.current_user.password_digest);
     if (file) formData.append("user[profile_pic]", file);
-    this.props.updateUser(formData, this.resetForm);
+    this.props.updateUser(formData, this.props.current_user.id);
   }
 
   render() {
@@ -83,11 +79,11 @@ class ProfilePage extends React.Component {
           <div id="current-user-profile-wrapper">
             <div id="current-user-profile">
               <img
-                src={`${window.profPic}`}
+                src={`${this.props.user_profile.profile_pic}`}
                 height="150"
                 width="150"
               />
-              <h3>{this.props.current_user.firstname} {this.props.current_user.lastname}</h3>
+              <h3>{this.props.user_profile.firstname} {this.props.user_profile.lastname}</h3>
               <form onSubmit={this.handleSubmit.bind(this)}>
                 <input type="file" onChange={this.previewFile.bind(this)}></input>
                 <img src={this.state.imageUrl} />

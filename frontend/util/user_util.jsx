@@ -1,3 +1,5 @@
+import * as UserActions from '../actions/user_actions';
+
 export const fetchUsers = () => {
   return $.ajax({
     method: 'GET',
@@ -12,10 +14,10 @@ export const fetchUser = (id) => {
   });
 };
 
-export const updateUser = (data) => {
+export const updateUser = (data, id) => {
 
   return $.ajax({
-    url: '/api/users',
+    url: `/api/users/${id}`,
     type: 'PATCH',
     processData: false,
     contentType: false,

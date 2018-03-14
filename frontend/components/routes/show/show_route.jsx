@@ -75,7 +75,7 @@ export default class RouteShow extends React.Component {
               <div>
                 <Link to={`/users/${this.state.user.user.id}`}>
                   <img
-                    src={`${window.profPic}`}
+                    src={`${this.state.user.user.profile_pic}`}
                     height="75"
                     width="75"
                     className="dropbtn"
