@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import Header from "../../header/header_container";
 import { style, key, show } from '../google_static_map_styling';
-import dateFormat from 'dateFormat';
+import dateFormat from 'dateformat';
 
 export default class RouteShow extends React.Component {
   constructor(props) {

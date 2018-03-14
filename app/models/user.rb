@@ -2,21 +2,26 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime
-#  updated_at      :datetime
-#  firstname       :string           not null
-#  lastname        :string           not null
-#  prof_pic_id     :integer
+#  id                       :integer          not null, primary key
+#  email                    :string           not null
+#  password_digest          :string           not null
+#  session_token            :string           not null
+#  created_at               :datetime
+#  updated_at               :datetime
+#  firstname                :string           not null
+#  lastname                 :string           not null
+#  profile_pic_file_name    :string
+#  profile_pic_content_type :string
+#  profile_pic_file_size    :integer
+#  profile_pic_updated_at   :datetime
 #
 
 class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :password_digest, :session_token, :firstname, :lastname, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  has_attached_file :profile_pic, default_url: "missing.png"
+  validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token
 
