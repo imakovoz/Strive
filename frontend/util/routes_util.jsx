@@ -5,6 +5,14 @@ export const fetchRoutes = () => {
   });
 };
 
+export const fetchFilteredRoutes = (user_id) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/routes/filter`,
+    data: {user_id}
+  });
+};
+
 export const fetchRoute = (id) => {
   return $.ajax({
     method: 'GET',

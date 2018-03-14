@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   get 'api/workouts/filter', to: 'api/workouts#filter_index', as: 'fworkouts', defaults: { format: :json }
   get 'api/posts/filter', to: 'api/posts#filter_index', as: 'fposts', defaults: { format: :json }
+  get 'api/routes/filter', to: 'api/routes#filter_index', as: 'froutes', defaults: { format: :json }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

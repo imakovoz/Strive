@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import { RECEIVE_WORKOUTS, RECEIVE_WORKOUT, LIMIT_WORKOUTS } from "../../actions/workout_actions";
 
 
-const usersReducer = (state = [], action) => {
+const workoutsReducer = (state = [], action) => {
   Object.freeze(state);
 
   switch (action.type) {
@@ -17,4 +17,4 @@ const usersReducer = (state = [], action) => {
   }
 };
 
-export default usersReducer;
+export default workoutsReducer;

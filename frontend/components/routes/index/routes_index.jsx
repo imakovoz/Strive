@@ -10,7 +10,7 @@ export default class RouteIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRoutes();
+    this.props.fetchFilteredRoutes([this.props.currentUser]);
   }
 
   render() {

@@ -37,6 +37,13 @@ class Api::RoutesController < ApplicationController
     end
   end
 
+  def filter_index
+    debugger
+    @routes = []
+    params[:user_id].map {|user| @routes.concat(Route.where("user_id = #{user}"))}
+    render :index
+  end
+
   private
   def set_route
     @route = Route.find(params[:id])
