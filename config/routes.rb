@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create]
     resources :workouts, only: [:index, :create]
     resources :routes, only: [:index, :show, :create]
-    resources :users, only: [:index, :show, :create] do
+    resources :users, only: [:index, :show, :create, :update] do
       resources :posts, only: [:show, :destroy, :update]
       resources :workouts, only: [:show, :destroy, :update]
       resources :routes, only: [:destroy, :update]

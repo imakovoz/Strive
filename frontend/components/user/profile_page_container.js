@@ -1,4 +1,4 @@
-import { fetchUser, fetchUsers } from '../../actions/user_actions';
+import { fetchUser, fetchUsers, updateUser } from '../../actions/user_actions';
 import { fetchFilteredWorkouts } from '../../actions/workout_actions';
 import { styleWorkoutsForVisualization } from '../../reducers/selectors';
 import ProfilePage from './profile_page';
@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchUser: (id) => dispatch(fetchUser(id)),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchFilteredWorkouts: (id) => dispatch(fetchFilteredWorkouts(id)),
+    updateUser: (data) => dispatch(updateUser(data)),
   });
 };
 
