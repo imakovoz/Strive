@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     postId: ownProps.match.params.post_id,
     post: state.entities.posts[ownProps.match.params.post_id] || {},
     userId: ownProps.match.params.user_id,
+    user: state.entities.users[ownProps.match.params.user_id] || {},
   });
 };
 
