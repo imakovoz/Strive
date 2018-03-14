@@ -1,7 +1,7 @@
 import { merge } from "lodash";
-import { RECEIVE_ROUTES, RECEIVE_ROUTE } from "../../actions/route_actions";
+import { RECEIVE_ROUTES, RECEIVE_ROUTE, LIMIT_ROUTES } from "../../actions/route_actions";
 
-const usersReducer = (state = [], action) => {
+const routesReducer = (state = [], action) => {
   Object.freeze(state);
 
   switch (action.type) {
@@ -10,9 +10,11 @@ const usersReducer = (state = [], action) => {
     case RECEIVE_ROUTE:
       const payload = merge({}, state, { [action.route.id]: action.route });
       return payload;
+    case LIMIT_ROUTES:
+      return action.posts;
     default:
       return state;
   }
 };
 
-export default usersReducer;
+export default routesReducer;

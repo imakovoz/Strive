@@ -1,16 +1,17 @@
 import RouteIndex from "./routes_index";
 import { connect } from "react-redux";
-import { fetchRoutes } from "../../../actions/route_actions";
+import { fetchRoutes, fetchFilteredRoutes } from "../../../actions/route_actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    routes: Object.values(state.entities.routes) || []
+    routes: Object.values(state.entities.routes) || [],
+    currentUser: state.session.currentUser.id,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRoutes: () => dispatch(fetchRoutes())
+    fetchFilteredRoutes: (user_id) => dispatch(fetchFilteredRoutes(user_id))
   };
 };
 
