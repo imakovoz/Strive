@@ -198,7 +198,30 @@
   flex-direction: row;
 }
 
+#search-wrapper input {
+  border: none;
+}
+
+#search-wrapper * {
+  font-size: 14px;
+}
+
+#search-wrapper > * {
+  border: 1px solid #bcbcbc;
+  padding: 3px;
+}
+
+#search-wrapper > *:first-child {
+  border-right: 0;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
 #search-results a {
   text-decoration: none;
   color: black;
+  width: 300px;
 }

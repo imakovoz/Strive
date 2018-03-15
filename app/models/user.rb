@@ -27,7 +27,7 @@ class User < ApplicationRecord
   before_save :search_name
   attr_reader :password
 
-  def search_name
+  def self.search_name
     [:firstname.to_s, :last_name.to_s, :email.to_s].join(' ')
   end
 

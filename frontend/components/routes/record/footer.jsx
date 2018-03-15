@@ -4,8 +4,13 @@ import { Link, withRouter } from "react-router-dom";
 export default class RouteFooter extends React.Component {
   render() {
     let time = null;
-    if (this.props.duration === "--:--") {
-      time = this.props.duration;
+    if (this.props.duration === 0) {
+      time = "--:--";
+    } else if (this.props.duration < 3600) {
+      time =
+        ("00" + Math.floor((this.props.duration % 3600) / 60)).slice(-2) +
+        ":" +
+        ("00" + Math.floor(this.props.duration % 60)).slice(-2);
     } else {
       time =
         ("00" + Math.floor(this.props.duration / 3600)).slice(-2) +

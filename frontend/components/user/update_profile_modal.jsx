@@ -7,16 +7,15 @@ class Modal extends React.Component {
     super(props);
     this.state = {
       imageUrl: "",
-      imageFile: null,
+      imageFile: null
     };
-
   }
 
   previewFile(e) {
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
     reader.onloadend = () =>
-      this.setState({ imageUrl: reader.result, imageFile: file});
+      this.setState({ imageUrl: reader.result, imageFile: file });
 
     if (file) {
       reader.readAsDataURL(file);
@@ -42,10 +41,12 @@ class Modal extends React.Component {
       <div className="modal-backdrop">
         <div className="modal" id="user-update-modal">
           <form>
-            <input type="file" onChange={this.previewFile.bind(this)}></input>
-            <img src={this.state.imageUrl} />
-            <button onClick={this.props.onClose}>Cancel</button>
-            <button onClick={this.handleSubmit.bind(this)}>Save</button>
+            <input type="file" onChange={this.previewFile.bind(this)} />
+            <img src={this.state.imageUrl} id="preview-image-profile" />
+            <div>
+              <button onClick={this.props.onClose}>Cancel</button>
+              <button onClick={this.handleSubmit.bind(this)}>Save</button>
+            </div>
           </form>
         </div>
       </div>

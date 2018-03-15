@@ -7,7 +7,7 @@ class Search extends React.Component {
     this.state = {
       search: "",
       timer: null,
-      results: [],
+      results: []
     };
     this.handleInput = this.handleInput.bind(this);
     this.clearTimer = this.clearTimer.bind(this);
@@ -17,29 +17,28 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-      document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillUnmount() {
-      document.removeEventListener('mousedown', this.handleClickOutside);
-      this.clearTimer();
+    document.removeEventListener("mousedown", this.handleClickOutside);
+    this.clearTimer();
   }
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-        this.clearTimer();
-        this.setState({results: []});
+      this.clearTimer();
+      this.setState({ results: [] });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({results: nextProps.users});
+    this.setState({ results: nextProps.users });
   }
 
   setWrapperRef(node) {
-      this.wrapperRef = node;
+    this.wrapperRef = node;
   }
-
 
   clearTimer() {
     clearTimeout(this.state.timer);
@@ -51,12 +50,14 @@ class Search extends React.Component {
     }
     const obj = {};
     obj["search"] = e.target.value;
-    obj["timer"] = setTimeout(() => (this.props.searchUsers(this.state.search)), 250);
+    obj["timer"] = setTimeout(
+      () => this.props.searchUsers(this.state.search),
+      250
+    );
     this.setState(obj);
   }
 
   render() {
-
     let result = null;
 
     if (this.state.search) {
@@ -64,17 +65,23 @@ class Search extends React.Component {
     } else {
       result = [];
     }
-
+    // TODO fix css
     return (
       <div id="search-wrapper" ref={this.setWrapperRef}>
         <div>Users</div>
-        <form >
-          <input type="text" onChange={this.handleInput} onFocusOut={this.clearTimer}/>
+        <form>
+          <input
+            type="text"
+            onChange={this.handleInput}
+            onFocusOut={this.clearTimer}
+          />
           <ul id="search-results">
-            { result.map((user, i) => {
+            {result.map((user, i) => {
               return (
-                <li>
-                  <Link to={`/users/${user.id}`}>{user.firstname} {user.lastname} {user.email}</Link>
+                <li key={i}>
+                  <Link to={`/users/${user.id}`}>
+                    {user.firstname} {user.lastname}
+                  </Link>
                 </li>
               );
             })}
