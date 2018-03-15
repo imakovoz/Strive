@@ -43,6 +43,11 @@ class Api::RoutesController < ApplicationController
     render :index
   end
 
+  def search_index
+    @routes = Route.where("title LIKE ? or body LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    render :index
+  end
+
   private
   def set_route
     @route = Route.find(params[:id])

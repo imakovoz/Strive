@@ -1,7 +1,9 @@
 import * as APIUtil from '../util/routes_util';
+import * as SearchUtil from '../util/search_util';
 export const RECEIVE_ROUTES = "RECEIVE_ROUTES";
 export const RECEIVE_ROUTE = "RECEIVE_ROUTE";
 export const LIMIT_ROUTES = "LIMIT_ROUTES";
+export const RECEIVE_SEARCHED_ROUTES = "RECEIVE_USERS";
 
 export const receiveRoutes = (routes) => ({
   type: RECEIVE_ROUTES,
@@ -14,6 +16,11 @@ return {
   route
 };
 };
+
+export const receiveSearchedRoutes = (routes) => ({
+  type: RECEIVE_SEARCHED_ROUTES,
+  routes
+});
 
 export const limitRoutes = (routes) => {
   return {
@@ -44,3 +51,7 @@ export const createRoute = (route1) => (dispatch) => (
 export const updateRoute = (route1) => (dispatch) => (
   APIUtil.updateRoute(route1).then((route) => (dispatch(receiveRoute(route))))
 );
+
+export const searchRoutes = (data, id) => (dispatch) => {
+  return SearchUtil.searchRoutes(data, id).then((users) => (dispatch(receiveSearchedRoutes(users))));
+};

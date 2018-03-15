@@ -10,7 +10,8 @@ const Header = props => {
         <Link to="/" id="logo-link">
           <h1>STRIVE</h1>
         </Link>
-        <img src={`${window.searchSprite}`} id="search-sprite" />
+        <SearchContainer />
+        {/* <img src={`${window.searchSprite}`} id="search-sprite" /> */}
         <div className="dropdown" id="dashboard-dropdown-container">
           <div id="dashboard-dropdown-div">
             <Link
@@ -54,6 +55,7 @@ const Header = props => {
               <Link to={`/posts/new`}>Create Post</Link>
               <Link to={`/workouts/new`}>Create Workout</Link>
               <Link to={`/routes/new`}>Create Route</Link>
+              <Link to={`/routes/record`}>Record Route</Link>
             </div>
           </div>
         </div>

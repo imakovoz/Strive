@@ -33,9 +33,9 @@ class Feed extends React.Component {
 
     let toggle = null;
     if (this.state.toggle) {
-      toggle = <div id="feed-toggle" onClick={ this.toggle }>Following</div>;
+      toggle = <div id="feed-toggle" onClick={ this.toggle }>Following ⌄</div>;
     } else {
-      toggle = <div id="feed-toggle" onClick={ this.toggle }>Your Activities</div>;
+      toggle = <div id="feed-toggle" onClick={ this.toggle }>Your Activities ⌄</div>;
     }
 
     return (

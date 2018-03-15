@@ -1,7 +1,9 @@
 import * as APIUtil from '../util/post_util';
+import * as SearchUtil from '../util/search_util';
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const LIMIT_POSTS = "LIMIT_POSTS";
+export const RECEIVE_SEARCHED_POSTS = "RECEIVE_USERS";
 
 
 export const receivePosts = (posts) => ({
@@ -17,6 +19,11 @@ export const limitPosts = (posts) => ({
 export const receivePost = (post) => ({
   type: RECEIVE_POST,
   post
+});
+
+export const receiveSearchedPosts = (posts) => ({
+  type: RECEIVE_SEARCHED_POSTS,
+  posts
 });
 
 export const fetchPosts = () => (dispatch) => (
@@ -38,3 +45,8 @@ export const createPost = (userId, post1) => (dispatch) => (
 export const updatePost = (userId, post1) => (dispatch) => (
   APIUtil.updatePost(userId, post1).then((post) => (dispatch(receivePost(post))))
 );
+
+
+export const searchPosts = (data, id) => (dispatch) => {
+  return SearchUtil.searchPosts(data, id).then((users) => (dispatch(receiveSearchedPosts(users))));
+};
