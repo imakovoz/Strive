@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  margin-top: 50px;
+  margin-top: 15px;
 }
 
 #current-user-dashboard {
@@ -25,4 +25,17 @@
   display: flex;
   flex-direction: column;
   width: 280px;
+}
+
+#feed-toggle {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+#feed-toggle:hover {
+  background-color: white;
+
 }

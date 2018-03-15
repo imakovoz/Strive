@@ -8,6 +8,7 @@ import PostShowContainer from './post/post_show_container';
 import RouteIndexContainer from './routes/index/routes_index_container';
 import RouteShowContainer from './routes/show/show_routes_container';
 import NewRouteContainer from './routes/create/new_route_container';
+import RecordRouteContainer from './routes/record/record_route_container';
 import WorkoutFormContainer from './workout/workout_form_container';
 import WorkoutShowContainer from './workout/workout_show_container';
 import ProfilePageContainer from './user/profile_page_container';
@@ -21,6 +22,7 @@ const App = () => (
       <AuthRoute path="/signup" component={SignupContainer} />
       <ProtectedRoute path="/posts/new" component={PostFormContainer} />
       <ProtectedRoute path="/routes/new" component={NewRouteContainer} />
+      <ProtectedRoute path="/routes/record" component={RecordRouteContainer} />
       <ProtectedRoute path="/routes/:id" component={RouteShowContainer} />
       <ProtectedRoute path="/routes" component={RouteIndexContainer} />
       <ProtectedRoute path="/users/:user_id/posts/:post_id/edit" component={EditPostFormContainer} />

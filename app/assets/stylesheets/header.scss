@@ -6,6 +6,7 @@
   height: 55px;
   border-bottom: 1px solid #ccccd1;
   z-index: 1;
+  overflow: visible;
 }
 
 #logo-link {
@@ -174,4 +175,16 @@
 
 .dropdown-header-div:hover {
   border-bottom: white 1px solid;
+}
+
+#search-results {
+  position: absolute;
+}
+
+#search-results li {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  z-index: 9999 !important;
+  display: block;
 }

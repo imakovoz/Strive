@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token
-
+  before_save :search_name
   attr_reader :password
 
   def search_name

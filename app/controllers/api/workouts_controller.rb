@@ -60,6 +60,11 @@ class Api::WorkoutsController < ApplicationController
     render :index
   end
 
+  def search_index
+    @routes = Route.where("title LIKE ? or body LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_workout

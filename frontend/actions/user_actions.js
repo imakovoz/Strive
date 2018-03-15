@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/user_util';
-import { searchUsersUtil } from '../util/search_util';
+import * as SearchUtil from '../util/search_util';
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_SEARCHED_USERS = "RECEIVE_USERS";
@@ -30,5 +30,5 @@ export const updateUser = (data, id) => (dispatch) => {
 };
 
 export const searchUsers = (data, id) => (dispatch) => {
-  return searchUsersUtil(data, id).then((users) => (dispatch(receiveSearchedUsers(users))));
+  return SearchUtil.searchUsers(data, id).then((users) => (dispatch(receiveSearchedUsers(users))));
 };

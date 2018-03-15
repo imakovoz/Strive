@@ -1,15 +1,17 @@
 import { searchUsers } from '../../actions/user_actions';
 import Search from './search';
 import { connect } from 'react-redux';
+import { selectSearchedUsers } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    current_user: state.session.currentUser
+    current_user: state.session.currentUser,
+    users: selectSearchedUsers(state) || [],
   });
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  searchUsers: () => dispatch(searchUsers()),
+  searchUsers: (data) => dispatch(searchUsers(data)),
 });
 
 

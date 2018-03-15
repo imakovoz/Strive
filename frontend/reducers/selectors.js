@@ -7,6 +7,8 @@ export const selectAllFeedItems = (state) => Array.prototype.concat(
 
 export const selectAllUsers = (state) => _.values(state.entities.users);
 
+export const selectSearchedUsers = (state) => _.values(state.search.users);
+
 export const styleWorkoutsForVisualization = (workouts, type) => {
   let data = setData();
   if (type === "number") {
