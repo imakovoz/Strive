@@ -3,7 +3,6 @@
   flex-direction: row;
   background-color: #f5f5fa;
   justify-content: center;
-  position: relative;
 }
 
 #feed-container-div {
@@ -37,5 +36,16 @@
 
 #feed-toggle:hover {
   background-color: white;
+}
 
+#search-results {
+  z-index: 999;
+}
+
+#search-results div {
+  background-color: white;
+}
+
+#search-results div:hover {
+  background-color: gray;
 }

@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import SearchContainer from "../search/search_container";
 
 const Header = props => {
-
+  // <SearchContainer />
   return (
     <header id="main-header">
       <div className="header-div" id="left-header-div">
         <Link to="/" id="logo-link">
           <h1>STRIVE</h1>
         </Link>
-        <SearchContainer />
+
         {/* <img src={`${window.searchSprite}`} id="search-sprite" /> */}
         <div className="dropdown" id="dashboard-dropdown-container">
           <div id="dashboard-dropdown-div">

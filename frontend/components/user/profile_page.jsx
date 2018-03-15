@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Header from '../header/header_container';
+import UpdateProfileModal from './update_profile_modal';
 
 
 class ProfilePage extends React.Component {
@@ -11,10 +12,12 @@ class ProfilePage extends React.Component {
       toggle: "number",
       imageUrl: "",
       imageFile: null,
+      isOpen: false,
     };
 
     this.chart = null;
     this.toggle = this.toggle.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount(){
@@ -71,24 +74,27 @@ class ProfilePage extends React.Component {
     this.props.updateUser(formData, this.props.current_user.id);
   }
 
+  toggleModal() {
+    this.setState({isOpen: !(this.state.isOpen)});
+  }
+
   render() {
     if (this.props.user_profile) {
       return (
         <div>
+          <UpdateProfileModal isOpen={this.state.isOpen} onClose={this.toggleModal}/>
           <Header />
           <div id="current-user-profile-wrapper">
             <div id="current-user-profile">
-              <img
-                src={`${this.props.user_profile.profile_pic}`}
-                height="150"
-                width="150"
-              />
+              <div>
+                <span onClick={this.toggleModal}>⚙</span>
+                <img
+                  src={`${this.props.user_profile.profile_pic}`}
+                  height="150"
+                  width="150"
+                  />
+              </div>
               <h3>{this.props.user_profile.firstname} {this.props.user_profile.lastname}</h3>
-              <form onSubmit={this.handleSubmit.bind(this)}>
-                <input type="file" onChange={this.previewFile.bind(this)}></input>
-                <img src={this.state.imageUrl} />
-                <button>Submit</button>
-              </form>
             </div>
             <div>
               <div id="profile-calendar-workouts"></div>

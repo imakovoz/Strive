@@ -1,5 +1,31 @@
+#map-record-wrapper {
+  height: 100vh;
+  width: 100%;
+}
+$header: 100px;
+
 #record-map-container {
-  height: 500px;
-  width: 800px;
-  
+  height: calc(100vh - #{$header});
+  width: 100%;
+
+}
+
+.record-route-btn {
+  height: 45px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  cursor: pointer;
+  background-color: gray;
+}
+
+#start-record {
+  background-color: #32b221;
+}
+
+#stop-record {
+  background-color: #b22f21;
 }

@@ -1,5 +1,6 @@
 #map-container {
   flex-grow: 1;
+  height: 100%;
 }
 
 #map-builder-wrapper {
@@ -9,7 +10,7 @@
   position: relative;
 }
 
-.save-route-modal-backdrop {
+.modal-backdrop {
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -18,12 +19,11 @@
   z-index: 2;
 }
 
-.save-route-modal {
+.modal {
   margin: 0 auto;
   margin-top: 100px;
   background-color: #f0f0f0;
   width: 600px;
-  // opacity: 1;
   z-index: 9999;
 }
 
