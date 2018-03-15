@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get 'api/filter/posts', to: 'api/posts#filter_index', as: 'fposts', defaults: { format: :json }
   get 'api/filter/routes', to: 'api/routes#filter_index', as: 'froutes', defaults: { format: :json }
 
+  get 'api/search/workouts', to: 'api/workouts#search_index', as: 'sworkouts', defaults: { format: :json }
+  get 'api/search/posts', to: 'api/posts#search_index', as: 'sposts', defaults: { format: :json }
+  get 'api/search/routes', to: 'api/routes#search_index', as: 'sroutes', defaults: { format: :json }
+  get 'api/search/users', to: 'api/users#search_index', as: 'susers', defaults: { format: :json }
+
   resources :workouts
   namespace :api, defaults: { format: :json } do
     resources :posts, only: [:index, :create]

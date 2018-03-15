@@ -54,6 +54,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def search_index
+    @users = User.where("search_name LIKE #{params[:search]}")
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

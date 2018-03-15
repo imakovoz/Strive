@@ -27,6 +27,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  def search_name
+    [:firstname.to_s, :last_name.to_s, :email.to_s].join(' ')
+  end
+
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
 
