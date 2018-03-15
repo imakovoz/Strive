@@ -55,7 +55,7 @@ class Api::UsersController < ApplicationController
   end
 
   def search_index
-    @users = User.where("firstname LIKE ? or lastname LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    @users = User.where("firstname ILIKE ? or lastname ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     render :index
   end
 

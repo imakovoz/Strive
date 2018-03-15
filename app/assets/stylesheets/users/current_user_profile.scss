@@ -26,7 +26,7 @@
   width: 950px;
 }
 
-#profile-page-chart-toggle{
+#profile-page-chart-toggle {
   display: flex;
   flex-direction: column;
   z-index: 2;
@@ -55,4 +55,22 @@
 
 #user-update-modal {
   z-index: 99;
+}
+
+#preview-image-profile {
+  max-width: 250px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+}
+
+#user-update-modal > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#user-update-modal > form > div {
+  display: flex;
+  justify-content: center;
 }

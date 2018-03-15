@@ -4,17 +4,17 @@
   width: 95%;
 }
 
-#create-routes-footer > div{
+#create-routes-footer > div {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  background-color: #EBEFF1;
-  margin-left: 2%
+  background-color: #ebeff1;
+  margin-left: 2%;
 }
 
 #create-routes-footer > div > * {
   font-size: 20px;
-  padding: 10px
+  padding: 10px;
 }
 
 .footer-detail-div {
@@ -22,20 +22,14 @@
   flex-direction: column;
 }
 
-.footer-detail-div > div{
+.footer-detail-div > div {
   font-size: 12px;
   color: #666;
   font-weight: 200;
 }
 
-.footer-detail-div > span{
+.footer-detail-div > span {
   font-size: 22px;
   color: #666;
   font-weight: 200;
-}
-
-#record-routes-footer {
-  position: absolute;
-  top: 80%;
-  width: 95%;
 }

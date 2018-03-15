@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Header from "./header";
 import Footer from "./footer";
 import SaveRouteModal from "./save_route_modal";
-import styles from '../google_map_styling';
+import styles from "../google_map_styling";
 
 export default class RouteMap extends React.Component {
   constructor(props) {
@@ -48,8 +48,8 @@ export default class RouteMap extends React.Component {
       zoomControl: true,
       styles: styles.strive,
       zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP
-        },
+        position: google.maps.ControlPosition.LEFT_TOP
+      }
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
@@ -57,8 +57,6 @@ export default class RouteMap extends React.Component {
     this.elevator = new google.maps.ElevationService();
 
     this.directionsDisplay.addListener("directions_changed", () => {
-      const request = this.directionsDisplay.directions.request;
-
       this.updateState(this.directionsDisplay.getDirections());
     });
 
@@ -70,8 +68,8 @@ export default class RouteMap extends React.Component {
       this.state.markers.push(newMarker);
       this.setState({
         markers: this.state.markers,
-        undo: [],
-       });
+        undo: []
+      });
       newMarker = newMarker.position;
       this.calcRoute([...this.state.waypts, newMarker]);
     });
@@ -138,7 +136,7 @@ export default class RouteMap extends React.Component {
     this.setState({
       polyline: result.routes[0].overview_polyline,
       path: result.routes[0].overview_path,
-      waypts,
+      waypts
     });
 
     this.computeTotalDistance(result);
@@ -170,6 +168,7 @@ export default class RouteMap extends React.Component {
 
   computeElevationGain() {
     let total = 0;
+
     var elevation = this.elevator.getElevationAlongPath(
       {
         path: this.state.path,
@@ -195,7 +194,7 @@ export default class RouteMap extends React.Component {
     this.state.undo.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,
-      undo: this.state.undo,
+      undo: this.state.undo
     });
     if (this.state.waypts.length > 1) {
       this.calcRoute(this.state.waypts);
@@ -209,13 +208,13 @@ export default class RouteMap extends React.Component {
     this.state.waypts.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,
-      undo: this.state.undo,
+      undo: this.state.undo
     });
     this.calcRoute(this.state.waypts);
   }
 
   render() {
-    let savebtn = (this.state.waypts.length > 1);
+    let savebtn = this.state.waypts.length > 1;
     return (
       <div id="map-builder-wrapper">
         <SaveRouteModal
@@ -225,7 +224,14 @@ export default class RouteMap extends React.Component {
           createRoute={this.props.createRoute}
         />
 
-        <Header openModal={this.toggleModal} savebtn={savebtn} undo={this.undo.bind(this)} redo={this.redo.bind(this)} waypts={this.state.waypts} undoArr={this.state.undo}/>
+        <Header
+          openModal={this.toggleModal}
+          savebtn={savebtn}
+          undo={this.undo.bind(this)}
+          redo={this.redo.bind(this)}
+          waypts={this.state.waypts}
+          undoArr={this.state.undo}
+        />
 
         <div id="map-container" ref={map => (this.mapNode = map)} />
 

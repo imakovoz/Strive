@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SearchContainer from "../search/search_container";
 
 const Header = props => {
-
   return (
     <header id="main-header">
       <div className="header-div" id="left-header-div">
@@ -17,9 +16,9 @@ const Header = props => {
             <Link
               to={`/users/${props.current_user.id}`}
               id="dashboard-dropdown-btn"
-              >
-                <h3>Dashboard</h3>
-              </Link>
+            >
+              <h3>Dashboard</h3>
+            </Link>
           </div>
           <div className="dropdown-content" id="dashboard-dropdown-content">
             <Link to="/">My Activites</Link>
