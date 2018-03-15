@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import { RECEIVE_POSTS, RECEIVE_POST, LIMIT_POSTS } from "../../actions/post_actions";
 
 
-const postsReducer = (state = [], action) => {
+const postsReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {

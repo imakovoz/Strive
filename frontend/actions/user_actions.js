@@ -1,6 +1,8 @@
 import * as APIUtil from '../util/user_util';
+import { searchUsersUtil } from '../util/search_util';
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_SEARCHED_USERS = "RECEIVE_USERS";
 
 export const receiveUser = (user) => ({
   type: RECEIVE_USER,
@@ -8,6 +10,10 @@ export const receiveUser = (user) => ({
 });
 export const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
+  users
+});
+export const receiveSearchedUsers = (users) => ({
+  type: RECEIVE_SEARCHED_USERS,
   users
 });
 
@@ -21,4 +27,8 @@ export const fetchUsers = () => (dispatch) => (
 
 export const updateUser = (data, id) => (dispatch) => {
   return APIUtil.updateUser(data, id).then((user) => (dispatch(receiveUser(user))));
+};
+
+export const searchUsers = (data, id) => (dispatch) => {
+  return searchUsersUtil(data, id).then((users) => (dispatch(receiveSearchedUsers(users))));
 };

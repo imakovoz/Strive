@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SearchContainer from "../search/search_container";
 
 const Header = props => {
 

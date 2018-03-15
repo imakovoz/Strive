@@ -1,7 +1,7 @@
 import { merge } from "lodash";
 import { RECEIVE_ROUTES, RECEIVE_ROUTE, LIMIT_ROUTES } from "../../actions/route_actions";
 
-const routesReducer = (state = [], action) => {
+const routesReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {
