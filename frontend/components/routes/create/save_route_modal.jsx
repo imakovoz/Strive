@@ -39,8 +39,8 @@ class Modal extends React.Component {
     }
 
     return (
-      <div className="save-route-modal-backdrop">
-        <div className="save-route-modal">
+      <div className="modal-backdrop">
+        <div className="modal">
           <div>
             <div id="route-modal-header">Save</div>
             <div id="route-modal-prompt">

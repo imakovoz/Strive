@@ -20,3 +20,16 @@
 #current-user-dashboard > h3 {
   padding: 15px;
 }
+
+#current-user-profile > div {
+  display: flex;
+  flex-direction: row;
+}
+
+#current-user-profile img {
+  border-radius: 50%;
+}
+
+#current-user-profile span {
+  cursor: pointer;
+}

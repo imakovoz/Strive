@@ -187,4 +187,18 @@
   border: 1px solid black;
   z-index: 9999 !important;
   display: block;
+  padding: 5px;
+  width: 150px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#search-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#search-results a {
+  text-decoration: none;
+  color: black;
 }

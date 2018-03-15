@@ -29,7 +29,6 @@
 #profile-page-chart-toggle{
   display: flex;
   flex-direction: column;
-  position: relative;
   z-index: 2;
   width: 200px;
   border: 1px solid #bababa;
@@ -52,4 +51,8 @@
 
 #profile-page-chart-toggle li:hover {
   background-color: #bababa;
+}
+
+#user-update-modal {
+  z-index: 99;
 }
