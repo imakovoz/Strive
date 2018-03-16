@@ -24,12 +24,12 @@ class User < ApplicationRecord
   validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token
-  before_save :search_name
+  # before_save :search_name
   attr_reader :password
 
-  def self.search_name
-    [:firstname.to_s, :last_name.to_s, :email.to_s].join(' ')
-  end
+  # def self.search_name
+  #   [:firstname.to_s, :last_name.to_s, :email.to_s].join(' ')
+  # end
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

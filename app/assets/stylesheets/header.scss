@@ -18,7 +18,7 @@
 }
 
 #search-sprite {
-  background-image: image_url("searchsprite.svg");
+  background-image: image_url('searchsprite.svg');
   height: 25px;
   width: 25px;
 }
@@ -182,15 +182,21 @@
 }
 
 #search-results li {
-  position: absolute;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #bcbcbc;
+  border-top: 0;
   z-index: 9999 !important;
   display: block;
   padding: 5px;
   width: 150px;
   font-size: 12px;
   cursor: pointer;
+}
+#search-results li:first-child {
+  border-top: 1px solid #bcbcbc;
+}
+#search-results li:hover {
+  background-color: #bcbcbc;
 }
 
 #search-wrapper {
