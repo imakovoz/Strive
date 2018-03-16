@@ -4,7 +4,7 @@
   height: 350px;
   position: sticky;
   top: 64px;
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(212,212,212,1);
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(212, 212, 212, 1);
 }
 
 #current-prof-pic-div {
@@ -19,6 +19,12 @@
 
 #current-user-dashboard > h3 {
   padding: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+link * {
+  text-decoration: none;
 }
 
 #current-user-profile > div {

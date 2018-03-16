@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUrl: "",
+      imageUrl: '',
       imageFile: null
     };
   }
@@ -20,16 +20,17 @@ class Modal extends React.Component {
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      this.setState({ imageUrl: "", imageFile: null });
+      this.setState({ imageUrl: '', imageFile: null });
     }
   }
 
   handleSubmit() {
     const file = this.state.imageFile;
-
+    debugger;
     const formData = new FormData();
-    if (file) formData.append("user[profile_pic]", file);
+    if (file) formData.append('user[profile_pic]', file);
     this.props.updateUser(formData, this.props.current_user.id);
+    this.props.onClose();
   }
 
   render() {
