@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render json: {id: @user.id, email: @user.email}
+      render json: {id: @user.id, email: @user.email, profile_pic: @user.profile_pic}
     else
       render json: {errors: ["Invalid Credentials"]}, status: 422
     end
