@@ -7,5 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Workout.destroy_all
 
-users = User.create({firstname: "Ilya", lastname: "Makovoz", email: "imakovoz93@gmail.com", password: "starwars"})
+user = User.create({firstname: "Ilya", lastname: "Makovoz", email: "imakovoz93@gmail.com", password: "starwars"})
