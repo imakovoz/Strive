@@ -1,11 +1,11 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
+      search: '',
       timer: null,
       results: []
     };
@@ -17,18 +17,17 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
+    document.removeEventListener('mousedown', this.handleClickOutside);
     this.clearTimer();
   }
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.clearTimer();
-      this.setState({ results: [] });
+      this.props.toggle();
     }
   }
 
@@ -49,8 +48,8 @@ class Search extends React.Component {
       this.clearTimer();
     }
     const obj = {};
-    obj["search"] = e.target.value;
-    obj["timer"] = setTimeout(
+    obj['search'] = e.target.value;
+    obj['timer'] = setTimeout(
       () => this.props.searchUsers(this.state.search),
       250
     );
@@ -67,13 +66,17 @@ class Search extends React.Component {
     }
     // TODO fix css
     return (
-      <div id="search-wrapper" ref={this.setWrapperRef}>
+      <div
+        id="search-wrapper"
+        ref={this.setWrapperRef}
+        // onBlur={this.props.toggle}
+      >
         <div>Users</div>
         <form>
           <input
             type="text"
             onChange={this.handleInput}
-            onFocusOut={this.clearTimer}
+            autoFocus="autoFocus"
           />
           <ul id="search-results">
             {result.map((user, i) => {
