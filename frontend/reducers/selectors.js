@@ -1,4 +1,4 @@
-import { values } from "lodash";
+import { values } from 'lodash';
 
 export const selectAllPosts = state => _.values(state.entities.posts);
 
@@ -13,17 +13,17 @@ export const selectSearchedUsers = state => _.values(state.search.users);
 
 export const styleWorkoutsForVisualization = (workouts, type) => {
   let data = setData();
-  if (type === "number") {
+  if (type === 'number') {
     _.values(workouts).forEach(el => {
       const df = formatDate(el.date);
       data[df]++;
     });
-  } else if (type === "distance") {
+  } else if (type === 'distance') {
     _.values(workouts).forEach(el => {
       const df = formatDate(el.date);
       data[df] = data[df] + el.distance;
     });
-  } else if (type === "elevation") {
+  } else if (type === 'elevation') {
     _.values(workouts).forEach(el => {
       const df = formatDate(el.date);
       data[df] = data[df] + el.distance;
@@ -34,7 +34,6 @@ export const styleWorkoutsForVisualization = (workouts, type) => {
       data[df] = data[df] + el.duration;
     });
   }
-  console.log(data);
   let arr = _.keys(data).map(el => [new Date(el), data[el]]);
   return arr;
 };
@@ -46,17 +45,17 @@ const compare = (a, b) => {
 };
 
 const formatDate = date => {
-  const dateArr = date.split("-");
+  const dateArr = date.split('-');
   const result = dateArr.map((el, i) => {
     if (i === 0) {
       return el;
     } else if (i === 1) {
-      return el.replace(/^0+/, "");
+      return el.replace(/^0+/, '');
     } else {
-      return el.split("T")[0].replace(/^0+/, "");
+      return el.split('T')[0].replace(/^0+/, '');
     }
   });
-  return result.join(", ");
+  return result.join(', ');
 };
 
 const setData = () => {

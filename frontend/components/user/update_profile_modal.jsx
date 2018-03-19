@@ -26,7 +26,6 @@ class Modal extends React.Component {
 
   handleSubmit() {
     const file = this.state.imageFile;
-    debugger;
     const formData = new FormData();
     if (file) formData.append('user[profile_pic]', file);
     this.props.updateUser(formData, this.props.current_user.id);

@@ -1,20 +1,20 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import Header from "./header";
-import Footer from "./footer";
-import SaveRouteModal from "./save_route_modal";
-import styles from "../google_map_styling";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import Header from './header';
+import Footer from './footer';
+import SaveRouteModal from './save_route_modal';
+import styles from '../google_map_styling';
 
 export default class RouteMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       waypts: [],
-      travelMode: "WALKING",
+      travelMode: 'WALKING',
       polyline: null,
       result: null,
-      duration: "--:--",
-      distance: "",
+      duration: '--:--',
+      distance: '',
       elevation: 0,
       path: null,
       markers: [],
@@ -56,11 +56,11 @@ export default class RouteMap extends React.Component {
     this.directionsDisplay.setMap(this.map);
     this.elevator = new google.maps.ElevationService();
 
-    this.directionsDisplay.addListener("directions_changed", () => {
+    this.directionsDisplay.addListener('directions_changed', () => {
       this.updateState(this.directionsDisplay.getDirections());
     });
 
-    this.map.addListener("click", e => {
+    this.map.addListener('click', e => {
       let newMarker = new google.maps.Marker({
         position: e.latLng,
         map: this.map
@@ -79,13 +79,13 @@ export default class RouteMap extends React.Component {
     this.props
       .createRoute({
         workout_id: 1,
-        title: "test",
+        title: 'test',
         polyline: this.state.polyline,
         distance: this.state.distance,
         elevation_gain: this.state.elevation,
         estimated_duration: this.state.duration
       })
-      .then(() => this.props.history.push("/routes"));
+      .then(() => this.props.history.push('/routes'));
   }
 
   toggleModal() {
@@ -118,12 +118,12 @@ export default class RouteMap extends React.Component {
     };
     if (points.length > 1) {
       this.directionsService.route(routeRequest, (result, status) => {
-        if (status == "OK") {
+        if (status == 'OK') {
           this.updateState(result);
           this.directionsDisplay.setMap(this.map);
           this.directionsDisplay.setDirections(result);
         } else {
-          alert("you done goofed: " + { status });
+          alert('you done goofed: ' + { status });
         }
       });
     }
@@ -153,7 +153,7 @@ export default class RouteMap extends React.Component {
     }
     total = total / 1000;
     this.setState({ distance: total });
-    return total + " km";
+    return total + ' km';
   }
 
   computeTotalDuration(result) {
@@ -175,7 +175,7 @@ export default class RouteMap extends React.Component {
         samples: 256
       },
       (result, status) => {
-        if (status == "OK") {
+        if (status == 'OK') {
           for (var i = 0; i < result.length - 1; i++) {
             if (result[i].elevation < result[i + 1].elevation) {
               total += result[i + 1].elevation - result[i].elevation;
@@ -190,7 +190,6 @@ export default class RouteMap extends React.Component {
 
   undo() {
     const lastwypt = this.state.waypts.pop();
-    console.log(lastwypt);
     this.state.undo.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,
@@ -202,9 +201,7 @@ export default class RouteMap extends React.Component {
   }
 
   redo() {
-    console.log(this.state.undo.length);
     const lastwypt = this.state.undo.pop();
-    console.log(this.state.undo.length);
     this.state.waypts.push(lastwypt);
     this.setState({
       waypts: this.state.waypts,
