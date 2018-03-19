@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Header from '../header/header_container';
 import UpdateProfileModal from './update_profile_modal';
+import Heatmap from './heatmap';
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class ProfilePage extends React.Component {
       toggle: 'number',
       imageUrl: '',
       imageFile: null,
-      isOpen: false
+      isOpen: false,
+      routes: this.props.routes
     };
 
     this.chart = null;
@@ -22,6 +24,12 @@ class ProfilePage extends React.Component {
   componentDidMount() {
     this.props
       .fetchUser(this.props.profile_id)
+      .then(() => this.props.fetchFilteredRoutes([this.props.profile_id]))
+      .then(routes => {
+        this.setState({
+          routes: routes.routes
+        });
+      })
       .then(() => this.props.fetchFilteredWorkouts([this.props.profile_id]))
       .then(workouts =>
         this.setState({
@@ -121,14 +129,17 @@ class ProfilePage extends React.Component {
             </div>
             <div>
               <div id="profile-calendar-workouts" />
-              <ul id="profile-page-chart-toggle">
-                Toggle Chart
-                <li onClick={() => this.toggle('number')}>
-                  Number of workouts
-                </li>
-                <li onClick={() => this.toggle('distance')}>Miles moved</li>
-                <li onClick={() => this.toggle('duration')}>Duration (s)</li>
-              </ul>
+              <div id="heatmap-wrapper">
+                <ul id="profile-page-chart-toggle">
+                  Toggle Chart
+                  <li onClick={() => this.toggle('number')}>
+                    Number of workouts
+                  </li>
+                  <li onClick={() => this.toggle('distance')}>Miles moved</li>
+                  <li onClick={() => this.toggle('duration')}>Duration (s)</li>
+                </ul>
+                {/* <Heatmap routes={this.state.routes} /> */}
+              </div>
             </div>
           </div>
         </div>

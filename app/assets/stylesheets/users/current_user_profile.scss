@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-around;
   margin-top: 50px;
+  flex-wrap: wrap;
 }
 
 #current-user-profile {
@@ -31,10 +32,15 @@
   flex-direction: column;
   z-index: 2;
   width: 200px;
+  height: 30px;
   border: 1px solid #bababa;
   border-radius: 5px;
   line-height: 30px;
   text-align: center;
+  position: relative;
+}
+#profile-page-chart-toggle:hover {
+  height: 125px;
 }
 
 #profile-page-chart-toggle li {
@@ -73,4 +79,15 @@
 #user-update-modal > form > div {
   display: flex;
   justify-content: center;
+}
+
+#heatmap {
+  margin-left: 50px;
+  height: 500px;
+  width: 500px;
+}
+
+#heatmap-wrapper {
+  display: flex;
+  flex-direction: row;
 }

@@ -34,7 +34,6 @@ class Api::PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    debugger
     @post.update(post_params)
     render :show
   end
