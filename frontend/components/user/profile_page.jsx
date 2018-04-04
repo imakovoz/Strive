@@ -13,7 +13,7 @@ class ProfilePage extends React.Component {
       imageUrl: '',
       imageFile: null,
       isOpen: false,
-      routes: this.props.routes
+      routes: this.props.routes,
     };
 
     this.chart = null;
@@ -27,7 +27,7 @@ class ProfilePage extends React.Component {
       .then(() => this.props.fetchFilteredRoutes([this.props.profile_id]))
       .then(routes => {
         this.setState({
-          routes: routes.routes
+          routes: routes.routes,
         });
       })
       .then(() => this.props.fetchFilteredWorkouts([this.props.profile_id]))
@@ -36,7 +36,7 @@ class ProfilePage extends React.Component {
           workouts: this.props.styleWorkoutsForVisualization(
             workouts.workouts,
             'number'
-          )
+          ),
         })
       )
       .then(() => {
@@ -57,7 +57,7 @@ class ProfilePage extends React.Component {
 
     var options = {
       title: 'Workouts',
-      height: 200
+      height: 200,
     };
 
     chart.draw(dataTable, options);
@@ -70,7 +70,7 @@ class ProfilePage extends React.Component {
         workouts: this.props.styleWorkoutsForVisualization(
           this.props.workouts,
           str
-        )
+        ),
       },
       this.drawChart.bind(this)
     );
@@ -102,6 +102,10 @@ class ProfilePage extends React.Component {
   }
 
   render() {
+    let edit_btn = null;
+    if (this.props.current_user.id === this.props.profile_id) {
+      edit_btn = <span onClick={this.toggleModal}>⚙</span>;
+    }
     if (this.props.user_profile) {
       return (
         <div>
@@ -115,7 +119,7 @@ class ProfilePage extends React.Component {
           <div id="current-user-profile-wrapper">
             <div id="current-user-profile">
               <div>
-                <span onClick={this.toggleModal}>⚙</span>
+                {edit_btn}
                 <img
                   src={`${this.props.user_profile.profile_pic}`}
                   height="150"
