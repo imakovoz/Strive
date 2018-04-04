@@ -1,14 +1,14 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      firstname: "",
-      lastname: ""
+      email: '',
+      password: '',
+      firstname: '',
+      lastname: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,21 +20,21 @@ class SessionForm extends React.Component {
   }
 
   // TODO add unmount to clear errors
-  // componentWillUnmount() {
-  //   this.props.resetErrors();
-  // }
+  componentWillUnmount() {
+    this.props.resetErrors();
+  }
 
   demoLogin(e) {
-    if (e.currentTarget.baseURI.split("/")[4] === "signup") {
+    if (e.currentTarget.baseURI.split('/')[4] === 'signup') {
       const user = {
-        email: "user" + Math.floor(e.timeStamp),
-        password: "starwars",
-        firstname: "Demo",
-        lastname: "Login"
+        email: 'user' + Math.floor(e.timeStamp),
+        password: 'starwars',
+        firstname: 'Demo',
+        lastname: 'Login',
       };
       this.props.processForm({ user });
     } else {
-      const user = { email: "imakovoz93@gmail.com", password: "starwars" };
+      const user = { email: 'imakovoz93@gmail.com', password: 'starwars' };
       this.props.processForm({ user });
     }
   }
@@ -59,7 +59,7 @@ class SessionForm extends React.Component {
   }
   //TODO refactor using formType
   render() {
-    if (this.props.formType === "signup") {
+    if (this.props.formType === 'signup') {
       return (
         <div>
           <header className="LoginPage">
@@ -67,12 +67,12 @@ class SessionForm extends React.Component {
 
             <div>
               <Link to="/login" id="log-in-link">
-                {" "}
-                Log In{" "}
+                {' '}
+                Log In{' '}
               </Link>
               <Link to="/signup" id="sign-up-link">
-                {" "}
-                Sign Up{" "}
+                {' '}
+                Sign Up{' '}
               </Link>
             </div>
           </header>
@@ -145,8 +145,8 @@ class SessionForm extends React.Component {
 
             <div>
               <Link to="/signup" id="sign-up-link">
-                {" "}
-                Sign Up{" "}
+                {' '}
+                Sign Up{' '}
               </Link>
             </div>
           </header>
