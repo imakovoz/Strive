@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      render json: {id: @user.id, email: @user.email, firstname: @user.firstname, lastname: @user.lastname, }
+      render json: {id: @user.id, email: @user.email, firstname: @user.firstname, lastname: @user.lastname, profile_pic: @user.profile_pic }
     else
       render json: {errors: @user.errors}, status: 422
     end

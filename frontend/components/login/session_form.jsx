@@ -127,7 +127,7 @@ class SessionForm extends React.Component {
                 className="SessionFormInputs"
                 id="demo-login"
               >
-                Demo Login
+                Demo Signup
               </button>
             </form>
           </div>

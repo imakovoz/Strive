@@ -86,11 +86,12 @@
 #workoutform-container input {
   padding: 1px 10px;
   line-height: 30px;
+  width: 50%;
 }
 
 #workoutform-container select {
   padding: 5px 8px;
-  width: 130%;
+  width: 70px;
   border: 1px solid #bcbcbc;
   border-radius: 0;
   box-shadow: none;
@@ -105,6 +106,7 @@
 
 #workout-form-input-activity {
   height: 38px;
+  width: 50px;
 }
 
 #workout-form-second-div > div:first-child {
@@ -120,6 +122,7 @@
   display: flex;
   justify-content: center;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 #create-workout-submit:hover {
