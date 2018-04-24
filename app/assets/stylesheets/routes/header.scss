@@ -1,4 +1,4 @@
-#create-routes-header{
+#create-routes-header {
   display: flex;
   flex-direction: column;
 }
@@ -36,11 +36,11 @@
   margin-left: 25px;
 }
 
-#create-routes-bottom-header{
+#create-routes-bottom-header {
   display: flex;
   flex-direction: row;
   height: 50px;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   align-items: center;
   justify-content: space-between;
 }
@@ -66,12 +66,12 @@
 }
 
 #disabled-save-route {
-  height: 44px;
+  height: 30px;
   justify-content: center;
   align-content: center;
-  background-color: #FF916D;
+  background-color: #ff916d;
   padding: 0px 20px;
-  color: #FFCCBB;
+  color: #ffccbb;
   cursor: not-allowed;
 }
 

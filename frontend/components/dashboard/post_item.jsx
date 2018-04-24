@@ -1,19 +1,19 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 const formatDate = (d, t) => {
   const date = new Date(d);
@@ -23,14 +23,14 @@ const formatDate = (d, t) => {
     hours++;
     minutes = 0;
   }
-  let ampm = hours >= 12 ? "PM" : "AM";
+  let ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  const strTime = hours + ":" + minutes + " " + ampm;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  const strTime = hours + ':' + minutes + ' ' + ampm;
   const month = monthNames[date.getMonth()];
   return (
-    month + " " + date.getDate() + ", " + date.getFullYear() + " at " + strTime
+    month + ' ' + date.getDate() + ', ' + date.getFullYear() + ' at ' + strTime
   );
 };
 
@@ -39,28 +39,28 @@ class PostItem extends React.Component {
     let linker = null;
     let details = null;
     const dist_uom_conv = {
-      miles: "mi",
-      kilometers: "km",
-      meters: "m",
-      yards: "yd"
+      miles: 'mi',
+      kilometers: 'km',
+      meters: 'm',
+      yards: 'yd',
     };
     if (this.props.post.activity) {
-      linker = "workouts";
+      linker = 'workouts';
       let pace = null;
       let base = this.props.post.duration / this.props.post.distance;
       if (base >= 360) {
         let hr = Math.floor(base / 360);
-        let min = ("0" + (base % 360) / 60).slice(-2);
-        let sec = ("0" + base % 60).slice(-2);
-        pace = hr + ":" + min + ":" + sec;
+        let min = ('0' + (base % 360) / 60).slice(-2);
+        let sec = ('0' + base % 60).slice(-2);
+        pace = hr + ':' + min + ':' + sec;
       } else if (base >= 60) {
         let min = Math.floor(base / 60);
-        let sec = ("0" + base % 60).slice(-2);
-        pace = min + ":" + sec;
+        let sec = ('0' + base % 60).slice(-2);
+        pace = min + ':' + sec;
       } else if (base >= 1) {
-        pace = base + "s";
+        pace = base + 's';
       } else {
-        pace = "1s";
+        pace = '1s';
       }
       let movingTime = null;
       if (this.props.post.duration) {
@@ -68,7 +68,7 @@ class PostItem extends React.Component {
           <div>
             <span className="entry-detail-label">Moving Time</span>
             <a className="feed-item-details">
-              {Math.floor(this.props.post.duration / 360)}h{" "}
+              {Math.floor(this.props.post.duration / 360)}h{' '}
               {Math.floor((this.props.post.duration % 360) / 60)}m
             </a>
           </div>
@@ -82,7 +82,7 @@ class PostItem extends React.Component {
           <div>
             <span className="entry-detail-label">Distance</span>
             <a className="feed-item-details">
-              {this.props.post.distance}{" "}
+              {this.props.post.distance}{' '}
               {this.props.post.distance_uom.slice(0, -1)}
             </a>
           </div>
@@ -121,7 +121,7 @@ class PostItem extends React.Component {
         </div>
       );
     } else {
-      linker = "posts";
+      linker = 'posts';
       details = (
         <Link
           to={`/users/${this.props.user.id}/${linker}/${this.props.post.id}`}
@@ -143,7 +143,11 @@ class PostItem extends React.Component {
       <div className="post-item-container">
         <div className="entry-header">
           <Link to={`/users/${this.props.user.id}`}>
-            <img src={`${this.props.user.profile_pic}`} height="40" width="40" />
+            <img
+              src={`${this.props.user.profile_pic}`}
+              height="40"
+              width="40"
+            />
           </Link>
           <div className="entry-header-details">
             <Link
@@ -171,10 +175,10 @@ class PostItem extends React.Component {
             {details}
           </div>
         </div>
-        <div className="entry-footer">
+        {/* <div className="entry-footer">
           <img src={`${window.like}`} height="16" width="17" />
           <img src={`${window.comment}`} height="16" width="17" />
-        </div>
+        </div> */}
       </div>
     );
   }

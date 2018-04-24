@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 export default class RouteHeader extends React.Component {
   render() {
@@ -15,24 +15,20 @@ export default class RouteHeader extends React.Component {
     }
     let undoBtn = null;
     if (this.props.waypts.length > 1) {
-      undoBtn =  (
-        <div onClick={ this.props.undo } id="rte-undo-endabled" className="action-btn-header-rte">
-          <img
-            src={`${window.undo}`}
-            height="20"
-            width="20"
-          />
+      undoBtn = (
+        <div
+          onClick={this.props.undo}
+          id="rte-undo-endabled"
+          className="action-btn-header-rte"
+        >
+          <img src={`${window.undo}`} height="20" width="20" />
           <span>Undo</span>
         </div>
       );
     } else {
-      undoBtn =  (
+      undoBtn = (
         <div id="rte-undo-disabled" className="action-btn-header-rte">
-          <img
-            src={`${window.undo}`}
-            height="20"
-            width="20"
-          />
+          <img src={`${window.undo}`} height="20" width="20" />
           <span>Undo</span>
         </div>
       );
@@ -40,24 +36,20 @@ export default class RouteHeader extends React.Component {
 
     let redo = null;
     if (this.props.undoArr.length > 0) {
-      redo =  (
-        <div onClick={ this.props.redo } id="rte-redo-endabled" className="action-btn-header-rte">
-          <img
-            src={`${window.redo}`}
-            height="20"
-            width="20"
-          />
+      redo = (
+        <div
+          onClick={this.props.redo}
+          id="rte-redo-endabled"
+          className="action-btn-header-rte"
+        >
+          <img src={`${window.redo}`} height="20" width="20" />
           <span>Redo</span>
         </div>
       );
     } else {
-      redo =  (
+      redo = (
         <div id="rte-redo-disabled" className="action-btn-header-rte">
-          <img
-            src={`${window.redo}`}
-            height="20"
-            width="20"
-          />
+          <img src={`${window.redo}`} height="20" width="20" />
           <span>Redo</span>
         </div>
       );
@@ -78,13 +70,10 @@ export default class RouteHeader extends React.Component {
         </div>
         <div id="create-routes-bottom-header">
           <div id="create-route-top-menu">
-            <div>Search Bar Placeholder</div>
-            { undoBtn }
-            { redo }
+            {undoBtn}
+            {redo}
           </div>
-          <div>
-            {savebtn}
-          </div>
+          <div>{savebtn}</div>
         </div>
       </div>
     );

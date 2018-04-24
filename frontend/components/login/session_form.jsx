@@ -122,13 +122,6 @@ class SessionForm extends React.Component {
               >
                 Submit
               </button>
-              <button
-                onClick={this.demoLogin}
-                className="SessionFormInputs"
-                id="demo-login"
-              >
-                Demo Signup
-              </button>
             </form>
           </div>
         </div>
