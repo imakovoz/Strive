@@ -73,4 +73,45 @@
 #ad2 {
   background-image: image_url('dangerousnyc.gif');
 }
+<<<<<<< HEAD
 >>>>>>> 583767f... reduce gif size
+=======
+
+#stats-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#stats-div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  border-bottom: 1px dashed gray;
+  padding: 5px 0;
+}
+
+#stats-div > div:first-child {
+  border-right: 1px dashed gray;
+  margin-left: 15px;
+}
+
+#stats-div > div:last-child {
+  margin-right: 15px;
+}
+
+#stats-div h4 {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+#curve_chart {
+  width: 100%;
+  height: 200px;
+}
+>>>>>>> df2cc29... add current user dashboard info

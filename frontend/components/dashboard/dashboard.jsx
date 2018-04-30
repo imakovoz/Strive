@@ -11,7 +11,13 @@ class Dashboard extends React.Component {
       <div>
         <Header />
         <div id="dashboard-container-div">
-          <CurrentUserProfile currentUser={this.props.currentUser} />
+          <CurrentUserProfile
+            currentUser={this.props.currentUser}
+            post={this.props.post}
+            workout={this.props.workout}
+            fetchFilteredWorkouts={this.props.fetchFilteredWorkouts}
+            fetchFilteredPosts={this.props.fetchFilteredPosts}
+          />
           <Feed
             fetchPosts={this.props.fetchPosts}
             posts={this.props.posts}

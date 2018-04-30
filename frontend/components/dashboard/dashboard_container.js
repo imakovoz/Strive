@@ -15,6 +15,8 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state, ownProps) => {
   return {
     posts: selectAllFeedItems(state) || [],
+    post: _.values(state.entities.posts) || [],
+    workout: _.values(state.entities.workouts) || [],
     users: state.entities.users || {},
     currentUser:
       state.entities.users[state.session.currentUser] ||
