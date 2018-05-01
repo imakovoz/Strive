@@ -8,30 +8,51 @@ class CurrentUserProfile extends React.Component {
   }
 
   drawChart() {
-    const today = new Date();
-    console.log(today.getMonth());
-    const datums = [['Week', 'Distance', 'Duration', 'Elevation']];
+    const today = (new Date().getYear() + 1900) * 12 + new Date().getMonth();
+    console.log(today);
+
+    var month = new Array();
+    month[0] = 'January';
+    month[1] = 'February';
+    month[2] = 'March';
+    month[3] = 'April';
+    month[4] = 'May';
+    month[5] = 'June';
+    month[6] = 'July';
+    month[7] = 'August';
+    month[8] = 'September';
+    month[9] = 'October';
+    month[10] = 'November';
+    month[11] = 'December';
+    const datums = [
+      ['Week', 'Distance (m)'],
+      [month[(today - 3) % 12], 0],
+      [month[(today - 2) % 12], 0],
+      [month[(today - 1) % 12], 0],
+      [month[today % 12], 0],
+    ];
+    console.log(datums);
     let workouts = this.props.workout.filter(el => {
       el.user_id === this.props.currentUser.id;
     });
     // workouts.sort
     this.props.workout.forEach(el => {
-      console.log(
-        el.date.split('-').map((el, i) => {
-          if (i === 2) {
-            el = el.split('T')[0];
-          }
-          return el;
-        })
-      );
+      let count = 0;
+      el.date.split('-').forEach((el, i) => {
+        if (i === 0) {
+          count += el * 12;
+        } else if (i === 1) {
+          count += el - 1;
+        }
+      });
+      if (count + 4 > today) {
+        console.log(datums[4 - (today - count)]);
+        datums[4 - (today - count)][1] += el.distance;
+        // datums[4 - (today - count)][2] += el.duration;
+        // datums[4 - (today - count)][3] += el.elevation;
+      }
     });
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004', 1000, 400],
-      ['2005', 1170, 460],
-      ['2006', 660, 1120],
-      ['2007', 1030, 540],
-    ]);
+    var data = google.visualization.arrayToDataTable(datums);
 
     var options = {
       title: 'Your Recent Workouts',
