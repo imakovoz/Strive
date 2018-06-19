@@ -29,6 +29,7 @@
     "test": "test"
   },
   "scripts": {
+    "postinstall": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch"
   },
