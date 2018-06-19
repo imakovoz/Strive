@@ -20,6 +20,5 @@ class Api::SessionsController < ApplicationController
     end
 
     logout!
-    # render json: {current_user: null}
   end
 end
