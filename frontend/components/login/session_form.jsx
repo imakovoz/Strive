@@ -60,6 +60,7 @@ class SessionForm extends React.Component {
   }
   //TODO refactor using formType
   render() {
+    console.log("test");
     if (this.props.formType === 'signup') {
       return (
         <div>
