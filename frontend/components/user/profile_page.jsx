@@ -103,7 +103,7 @@ class ProfilePage extends React.Component {
 
   render() {
     let edit_btn = null;
-    if (this.props.current_user.id === this.props.profile_id) {
+    if (this.props.current_user.id == this.props.profile_id) {
       edit_btn = <span onClick={this.toggleModal}>⚙</span>;
     }
     if (this.props.user_profile) {

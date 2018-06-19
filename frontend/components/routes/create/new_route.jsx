@@ -53,6 +53,7 @@ export default class RouteMap extends React.Component {
     };
 
     this.map = new google.maps.Map(this.mapNode, mapOptions);
+
     this.directionsDisplay.setMap(this.map);
     this.elevator = new google.maps.ElevationService();
 
@@ -73,6 +74,7 @@ export default class RouteMap extends React.Component {
       newMarker = newMarker.position;
       this.calcRoute([...this.state.waypts, newMarker]);
     });
+    this.forceUpdate();
   }
 
   handleSubmit() {
@@ -228,6 +230,7 @@ export default class RouteMap extends React.Component {
           redo={this.redo.bind(this)}
           waypts={this.state.waypts}
           undoArr={this.state.undo}
+          map={this.map}
         />
 
         <div id="map-container" ref={map => (this.mapNode = map)} />

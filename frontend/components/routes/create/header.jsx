@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Search from './search';
 
 export default class RouteHeader extends React.Component {
   render() {
@@ -72,6 +73,7 @@ export default class RouteHeader extends React.Component {
           <div id="create-route-top-menu">
             {undoBtn}
             {redo}
+            <Search map={this.props.map} />
           </div>
           <div>{savebtn}</div>
         </div>
