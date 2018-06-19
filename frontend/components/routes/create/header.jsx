@@ -4,6 +4,17 @@ import Search from './search';
 
 export default class RouteHeader extends React.Component {
   render() {
+    let clearbtn = (
+      <div
+        onClick={this.props.clear}
+        id="rte-undo-endabled"
+        className="action-btn-header-rte"
+      >
+        <img src={`${window.clear}`} height="20" width="20" />
+        <span>Clear</span>
+      </div>
+      );
+
     let savebtn = null;
     if (this.props.savebtn) {
       savebtn = (
@@ -71,9 +82,10 @@ export default class RouteHeader extends React.Component {
         </div>
         <div id="create-routes-bottom-header">
           <div id="create-route-top-menu">
+            <Search map={this.props.map} />
             {undoBtn}
             {redo}
-            <Search map={this.props.map} />
+            {clearbtn}
           </div>
           <div>{savebtn}</div>
         </div>

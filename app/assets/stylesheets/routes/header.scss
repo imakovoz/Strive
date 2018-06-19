@@ -56,7 +56,7 @@
 }
 
 #save-route {
-  height: 44px;
+  height: 30px;
   justify-content: center;
   align-content: center;
   background-color: #fc4c02;
@@ -76,9 +76,15 @@
 }
 
 #create-route-top-menu {
-  width: 670px;
+  width: 70%;
   display: flex;
   justify-content: space-around;
+}
+
+#create-route-top-menu > input {
+  width: 300px;
+  margin: 5px 0;
+  padding-left: 5px;
 }
 
 .action-btn-header-rte {

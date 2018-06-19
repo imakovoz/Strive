@@ -43,7 +43,7 @@ export default class Search extends React.Component {
   render() {
 
     return (
-      <input id="pac-input" className="controls" type="text" placeholder="Search Box"></input>
+      <input id="pac-input" className="controls" type="text" placeholder="Enter Location"></input>
     );
   }
 }

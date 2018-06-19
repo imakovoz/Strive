@@ -212,6 +212,20 @@ export default class RouteMap extends React.Component {
     this.calcRoute(this.state.waypts);
   }
 
+  clear() {
+    // debugger
+    // this.directionsDisplay.set('directions', null);
+    this.setState({
+      waypts: [],
+      undo: [],
+      duration: '--:--',
+      distance: '',
+      elevation: 0,
+    }, () => {
+      this.directionsDisplay.setMap(null);
+    });
+  }
+
   render() {
     let savebtn = this.state.waypts.length > 1;
     return (
@@ -228,6 +242,7 @@ export default class RouteMap extends React.Component {
           savebtn={savebtn}
           undo={this.undo.bind(this)}
           redo={this.redo.bind(this)}
+          clear={this.clear.bind(this)}
           waypts={this.state.waypts}
           undoArr={this.state.undo}
           map={this.map}
