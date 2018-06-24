@@ -27,6 +27,7 @@ class Dashboard extends React.Component {
             currentUser={this.props.currentUser}
             fetchFilteredPosts={this.props.fetchFilteredPosts}
             fetchFilteredWorkouts={this.props.fetchFilteredWorkouts}
+            createLike={this.props.createLike}
           />
           <div id="extra-dashboard-content" />
         </div>

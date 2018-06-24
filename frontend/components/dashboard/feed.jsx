@@ -18,9 +18,13 @@ class Feed extends React.Component {
   }
 
   toggle(e) {
-    this.setState({toggle: !(this.state.toggle)}, () => {
+    this.setState({ toggle: !this.state.toggle }, () => {
       if (this.state.toggle == false) {
-        this.props.fetchFilteredPosts([this.props.currentUser.id]).then(() => this.props.fetchFilteredWorkouts([this.props.currentUser.id]));
+        this.props
+          .fetchFilteredPosts([this.props.currentUser.id])
+          .then(() =>
+            this.props.fetchFilteredWorkouts([this.props.currentUser.id])
+          );
       } else {
         this.props.fetchPosts().then(() => this.props.fetchWorkouts());
       }
@@ -33,16 +37,22 @@ class Feed extends React.Component {
 
     let toggle = null;
     if (this.state.toggle) {
-      toggle = <div id="feed-toggle" onClick={ this.toggle }>Following ⌄</div>;
+      toggle = (
+        <div id="feed-toggle" onClick={this.toggle}>
+          Following ⌄
+        </div>
+      );
     } else {
-      toggle = <div id="feed-toggle" onClick={ this.toggle }>Your Activities ⌄</div>;
+      toggle = (
+        <div id="feed-toggle" onClick={this.toggle}>
+          Your Activities ⌄
+        </div>
+      );
     }
 
     return (
       <div id="feed-container-div">
-        <div>
-          { toggle }
-        </div>
+        <div>{toggle}</div>
         <ul>
           {this.props.posts.map((post, i) => {
             return (
@@ -50,6 +60,7 @@ class Feed extends React.Component {
                 post={post}
                 user={this.props.users[post.user_id]}
                 key={i}
+                createLike={this.props.createLike}
               />
             );
           })}

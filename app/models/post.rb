@@ -14,6 +14,8 @@
 class Post < ApplicationRecord
   validates :author, :body, presence: true
 
+  has_many :likes, as: :postable
+
   belongs_to :author,
     class_name: :User,
     foreign_key: :user_id

@@ -1,16 +1,17 @@
-import { fetchUsers } from '../../actions/user_actions';
-import { fetchPosts, fetchFilteredPosts } from '../../actions/post_actions';
+import { fetchUsers } from "../../actions/user_actions";
+import { createLike } from "../../actions/like_actions";
+import { fetchPosts, fetchFilteredPosts } from "../../actions/post_actions";
 import {
   fetchWorkouts,
-  fetchFilteredWorkouts,
-} from '../../actions/workout_actions';
+  fetchFilteredWorkouts
+} from "../../actions/workout_actions";
 import {
   selectAllPosts,
   selectAllUsers,
-  selectAllFeedItems,
-} from '../../reducers/selectors';
-import Dashboard from './dashboard';
-import { connect } from 'react-redux';
+  selectAllFeedItems
+} from "../../reducers/selectors";
+import Dashboard from "./dashboard";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -20,17 +21,18 @@ const mapStateToProps = (state, ownProps) => {
     users: state.entities.users || {},
     currentUser:
       state.entities.users[state.session.currentUser] ||
-      state.session.currentUser,
+      state.session.currentUser
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
+    createLike: post => dispatch(createLike(post)),
     fetchPosts: () => dispatch(fetchPosts()),
     fetchWorkouts: () => dispatch(fetchWorkouts()),
     fetchFilteredPosts: user_id => dispatch(fetchFilteredPosts(user_id)),
-    fetchFilteredWorkouts: user_id => dispatch(fetchFilteredWorkouts(user_id)),
+    fetchFilteredWorkouts: user_id => dispatch(fetchFilteredWorkouts(user_id))
   };
 };
 

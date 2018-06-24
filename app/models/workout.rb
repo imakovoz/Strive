@@ -22,6 +22,8 @@ class Workout < ApplicationRecord
 
   validates :user, :title, :date, presence: true
 
+  has_many :likes, as: :postable
+
   belongs_to :user
 
 end
