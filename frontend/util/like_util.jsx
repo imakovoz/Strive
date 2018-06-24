@@ -20,11 +20,11 @@ export const fetchPost = (userId, id) => {
   });
 };
 
-export const createLike = post => {
+export const createLike = postable => {
   return $.ajax({
     method: "POST",
     url: `/api/likes`,
-    data: { post }
+    data: { postable }
   });
 };
 

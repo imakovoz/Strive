@@ -8,30 +8,45 @@ class Api::LikesController < ApplicationController
   end
 
   def create
-    debugger
-    @like = Like.new(post_params)
-    @like.user_id = current_user.id
-    @like.save!
-    render :show
+    if !!params[:postable][:activity]
+      post = Workout.find(params[:postable][:id])
+      type = "Workout"
+    else
+      post = Post.find(params[:postable][:id])
+      type = "Post"
+    end
+
+    if !!(Like.find_by userid: current_user.id, postable_type: type, postable_id: params[:postable][:id])
+      (Like.find_by userid: current_user.id, postable_type: type, postable_id: params[:postable][:id]).destroy
+      respond_to do |format|
+        format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      @like = Like.new(userid: current_user.id)
+      debugger
+      @like.update_attribute(:postable, post)
+      @like.save!
+      render :show
+    end
   end
 
   def destroy
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Like was successfully destroyed.' }
+      format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
+    def set_like
       @like = Like.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      debugger
-      params.require(:post).permit(:userId, :postable)
+    def like_params
+      params.require(:postable).permit(:title, :body, :privacy, :user_id, :distance, :distance_uom, :duration, :elevation, :elevation_uom, :date, :activity, :subactivity, :id)
     end
 end
