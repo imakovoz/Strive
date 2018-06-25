@@ -60,6 +60,7 @@ class Feed extends React.Component {
               <PostItem
                 post={post}
                 user={this.props.users[post.user_id]}
+                users={this.props.users}
                 likes={this.props.likes}
                 key={i}
                 createLike={this.props.createLike}

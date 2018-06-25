@@ -116,6 +116,25 @@
   margin: 8px 24px 16px 24px;
 }
 
+.entry-likes {
+  display: flex;
+  flex-direction: row;
+}
+
+.entry-likes > *:last-child {
+  margin-left: 10px;
+}
+
+.entry-likes img {
+  border-radius: 50%;
+  margin-left: 0;
+  border: 1px solid white;
+}
+
+.entry-likes img:not(:first-child) {
+  margin-left: -10px;
+}
+
 .entry-footer > img {
   padding: 6px 12px;
   border: 1px solid #f5f5fa;

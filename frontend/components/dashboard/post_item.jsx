@@ -41,15 +41,44 @@ class PostItem extends React.Component {
   }
 
   render() {
-    debugger;
     let likeCount = null;
     let tester = 0;
     let likePics = null;
-    this.props.likes.forEach(num => {
+    let picsArr = [];
+    this.props.likes.forEach(like => {
       tester += 1;
+      if (tester < 4) {
+        // debugger;
+        picsArr.push(
+          <img
+            className="entry-like-pics"
+            src={this.props.users[like["userid"]].profile_pic}
+            title={
+              this.props.users[like["userid"]].firstname +
+              " " +
+              this.props.users[like["userid"]].lastname
+            }
+            height="20"
+            width="20"
+          />
+        );
+      }
     });
-    if (tester > 0) {
-      likeCount = <div className="entry-like-count">{tester}</div>;
+    likePics = (
+      <div className="entry-like-pics">
+        {picsArr.map(pic => {
+          return pic;
+        })}
+      </div>
+    );
+    if (tester > 3) {
+      likeCount = (
+        <div className="entry-like-count">and {tester - 3} more like this</div>
+      );
+    } else if (tester > 1) {
+      likeCount = <div className="entry-like-count">like this</div>;
+    } else if (tester === 1) {
+      likeCount = <div className="entry-like-count">likes this</div>;
     }
 
     let linker = null;
@@ -193,7 +222,7 @@ class PostItem extends React.Component {
         </div>
         <div className="entry-footer">
           <span className="entry-likes">
-            <div className="entry-like-pics" />
+            {likePics}
             {likeCount}
           </span>
           <span>
