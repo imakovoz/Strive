@@ -23,7 +23,9 @@ class Dashboard extends React.Component {
             posts={this.props.posts}
             fetchUsers={this.props.fetchUsers}
             users={this.props.users}
+            likes={this.props.likes}
             fetchWorkouts={this.props.fetchWorkouts}
+            fetchLikes={this.props.fetchLikes}
             currentUser={this.props.currentUser}
             fetchFilteredPosts={this.props.fetchFilteredPosts}
             fetchFilteredWorkouts={this.props.fetchFilteredWorkouts}

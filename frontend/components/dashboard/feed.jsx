@@ -14,7 +14,8 @@ class Feed extends React.Component {
     this.props
       .fetchUsers()
       .then(() => this.props.fetchPosts())
-      .then(() => this.props.fetchWorkouts());
+      .then(() => this.props.fetchWorkouts())
+      .then(() => this.props.fetchLikes());
   }
 
   toggle(e) {
@@ -59,6 +60,7 @@ class Feed extends React.Component {
               <PostItem
                 post={post}
                 user={this.props.users[post.user_id]}
+                likes={this.props.likes}
                 key={i}
                 createLike={this.props.createLike}
               />

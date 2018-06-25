@@ -18,17 +18,13 @@ class Api::LikesController < ApplicationController
 
     if !!(Like.find_by userid: current_user.id, postable_type: type, postable_id: params[:postable][:id])
       (Like.find_by userid: current_user.id, postable_type: type, postable_id: params[:postable][:id]).destroy
-      respond_to do |format|
-        format.html { redirect_to likes_url, notice: 'Like was successfully destroyed.' }
-        format.json { head :no_content }
-      end
     else
-      @like = Like.new(userid: current_user.id)
-      debugger
-      @like.update_attribute(:postable, post)
-      @like.save!
-      render :show
+      like = Like.new(userid: current_user.id)
+      like.update_attribute(:postable, post)
+      like.save!
     end
+    @likes = Like.all
+    render :index
   end
 
   def destroy

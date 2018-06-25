@@ -1,5 +1,5 @@
 import { fetchUsers } from "../../actions/user_actions";
-import { createLike } from "../../actions/like_actions";
+import { createLike, fetchLikes } from "../../actions/like_actions";
 import { fetchPosts, fetchFilteredPosts } from "../../actions/post_actions";
 import {
   fetchWorkouts,
@@ -19,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
     post: _.values(state.entities.posts) || [],
     workout: _.values(state.entities.workouts) || [],
     users: state.entities.users || {},
+    likes: _.values(state.entities.likes) || [],
     currentUser:
       state.entities.users[state.session.currentUser] ||
       state.session.currentUser
@@ -29,6 +30,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     createLike: post => dispatch(createLike(post)),
+    fetchLikes: () => dispatch(fetchLikes()),
     fetchPosts: () => dispatch(fetchPosts()),
     fetchWorkouts: () => dispatch(fetchWorkouts()),
     fetchFilteredPosts: user_id => dispatch(fetchFilteredPosts(user_id)),

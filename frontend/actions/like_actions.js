@@ -17,5 +17,5 @@ export const receiveLike = like => {
 export const fetchLikes = () => dispatch =>
   APIUtil.fetchLikes().then(likes => dispatch(receiveLikes(likes)));
 
-export const createLike = like1 => dispatch =>
-  APIUtil.createLike(like1).then(like => dispatch(receiveLike(like)));
+export const createLike = like => dispatch =>
+  APIUtil.createLike(like).then(likes => dispatch(receiveLikes(likes)));

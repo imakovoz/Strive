@@ -41,6 +41,17 @@ class PostItem extends React.Component {
   }
 
   render() {
+    debugger;
+    let likeCount = null;
+    let tester = 0;
+    let likePics = null;
+    this.props.likes.forEach(num => {
+      tester += 1;
+    });
+    if (tester > 0) {
+      likeCount = <div className="entry-like-count">{tester}</div>;
+    }
+
     let linker = null;
     let details = null;
     const dist_uom_conv = {
@@ -181,13 +192,18 @@ class PostItem extends React.Component {
           </div>
         </div>
         <div className="entry-footer">
-          <img
-            src={`${window.like}`}
-            height="16"
-            width="17"
-            onClick={this.handleLike.bind(this)}
-          />
-          <img src={`${window.comment}`} height="16" width="17" />
+          <span className="entry-likes">
+            <div className="entry-like-pics" />
+            {likeCount}
+          </span>
+          <span>
+            <img
+              src={`${window.like}`}
+              height="16"
+              width="17"
+              onClick={this.handleLike.bind(this)}
+            />
+          </span>
         </div>
       </div>
     );
