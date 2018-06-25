@@ -116,6 +116,13 @@
   margin: 8px 24px 16px 24px;
 }
 
+.entry-footer > span:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
 .entry-likes {
   display: flex;
   flex-direction: row;
@@ -123,6 +130,7 @@
 
 .entry-likes > *:last-child {
   margin-left: 10px;
+  line-height: 25px;
 }
 
 .entry-likes img {
@@ -135,14 +143,14 @@
   margin-left: -10px;
 }
 
-.entry-footer > img {
+.entry-footer-btns > img {
   padding: 6px 12px;
   border: 1px solid #f5f5fa;
   margin-left: 4px;
   background-color: #f5f5fa;
 }
 
-.entry-footer > img:hover {
+.entry-footer-btns > img:hover {
   background-color: white;
   cursor: pointer;
 }

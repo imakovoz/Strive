@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   validates :author, :body, presence: true
 
   has_many :likes, as: :postable
+  has_many :comments, as: :commentable
 
   belongs_to :author,
     class_name: :User,

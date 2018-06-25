@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :workouts, only: [:index, :create]
     resources :routes, only: [:index, :show, :create]
     resources :likes, only: [:destroy, :create, :index]
+    resources :comments, only: [:destroy, :create, :index]
     resources :users, only: [:index, :show, :create, :update] do
       resources :posts, only: [:show, :destroy, :update]
       resources :workouts, only: [:show, :destroy, :update]

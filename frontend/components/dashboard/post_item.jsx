@@ -36,7 +36,6 @@ const formatDate = (d, t) => {
 
 class PostItem extends React.Component {
   handleLike(e) {
-    debugger;
     this.props.createLike(this.props.post);
   }
 
@@ -231,13 +230,14 @@ class PostItem extends React.Component {
             {likePics}
             {likeCount}
           </span>
-          <span>
+          <span className="entry-footer-btns">
             <img
               src={`${window.like}`}
               height="16"
               width="17"
               onClick={this.handleLike.bind(this)}
             />
+            <img src={`${window.comment}`} height="16" width="17" />
           </span>
         </div>
       </div>
