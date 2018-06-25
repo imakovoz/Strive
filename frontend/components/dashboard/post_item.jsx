@@ -46,22 +46,28 @@ class PostItem extends React.Component {
     let likePics = null;
     let picsArr = [];
     this.props.likes.forEach(like => {
-      tester += 1;
-      if (tester < 4) {
-        // debugger;
-        picsArr.push(
-          <img
-            className="entry-like-pics"
-            src={this.props.users[like["userid"]].profile_pic}
-            title={
-              this.props.users[like["userid"]].firstname +
-              " " +
-              this.props.users[like["userid"]].lastname
-            }
-            height="20"
-            width="20"
-          />
-        );
+      // debugger;
+      if (
+        like.postable.id === this.props.post.id &&
+        !!this.props.post.activity === !!like.postable.activity
+      ) {
+        tester += 1;
+        if (tester < 4) {
+          // debugger;
+          picsArr.push(
+            <img
+              className="entry-like-pics"
+              src={this.props.users[like["userid"]].profile_pic}
+              title={
+                this.props.users[like["userid"]].firstname +
+                " " +
+                this.props.users[like["userid"]].lastname
+              }
+              height="20"
+              width="20"
+            />
+          );
+        }
       }
     });
     likePics = (
