@@ -17,7 +17,7 @@ export const receiveComment = comment => {
 export const fetchComments = () => dispatch =>
   APIUtil.fetchComments().then(comments => dispatch(receiveComments(comments)));
 
-export const createComment = comment => dispatch =>
-  APIUtil.createComment(comment).then(comments =>
-    dispatch(receiveComments(comments))
+export const postComment = (post, body) => dispatch =>
+  APIUtil.createComment(post, body).then(comment =>
+    dispatch(receiveComment(comment))
   );

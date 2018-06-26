@@ -15,6 +15,7 @@ class Feed extends React.Component {
       .fetchUsers()
       .then(() => this.props.fetchPosts())
       .then(() => this.props.fetchWorkouts())
+      .then(() => this.props.fetchComments())
       .then(() => this.props.fetchLikes());
   }
 
@@ -62,8 +63,10 @@ class Feed extends React.Component {
                 user={this.props.users[post.user_id]}
                 users={this.props.users}
                 likes={this.props.likes}
-                key={i}
+                comments={this.props.comments}
+                keyVal={i}
                 createLike={this.props.createLike}
+                postComment={this.props.postComment}
               />
             );
           })}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import Comment from "./comment";
 
 const monthNames = [
   "January",
@@ -35,11 +36,105 @@ const formatDate = (d, t) => {
 };
 
 class PostItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentInput: false,
+      body: ""
+    };
+    this.handleBody = this.handleBody.bind(this);
+    this.onEnterPress = this.onEnterPress.bind(this);
+    this.postComment = this.postComment.bind(this);
+  }
+
   handleLike(e) {
     this.props.createLike(this.props.post);
   }
 
+  toggleComment(e) {
+    if (this.state.commentInput === false) {
+      this.setState({
+        commentInput: true,
+        body: ""
+      });
+    } else {
+      this.setState({
+        commentInput: false,
+        body: ""
+      });
+    }
+  }
+
+  handleBody(e) {
+    this.setState({ body: e.target.value });
+  }
+
+  postComment() {
+    this.props.postComment(this.props.post, this.state.body);
+    this.setState({
+      commentInput: false,
+      body: ""
+    });
+  }
+
+  onEnterPress(e) {
+    if (e.keyCode == 13 && e.shiftKey == false && this.state.body.length < 1) {
+      this.setState({
+        commentInput: false,
+        body: ""
+      });
+    } else if (e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      this.postComment();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.commentInput === true) {
+      this.commentInput.focus();
+    }
+  }
+
   render() {
+    let comments = null;
+    let commentArr = [];
+    this.props.comments.forEach(comment => {
+      if (
+        comment.commentable.id === this.props.post.id &&
+        !!this.props.post.activity === !!comment.commentable.activity
+      ) {
+        commentArr.push(comment);
+      }
+    });
+    if (commentArr.length > 0) {
+      comments = (
+        <div className="post-comments">
+          {commentArr.map((comment, i) => {
+            return (
+              <Comment comment={comment} keyVal={i} users={this.props.users} />
+            );
+          })}
+        </div>
+      );
+    }
+
+    let commentInput = null;
+    if (this.state.commentInput === true) {
+      commentInput = (
+        <textarea
+          className="comment-input"
+          type="text"
+          value={this.state.body}
+          onChange={this.handleBody}
+          onKeyDown={this.onEnterPress}
+          ref={input => {
+            this.commentInput = input;
+          }}
+          placeholder="Your comment here"
+        />
+      );
+    }
+
     let likeCount = null;
     let tester = 0;
     let likePics = null;
@@ -64,6 +159,7 @@ class PostItem extends React.Component {
               }
               height="20"
               width="20"
+              key={tester}
             />
           );
         }
@@ -190,7 +286,7 @@ class PostItem extends React.Component {
       activityImg = <div className="no-activity-image" />;
     }
     return (
-      <div className="post-item-container">
+      <div className="post-item-container" key={this.props.keyVal}>
         <div className="entry-header">
           <Link to={`/users/${this.props.user.id}`}>
             <img
@@ -237,9 +333,16 @@ class PostItem extends React.Component {
               width="17"
               onClick={this.handleLike.bind(this)}
             />
-            <img src={`${window.comment}`} height="16" width="17" />
+            <img
+              src={`${window.comment}`}
+              height="16"
+              width="17"
+              onClick={this.toggleComment.bind(this)}
+            />
           </span>
         </div>
+        {comments}
+        {commentInput}
       </div>
     );
   }

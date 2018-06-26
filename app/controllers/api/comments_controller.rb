@@ -8,23 +8,18 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
-    if !!params[:commentable][:activity]
-      post = Workout.find(params[:commentable][:id])
-      type = "Workout"
+    debugger
+    if !!params[:post][:activity]
+      post = Workout.find(params[:post][:id])
     else
-      post = Post.find(params[:commentable][:id])
-      type = "Post"
+      post = Post.find(params[:post][:id])
     end
 
-    if !!(Comment.find_by userid: current_user.id, commentable_type: type, commentable_id: params[:commentable][:id])
-      (Comment.find_by userid: current_user.id, commentable_type: type, commentable_id: params[:commentable][:id]).destroy
-    else
-      comment = Comment.new(userid: current_user.id)
-      comment.update_attribute(:commentable, post)
-      comment.save!
-    end
-    @comments = Comment.all
-    render :index
+    @comment = Comment.new(userid: current_user.id, body: params[:comment])
+    @comment.update_attribute(:commentable, post)
+    @comment.save!
+
+    render :show
   end
 
   def destroy
