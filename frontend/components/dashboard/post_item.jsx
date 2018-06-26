@@ -111,7 +111,13 @@ class PostItem extends React.Component {
         <div className="post-comments">
           {commentArr.map((comment, i) => {
             return (
-              <Comment comment={comment} keyVal={i} users={this.props.users} />
+              <Comment
+                comment={comment}
+                keyVal={i}
+                users={this.props.users}
+                currentUser={this.props.currentUser}
+                deleteComment={this.props.deleteComment}
+              />
             );
           })}
         </div>
@@ -121,17 +127,24 @@ class PostItem extends React.Component {
     let commentInput = null;
     if (this.state.commentInput === true) {
       commentInput = (
-        <textarea
-          className="comment-input"
-          type="text"
-          value={this.state.body}
-          onChange={this.handleBody}
-          onKeyDown={this.onEnterPress}
-          ref={input => {
-            this.commentInput = input;
-          }}
-          placeholder="Your comment here"
-        />
+        <div className="comment-input">
+          <img
+            src={this.props.currentUser.profile_pic}
+            height="40"
+            width="40"
+          />
+          <textarea
+            className="comment-input"
+            type="text"
+            value={this.state.body}
+            onChange={this.handleBody}
+            onKeyDown={this.onEnterPress}
+            ref={input => {
+              this.commentInput = input;
+            }}
+            placeholder="Add a comment..."
+          />
+        </div>
       );
     }
 
@@ -139,6 +152,7 @@ class PostItem extends React.Component {
     let tester = 0;
     let likePics = null;
     let picsArr = [];
+    let youLike = false;
     this.props.likes.forEach(like => {
       // debugger;
       if (
@@ -146,6 +160,9 @@ class PostItem extends React.Component {
         !!this.props.post.activity === !!like.postable.activity
       ) {
         tester += 1;
+        if (like.userid === this.props.currentUser.id) {
+          youLike = true;
+        }
         if (tester < 4) {
           // debugger;
           picsArr.push(
@@ -180,6 +197,26 @@ class PostItem extends React.Component {
       likeCount = <div className="entry-like-count">like this</div>;
     } else if (tester === 1) {
       likeCount = <div className="entry-like-count">likes this</div>;
+    }
+
+    if (youLike === true) {
+      youLike = (
+        <img
+          src={`${window.liked}`}
+          height="16"
+          width="17"
+          onClick={this.handleLike.bind(this)}
+        />
+      );
+    } else {
+      youLike = (
+        <img
+          src={`${window.like}`}
+          height="16"
+          width="17"
+          onClick={this.handleLike.bind(this)}
+        />
+      );
     }
 
     let linker = null;
@@ -327,12 +364,7 @@ class PostItem extends React.Component {
             {likeCount}
           </span>
           <span className="entry-footer-btns">
-            <img
-              src={`${window.like}`}
-              height="16"
-              width="17"
-              onClick={this.handleLike.bind(this)}
-            />
+            {youLike}
             <img
               src={`${window.comment}`}
               height="16"

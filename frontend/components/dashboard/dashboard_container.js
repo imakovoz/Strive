@@ -1,6 +1,10 @@
 import { fetchUsers } from "../../actions/user_actions";
 import { createLike, fetchLikes } from "../../actions/like_actions";
-import { postComment, fetchComments } from "../../actions/comment_actions";
+import {
+  postComment,
+  fetchComments,
+  deleteComment
+} from "../../actions/comment_actions";
 import { fetchPosts, fetchFilteredPosts } from "../../actions/post_actions";
 import {
   fetchWorkouts,
@@ -33,6 +37,7 @@ const mapDispatchToProps = dispatch => {
     fetchUsers: () => dispatch(fetchUsers()),
     createLike: post => dispatch(createLike(post)),
     postComment: (post, body) => dispatch(postComment(post, body)),
+    deleteComment: id => dispatch(deleteComment(id)),
     fetchComments: () => dispatch(fetchComments()),
     fetchLikes: () => dispatch(fetchLikes()),
     fetchPosts: () => dispatch(fetchPosts()),

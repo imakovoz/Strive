@@ -37,16 +37,34 @@ class Comment extends React.Component {
     return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
   }
 
+  handleDelete() {
+    this.props.deleteComment(this.props.comment.id);
+  }
+
   render() {
-    debugger;
     const user = this.props.users[this.props.comment.userid];
+    let deleteComment = null;
+    if (this.props.currentUser.id === user.id) {
+      deleteComment = (
+        <div className="delete-comment" onClick={this.handleDelete.bind(this)}>
+          X
+        </div>
+      );
+    }
     return (
       <div className="comment" key={this.props.keyVal}>
         <img src={user.profile_pic} height="40" width="40" />
         <div>
-          <h6>{user.firstname + " " + user.lastname}</h6>
-          {this.props.comment.body}
-          {moment(this.formatDate(this.props.comment.created_at)).fromNow()}
+          <span>
+            <h5>{user.firstname + " " + user.lastname}</h5>
+            <h6>
+              {moment(this.formatDate(this.props.comment.created_at)).fromNow()}
+            </h6>
+          </span>
+          <div className="comment-body">
+            <div>{this.props.comment.body}</div>
+            {deleteComment}
+          </div>
         </div>
       </div>
     );

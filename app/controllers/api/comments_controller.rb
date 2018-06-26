@@ -8,7 +8,6 @@ class Api::CommentsController < ApplicationController
   end
 
   def create
-    debugger
     if !!params[:post][:activity]
       post = Workout.find(params[:post][:id])
     else
@@ -23,11 +22,10 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    comment = Comment.find(params[:id])
+    comment.destroy
+    @comments = Comment.all
+    render :index
   end
 
   private

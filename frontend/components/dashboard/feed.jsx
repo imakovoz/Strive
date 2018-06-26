@@ -59,6 +59,7 @@ class Feed extends React.Component {
           {this.props.posts.map((post, i) => {
             return (
               <PostItem
+                currentUser={this.props.currentUser}
                 post={post}
                 user={this.props.users[post.user_id]}
                 users={this.props.users}
@@ -67,6 +68,7 @@ class Feed extends React.Component {
                 keyVal={i}
                 createLike={this.props.createLike}
                 postComment={this.props.postComment}
+                deleteComment={this.props.deleteComment}
               />
             );
           })}

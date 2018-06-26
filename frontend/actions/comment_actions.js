@@ -21,3 +21,8 @@ export const postComment = (post, body) => dispatch =>
   APIUtil.createComment(post, body).then(comment =>
     dispatch(receiveComment(comment))
   );
+
+export const deleteComment = id => dispatch =>
+  APIUtil.deleteComment(id).then(comments =>
+    dispatch(receiveComments(comments))
+  );
